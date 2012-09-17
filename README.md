@@ -1,4 +1,4 @@
 qiime.github.com
 ================
 
-Webspace for QIIME
+Redirect to the main QIIME website (www.qiime.org).
