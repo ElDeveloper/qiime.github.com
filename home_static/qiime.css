@@ -45,6 +45,16 @@ ul {
 	font-size: 10pt;
 }
 
+.code {
+/*    height: 50px;*/
+    white-space: nowrap;
+/*    width: 600px;*/
+    overflow-y: hidden;
+    overflow-x: scroll;
+    font-size:-2;
+    font-family: courier
+}
+
 ul.feedlist {
 	padding-left: 1em;
 }
