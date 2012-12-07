@@ -36,7 +36,7 @@ The IPython notebook files (<tt>.ipynb</tt>) are available for <a href="ipynb_fi
 <p>
 The tree metadata mapping file used in generating the coloring categories in the 3D PCoA plot is <a href="./tree_metadata.txt">available here</a>.
 <p>
-A manuscript on this analysis is currently in review. When this is published we will make the Open Access article available from this page.
+The paper for this analysis, "Collaborative cloud-enabled tools allow rapid, reproducible biological insights", is available <a href="http://www.nature.com/ismej/journal/vaop/ncurrent/full/ismej2012123a.html">here</a>. 
 <h4>Reproducing the analysis</h4>
 <hr>
 Four <tt>m2.4xlarge</tt> instances were booted using StarCluster to create a 32 core cluster with approximately 280GB of RAM (70GB per 8 core instance). This was used for the full analysis (a more complete analysis then was done during the workshop, where the workshop analysis was optimized to run quickly). To support the large quantity of data that is generated during the analysis, you should create an EBS volume which will be attached to the running instance. A 20 GB volume will be sufficient. The volume used for running these notebooks is available as <tt>snap-75eb8005</tt>.
