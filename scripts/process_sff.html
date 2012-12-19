@@ -3,17 +3,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
+
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
     <title>process_sff.py – Convert sff to FASTA and QUAL files &mdash; Homepage</title>
+    
     <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.5.0',
+        VERSION:     '1.6.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -64,7 +67,7 @@
 <p><strong>[REQUIRED]</strong></p>
 <dl class="docutils">
 <dt>-i, <cite>-</cite>-input_dir</dt>
-<dd>Input directory of sff files</dd>
+<dd>Input directory of sff files or a single sff filepath</dd>
 </dl>
 <p><strong>[OPTIONAL]</strong></p>
 <dl class="last docutils">
@@ -86,9 +89,15 @@
 <p>Convert all the sffs in directory &#8220;sffs/&#8221; to fasta and qual.</p>
 <div class="highlight-python"><pre>process_sff.py -i sffs/</pre>
 </div>
+<p>Convert a single sff to fasta and qual.</p>
+<div class="highlight-python"><pre>process_sff.py -i sffs/test.sff</pre>
+</div>
 <p><strong>Flowgram example:</strong></p>
 <p>Convert all the sffs in directory &#8220;sffs/&#8221; to fasta and qual, along with a flowgram file.</p>
 <div class="highlight-python"><pre>process_sff.py -i sffs/ -f</pre>
+</div>
+<p>Convert a single sff to fasta and qual, along with a flowgram file.</p>
+<div class="highlight-python"><pre>process_sff.py -i sffs/test.sff -f</pre>
 </div>
 <p><strong>Output example:</strong></p>
 <p>Convert all the sffs in directory &#8220;sffs/&#8221; to fasta and qual, along with a flowgram file and write them to another directory.</p>
@@ -119,7 +128,7 @@
 <div id="searchbox" style="display: none">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" size="18" />
+      <input type="text" name="q" />
       <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
@@ -143,12 +152,12 @@
       </ul>
     </div>
 <div style="text-align: center; padding: 0px;"><br />
-<a href="http://pycogent.sourceforge.net" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
+<a href="http://www.pycogent.org" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
 <br /></div>
 
     <div class="footer">
         &copy; Copyright 2012, QIIME Team.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");

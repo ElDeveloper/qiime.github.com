@@ -3,17 +3,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
+
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Processing 18S data &mdash; Homepage</title>
+    <title>Analysis of 18S data &mdash; Homepage</title>
+    
     <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.5.0',
+        VERSION:     '1.6.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -53,12 +56,12 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="processing-18s-data">
-<span id="id1"></span><h1>Processing 18S data<a class="headerlink" href="#processing-18s-data" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="analysis-of-18s-data">
+<span id="processing-18s-data"></span><h1>Analysis of 18S data<a class="headerlink" href="#analysis-of-18s-data" title="Permalink to this headline">¶</a></h1>
 <p>This tutorial explains how to use the <strong>QIIME</strong> pipeline to analyze 18S, or mixed 18S/16S, data.  While most of the steps are identical to the standard 16S pipeline described in the <a class="reference external" href="tutorial.html">overview tutorial</a>, reference data that include eukaryotic sequences may be required for OTU picking, taxonomic assignments, and template-based alignment building.</p>
 <p>To this end, QIIME-compatible versions of the <a class="reference external" href="http://www.arb-silva.de/">Silva</a> 104 and 108 releases, which contains data for all three domains of life, are available here: <a class="reference external" href="http://www.arb-silva.de/download/archive/qiime/">http://www.arb-silva.de/download/archive/qiime/</a>.  The <cite>Qiime_files_r104.zip</cite> archive contains several files that will be utilized in this tutorial, and can be used for analyzing 18S datasets.  The 108 release can be used in the same fashion as the 104 release tutorial given below.  Notes about how these datasets and tree were constructed, and the differences between the 104 and 108 release are listed at the bottom of this tutorial.</p>
 <p>IMPORTANT:  Java version 1.6.0 or later is suggested for retraining the RDP classifier, errors have been observed with earlier versions.</p>
-<p>A sample fasta file containing sequences from archaea, bacteria, and eukaryotes can be found in the /qiime_tutorial/18S_tutorial_files/ which will be used along with the Silva reference set in this tutorial.</p>
+<p>A sample fasta file containing sequences from archaea, bacteria, and eukaryotes can be found in the 18S_tutorial_files of the <a class="reference external" href="ftp://thebeast.colorado.edu/pub/QIIME-v1.5.0-dependencies/qiime_tutorial-v1.5.0.zip">QIIME Tutorial files</a> data set, which will be used along with the Silva reference set in this tutorial.</p>
 <p>Each of the following steps are described in this tutorial (the remaining analyses are identical to those described in the general 16S <a class="reference external" href="tutorial.html">tutorial</a>):</p>
 <ul class="simple">
 <li>Picking Operational Taxonomic Units (OTUs)</li>
@@ -182,7 +185,7 @@ fasttree 2.1.0 was used to construct the phylogenetic tree.</p>
     
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Processing 18S data</a><ul>
+<li><a class="reference internal" href="#">Analysis of 18S data</a><ul>
 <li><a class="reference internal" href="#making-otu-tables-for-18s-datasets">Making OTU tables for 18S datasets</a></li>
 <li><a class="reference internal" href="#separating-otu-tables-according-to-domain">Separating OTU Tables According to Domain</a></li>
 <li><a class="reference internal" href="#alignments-and-tree-building">Alignments and Tree Building</a></li>
@@ -207,7 +210,7 @@ fasttree 2.1.0 was used to construct the phylogenetic tree.</p>
 <div id="searchbox" style="display: none">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" size="18" />
+      <input type="text" name="q" />
       <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
@@ -231,12 +234,12 @@ fasttree 2.1.0 was used to construct the phylogenetic tree.</p>
       </ul>
     </div>
 <div style="text-align: center; padding: 0px;"><br />
-<a href="http://pycogent.sourceforge.net" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
+<a href="http://www.pycogent.org" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
 <br /></div>
 
     <div class="footer">
         &copy; Copyright 2012, QIIME Team.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");

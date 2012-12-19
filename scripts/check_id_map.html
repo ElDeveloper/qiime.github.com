@@ -3,17 +3,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
+
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
     <title>check_id_map.py – Checks user’s metadata mapping file for required data, valid format &mdash; Homepage</title>
+    
     <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.5.0',
+        VERSION:     '1.6.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -112,16 +115,16 @@ are non-degenerate (error)</p>
 </dd>
 </dl>
 </li>
-<li><p class="first">Data fields are not found passed the Description column (warning)</p>
+<li><p class="first">Data fields are not found beyond the Description column (warning)</p>
 </li>
 </ul>
 <p>Details about the metadata mapping file format can be found here:
 <a class="reference external" href="http://www.qiime.org/documentation/file_formats.html#metadata-mapping-files">http://www.qiime.org/documentation/file_formats.html#metadata-mapping-files</a></p>
-<p>Errors and warnings are saved to a log file.  Errors are generally caused
-by problems with the headers, and should be resolved before attempting to
-correct any warnings.  Duplicate SampleIDs will also create errors.</p>
-<p>Warnings can arise from invalid characters, non-DNA characters,
-duplicate sample descriptions/barcodes, or missing data fields.
+<p>Errors and warnings are saved to a log file.  Errors can be caused by
+problems with the headers, invalid characters in barcodes or primers, or
+by duplications in SampleIDs or barcodes.</p>
+<p>Warnings can arise from invalid characters and variable length barcodes that
+are not specified with the &#8211;variable_len_barcode.
 Warnings will contain a reference to the cell (row,column) that the
 warning arose from.</p>
 <p>In addition to the log file, a &#8220;corrected_mapping&#8221; file will be created.
@@ -146,31 +149,31 @@ AGGGTTCGATTCTGGCTCAG,AGAGTTTGATCCTGGCTTAG,AGAATTTGATCTTGGTTCAG</p>
 <p><strong>[REQUIRED]</strong></p>
 <dl class="docutils">
 <dt>-m, <cite>-</cite>-mapping_fp</dt>
-<dd>Metadata mapping file filepath</dd>
+<dd>Metadata mapping filepath</dd>
 </dl>
 <p><strong>[OPTIONAL]</strong></p>
 <dl class="last docutils">
 <dt>-o, <cite>-</cite>-output_dir</dt>
-<dd>Required output directory for log file and corrected mapping file, log file, and html file. [default: ./]</dd>
+<dd>Required output directory for log file, corrected mapping file, and html file. [default: ./]</dd>
 <dt>-v, <cite>-</cite>-verbose</dt>
 <dd>Enable printing information to standard out [default: True]</dd>
 <dt>-c, <cite>-</cite>-char_replace</dt>
 <dd>Changes the default character used to replace invalid characters found in the mapping file.  Must be a valid character (alphanumeric, period, or underscore).[default: _]</dd>
 <dt>-b, <cite>-</cite>-not_barcoded</dt>
-<dd>Use -b if barcodes are not present. [default: False]</dd>
+<dd>Use -b if barcodes are not present.  BarcodeSequence header still required.  [default: False]</dd>
 <dt>-B, <cite>-</cite>-variable_len_barcodes</dt>
 <dd>Use -B if variable length barcodes are present to suppress warnings about barcodes of unequal length. [default: False]</dd>
 <dt>-p, <cite>-</cite>-disable_primer_check</dt>
-<dd>Use -p to disable checks for primers. [default: False]</dd>
+<dd>Use -p to disable checks for primers.  LinkerPrimerSequence header still required.  [default: False]</dd>
 <dt>-j, <cite>-</cite>-added_demultiplex_field</dt>
-<dd>Use -j to add a field to use in the mapping file as an additional demultiplexing option to the barcode.  All combinations of barcodes/primers and the these fields must be unique. The fields must contain values that can be parsed from the fasta labels such as &#8220;plate=R_2008_12_09&#8221;.  In this case, &#8220;plate&#8221; would be the column header and &#8220;R_2008_12_09&#8221; would be the field data (minus quotes) in the mapping file.  To use the run prefix from the fasta label, such as &#8220;&gt;FLP3FBN01ELBSX&#8221;, where &#8220;FLP3FBN01&#8221; is generated from the run ID, use &#8220;-j run_prefix&#8221; and set the run prefix to be used as the data under the column header &#8220;run_prefix&#8221;.  [default: None]</dd>
+<dd>Use -j to add a field to use in the mapping file as additional demultiplexing (can be used with or without barcodes).  All combinations of barcodes/primers and the these fields must be unique. The fields must contain values that can be parsed from the fasta labels such as &#8220;plate=R_2008_12_09&#8221;.  In this case, &#8220;plate&#8221; would be the column header and &#8220;R_2008_12_09&#8221; would be the field data (minus quotes) in the mapping file.  To use the run prefix from the fasta label, such as &#8220;&gt;FLP3FBN01ELBSX&#8221;, where &#8220;FLP3FBN01&#8221; is generated from the run ID, use &#8220;-j run_prefix&#8221; and set the run prefix to be used as the data under the column header &#8220;run_prefix&#8221;.  [default: None]</dd>
 </dl>
 </div>
 <p><strong>Output:</strong></p>
-<p>A log file, html file, and corrected_mapping.txt file will be written to the current directory directory.</p>
+<p>A log file, html file, and corrected_mapping.txt file will be written to the current output directory.</p>
 <p><strong>Example:</strong></p>
-<p>Check the test_mapping.txt mapping file for problems, supplying the required mapping file.</p>
-<div class="highlight-python"><pre>check_id_map.py -m test_mapping.txt</pre>
+<p>Check the Fasting_Map.txt mapping file for problems, supplying the required mapping file, and output the results in the check_id_map_output directory</p>
+<div class="highlight-python"><pre>check_id_map.py -m Fasting_Map.txt -o check_id_map_output</pre>
 </div>
 </div>
 
@@ -197,7 +200,7 @@ AGGGTTCGATTCTGGCTCAG,AGAGTTTGATCCTGGCTTAG,AGAATTTGATCTTGGTTCAG</p>
 <div id="searchbox" style="display: none">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" size="18" />
+      <input type="text" name="q" />
       <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
@@ -221,12 +224,12 @@ AGGGTTCGATTCTGGCTCAG,AGAGTTTGATCCTGGCTTAG,AGAATTTGATCTTGGTTCAG</p>
       </ul>
     </div>
 <div style="text-align: center; padding: 0px;"><br />
-<a href="http://pycogent.sourceforge.net" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
+<a href="http://www.pycogent.org" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
 <br /></div>
 
     <div class="footer">
         &copy; Copyright 2012, QIIME Team.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");

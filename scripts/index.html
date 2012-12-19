@@ -3,17 +3,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
+
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
     <title>QIIME scripts &mdash; Homepage</title>
+    
     <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.5.0',
+        VERSION:     '1.6.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -57,8 +60,8 @@
 <span id="index"></span><h1>QIIME scripts<a class="headerlink" href="#qiime-scripts" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="add_alpha_to_mapping_file.html"><em>add_alpha_to_mapping_file.py</em> &#8211; Add alpha diversity data to a metadata mapping file</a></li>
 <li class="toctree-l1"><a class="reference internal" href="add_qiime_labels.html"><em>add_qiime_labels.py</em> &#8211; Takes a directory and a mapping file of SampleIDs to fasta file names, combines all files that have valid fasta extensions into a single fasta file, with valid QIIME fasta labels.</a></li>
-<li class="toctree-l1"><a class="reference internal" href="add_taxa.html"><em>add_taxa.py</em> &#8211; Add taxa to OTU table</a></li>
 <li class="toctree-l1"><a class="reference internal" href="adjust_seq_orientation.html"><em>adjust_seq_orientation.py</em> &#8211; Get the reverse complement of all sequences</a></li>
 <li class="toctree-l1"><a class="reference internal" href="align_seqs.html"><em>align_seqs.py</em> &#8211; Align sequences using a variety of alignment methods</a></li>
 <li class="toctree-l1"><a class="reference internal" href="alpha_diversity.html"><em>alpha_diversity.py</em> &#8211; Calculate alpha diversity on each sample in an otu table, using a variety of alpha diversity metrics</a></li>
@@ -77,21 +80,26 @@
 <li class="toctree-l1"><a class="reference internal" href="cluster_quality.html"><em>cluster_quality.py</em> &#8211; compute the quality of a cluster</a></li>
 <li class="toctree-l1"><a class="reference internal" href="collate_alpha.html"><em>collate_alpha.py</em> &#8211; Collate alpha diversity results</a></li>
 <li class="toctree-l1"><a class="reference internal" href="compare_3d_plots.html"><em>compare_3d_plots.py</em> &#8211; Plot several PCoA files on the same 3D plot</a></li>
-<li class="toctree-l1"><a class="reference internal" href="compare_alpha_diversity.html"><em>compare_alpha_diversity.py</em> &#8211; This script compares alpha diversities based on a t_two_sample test</a></li>
-<li class="toctree-l1"><a class="reference internal" href="compare_categories.html"><em>compare_categories.py</em> &#8211; Analyzes distance matrices for statistical significance of sample grouping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="compare_alpha_diversity.html"><em>compare_alpha_diversity.py</em> &#8211; This script compares alpha diversities based on a two sample t-test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="compare_categories.html"><em>compare_categories.py</em> &#8211; Analyzes statistical significance of sample groupings using distance matrices</a></li>
 <li class="toctree-l1"><a class="reference internal" href="compare_distance_matrices.html"><em>compare_distance_matrices.py</em> &#8211; Computes Mantel correlation tests between sets of distance matrices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="compare_taxa_summaries.html"><em>compare_taxa_summaries.py</em> &#8211; Compares taxa summary files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="compute_core_microbiome.html"><em>compute_core_microbiome.py</em> &#8211; Identify the core microbiome.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="conditional_uncovered_probability.html"><em>conditional_uncovered_probability.py</em> &#8211; Calculate the conditional uncovered probability on each sample in an otu table.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="consensus_tree.html"><em>consensus_tree.py</em> &#8211; This script outputs a majority consensus tree given a collection of input trees.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="convert_fastaqual_fastq.html"><em>convert_fastaqual_fastq.py</em> &#8211; From a FASTA file and a matching QUAL file, generates a FASTQ file. From FASTQ file generates FASTA file and  matching QUAL file.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="convert_fastaqual_to_fastq.html"><em>convert_fastaqual_to_fastq.py</em> &#8211; From a FASTA file and a matching QUAL file, generates a minimal FASTQ file.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="convert_otu_table_to_unifrac_sample_mapping.html"><em>convert_otu_table_to_unifrac_sample_mapping.py</em> &#8211; Convert a QIIME OTU table to a UniFrac sample mapping file</a></li>
 <li class="toctree-l1"><a class="reference internal" href="convert_unifrac_sample_mapping_to_otu_table.html"><em>convert_unifrac_sample_mapping_to_otu_table.py</em> &#8211; Convert a UniFrac sample mapping file to an OTU table</a></li>
 <li class="toctree-l1"><a class="reference internal" href="core_qiime_analyses.html"><em>core_qiime_analyses.py</em> &#8211; A workflow for running a core set of QIIME analyses.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="count_seqs.html"><em>count_seqs.py</em> &#8211;</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cytoscape_usage.html"><em>cytoscape_usage</em> &#8211; Loading Results with Cytoscape</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cytoscape_usage.html"><em>cytoscape_usage</em> &#8211; Visualizing Results with Cytoscape</a></li>
+<li class="toctree-l1"><a class="reference internal" href="demultiplex_fasta.html"><em>demultiplex_fasta.py</em> &#8211; Demultiplex fasta data according to barcode sequences or data supplied in fasta labels.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="denoise_wrapper.html"><em>denoise_wrapper.py</em> &#8211; Denoise a flowgram file</a></li>
 <li class="toctree-l1"><a class="reference internal" href="denoiser.html"><em>denoiser.py</em> &#8211; Remove noise from  454 sequencing data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="denoiser_preprocess.html"><em>denoiser_preprocess.py</em> &#8211; Run phase of denoiser algorithm: prefix clustering</a></li>
 <li class="toctree-l1"><a class="reference internal" href="denoiser_worker.html"><em>denoiser_worker.py</em> &#8211; Start a denoiser worker process</a></li>
+<li class="toctree-l1"><a class="reference internal" href="detrend.html"><em>detrend.py</em> &#8211; Detrend Principal Coordinates</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dissimilarity_mtx_stats.html"><em>dissimilarity_mtx_stats.py</em> &#8211; Calculate mean, median and standard deviation from a set of distance matrices</a></li>
 <li class="toctree-l1"><a class="reference internal" href="distance_matrix_from_mapping.html"><em>distance_matrix_from_mapping.py</em> &#8211; Calculate the pairwise dissimilarity on one column of a mappping file</a></li>
 <li class="toctree-l1"><a class="reference internal" href="exclude_seqs_by_blast.html"><em>exclude_seqs_by_blast.py</em> &#8211; Exclude contaminated sequences using BLAST</a></li>
@@ -102,20 +110,22 @@
 <li class="toctree-l1"><a class="reference internal" href="filter_otus_by_sample.html"><em>filter_otus_by_sample.py</em> &#8211; Filter OTU mapping file and sequences by SampleIDs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="filter_otus_from_otu_table.html"><em>filter_otus_from_otu_table.py</em> &#8211; Filter OTUs from an OTU table based on their observation counts or identifier.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="filter_samples_from_otu_table.html"><em>filter_samples_from_otu_table.py</em> &#8211; Filters samples from an OTU table on the basis of the number of observations in that sample, or on the basis of sample metadata. Mapping file can also be filtered to the resulting set of sample ids.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filter_taxa_from_otu_table.html"><em>filter_taxa_from_otu_table.py</em> &#8211; Filter taxa from an OTU table</a></li>
 <li class="toctree-l1"><a class="reference internal" href="filter_tree.html"><em>filter_tree.py</em> &#8211; This script prunes a tree based on a set of tip names</a></li>
 <li class="toctree-l1"><a class="reference internal" href="fix_arb_fasta.html"><em>fix_arb_fasta.py</em> &#8211; Reformat ARB FASTA files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="identify_chimeric_seqs.html"><em>identify_chimeric_seqs.py</em> &#8211; Identify chimeric sequences in input FASTA file</a></li>
-<li class="toctree-l1"><a class="reference internal" href="identify_missing_files.html"><em>identify_missing_files.py</em> &#8211; This script checks for the existence expected file in parallel runs.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="identify_missing_files.html"><em>identify_missing_files.py</em> &#8211; This script checks for the existence of expected files in parallel runs.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="inflate_denoiser_output.html"><em>inflate_denoiser_output.py</em> &#8211; Inflate denoiser results so they can be passed directly to OTU pickers.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="insert_seqs_into_tree.html"><em>insert_seqs_into_tree.py</em> &#8211; Tree Insertion</a></li>
 <li class="toctree-l1"><a class="reference internal" href="jackknifed_beta_diversity.html"><em>jackknifed_beta_diversity.py</em> &#8211; A workflow script for performing jackknifed UPGMA clustering and build jackknifed 2d and 3D PCoA plots.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="load_remote_mapping_file.html"><em>load_remote_mapping_file.py</em> &#8211; Downloads and saves a remote mapping file</a></li>
 <li class="toctree-l1"><a class="reference internal" href="make_2d_plots.html"><em>make_2d_plots.py</em> &#8211; Make 2D PCoA Plots</a></li>
 <li class="toctree-l1"><a class="reference internal" href="make_3d_plots.html"><em>make_3d_plots.py</em> &#8211; Make 3D PCoA plots</a></li>
 <li class="toctree-l1"><a class="reference internal" href="make_bootstrapped_tree.html"><em>make_bootstrapped_tree.py</em> &#8211; Make bootstrapped tree</a></li>
-<li class="toctree-l1"><a class="reference internal" href="make_distance_boxplots.html"><em>make_distance_boxplots.py</em> &#8211; Creates boxplots to compare distances                                     between categories</a></li>
-<li class="toctree-l1"><a class="reference internal" href="make_distance_comparison_plots.html"><em>make_distance_comparison_plots.py</em> &#8211; Creates plots comparing distances between                                     sample groupings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="make_distance_boxplots.html"><em>make_distance_boxplots.py</em> &#8211; Creates boxplots to compare distances between categories</a></li>
+<li class="toctree-l1"><a class="reference internal" href="make_distance_comparison_plots.html"><em>make_distance_comparison_plots.py</em> &#8211; Creates plots comparing distances between sample groupings</a></li>
 <li class="toctree-l1"><a class="reference internal" href="make_distance_histograms.html"><em>make_distance_histograms.py</em> &#8211; Make distance histograms</a></li>
-<li class="toctree-l1"><a class="reference internal" href="make_fastq.html"><em>make_fastq.py</em> &#8211; Make fastq file for ERA submission from paired fasta and qual files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="make_fastq.html"><em>make_fastq.py</em> &#8211; Make FASTQ file for ERA submission from paired FASTA and QUAL files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="make_library_id_lists.html"><em>make_library_id_lists.py</em> &#8211; Make library id lists</a></li>
 <li class="toctree-l1"><a class="reference internal" href="make_otu_heatmap.html"><em>make_otu_heatmap.py</em> &#8211; Make heatmap of OTU table</a></li>
 <li class="toctree-l1"><a class="reference internal" href="make_otu_heatmap_html.html"><em>make_otu_heatmap_html.py</em> &#8211; Make heatmap of OTU table</a></li>
@@ -128,6 +138,7 @@
 <li class="toctree-l1"><a class="reference internal" href="make_qiime_rst_file.html"><em>make_qiime_rst_file.py</em> &#8211; Make Sphinx RST file</a></li>
 <li class="toctree-l1"><a class="reference internal" href="make_rarefaction_plots.html"><em>make_rarefaction_plots.py</em> &#8211; Generate Rarefaction Plots</a></li>
 <li class="toctree-l1"><a class="reference internal" href="make_tep.html"><em>make_tep.py</em> &#8211; Makes TopiaryExplorer project file</a></li>
+<li class="toctree-l1"><a class="reference internal" href="map_reads_to_reference.html"><em>map_reads_to_reference.py</em> &#8211;  Script for performing assignment of reads against a reference database</a></li>
 <li class="toctree-l1"><a class="reference internal" href="merge_mapping_files.html"><em>merge_mapping_files.py</em> &#8211; Merge mapping files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="merge_otu_maps.html"><em>merge_otu_maps.py</em> &#8211; Merge OTU mapping files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="merge_otu_tables.html"><em>merge_otu_tables.py</em> &#8211; Merge two or more OTU tables into a single OTU table.</a></li>
@@ -143,8 +154,10 @@
 <li class="toctree-l1"><a class="reference internal" href="parallel_beta_diversity.html"><em>parallel_beta_diversity.py</em> &#8211; Parallel beta diversity</a></li>
 <li class="toctree-l1"><a class="reference internal" href="parallel_blast.html"><em>parallel_blast.py</em> &#8211; Parallel BLAST</a></li>
 <li class="toctree-l1"><a class="reference internal" href="parallel_identify_chimeric_seqs.html"><em>parallel_identify_chimeric_seqs.py</em> &#8211; Parallel chimera detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parallel_map_reads_to_reference.html"><em>parallel_map_reads_to_reference.py</em> &#8211;</a></li>
 <li class="toctree-l1"><a class="reference internal" href="parallel_multiple_rarefactions.html"><em>parallel_multiple_rarefactions.py</em> &#8211; Parallel multiple file rarefaction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="parallel_pick_otus_blast.html"><em>parallel_pick_otus_blast.py</em> &#8211; Parallel pick otus using BLAST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parallel_pick_otus_trie.html"><em>parallel_pick_otus_trie.py</em> &#8211; Parallel pick otus using a trie</a></li>
 <li class="toctree-l1"><a class="reference internal" href="parallel_pick_otus_uclust_ref.html"><em>parallel_pick_otus_uclust_ref.py</em> &#8211; Parallel pick otus using uclust_ref</a></li>
 <li class="toctree-l1"><a class="reference internal" href="per_library_stats.html"><em>per_library_stats.py</em> &#8211; Calculate statistics on data in a BIOM-formatted OTU table</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pick_otus.html"><em>pick_otus.py</em> &#8211; OTU picking</a></li>
@@ -176,7 +189,7 @@
 <li class="toctree-l1"><a class="reference internal" href="split_otu_table.html"><em>split_otu_table.py</em> &#8211; Split in a single OTU table into one OTU table per value in a specified field of the mapping file.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="split_otu_table_by_taxonomy.html"><em>split_otu_table_by_taxonomy.py</em> &#8211; Script to split a single OTU table into multiple tables based on the taxonomy at some user-specified depth.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="start_parallel_jobs.html"><em>start_parallel_jobs.py</em> &#8211; Starts multiple jobs in parallel on multicore or multiprocessor systems.</a></li>
-<li class="toctree-l1"><a class="reference internal" href="start_parallel_jobs_sc.html"><em>start_parallel_jobs_sc.py</em> &#8211; Starts multiple jobs in parallel on Sun GridEngine systems. This is designed to work with StarCluster EC2 instances, but may be applicable beyond there.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="start_parallel_jobs_sc.html"><em>start_parallel_jobs_sc.py</em> &#8211; Starts parallel jobs on Sun GridEngine queueing systems.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="start_parallel_jobs_torque.html"><em>start_parallel_jobs_torque.py</em> &#8211; Starts multiple jobs in parallel on torque/qsub based multiprocessor systems.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="submit_to_mgrast.html"><em>submit_to_mgrast.py</em> &#8211; This script submits a FASTA file to MG-RAST</a></li>
 <li class="toctree-l1"><a class="reference internal" href="subsample_fasta.html"><em>subsample_fasta.py</em> &#8211; Randomly subsample sequences from a given fasta file</a></li>
@@ -220,7 +233,7 @@
 <div id="searchbox" style="display: none">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" size="18" />
+      <input type="text" name="q" />
       <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
@@ -244,12 +257,12 @@
       </ul>
     </div>
 <div style="text-align: center; padding: 0px;"><br />
-<a href="http://pycogent.sourceforge.net" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
+<a href="http://www.pycogent.org" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
 <br /></div>
 
     <div class="footer">
         &copy; Copyright 2012, QIIME Team.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");

@@ -3,17 +3,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
+
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
     <title>Taxonomic classifications of single- and paired-end sequences with RTAX &mdash; Homepage</title>
+    
     <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.5.0',
+        VERSION:     '1.6.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -55,7 +58,7 @@
             
   <div class="section" id="taxonomic-classifications-of-single-and-paired-end-sequences-with-rtax">
 <span id="rtax"></span><h1>Taxonomic classifications of single- and paired-end sequences with RTAX<a class="headerlink" href="#taxonomic-classifications-of-single-and-paired-end-sequences-with-rtax" title="Permalink to this headline">¶</a></h1>
-<p>The RTAX procedure takes advantage of mate-pair information when performing taxonomic classification.  The additional information from a second read may allow a more precise taxonomy assignment to be made.  Conversely may reveal greater uncertainty in the assignment than would have been inferred from one read alone, leading to a less precise (but more accurate) assignment.</p>
+<p>The RTAX procedure takes advantage of mate-pair information when performing taxonomic classification.  The additional information from a second read may allow a more precise taxonomy assignment to be made.  Conversely, the second read may reveal greater uncertainty in the assignment than would have been inferred from one read alone, leading to a less precise (but more accurate) assignment.</p>
 <p>RTAX may also be used to classify single reads.  Here too it attempts to avoid overprediction by considering a range of best hits (something like a k-nearest-neighbor classifier), in contrast to the single best hit approach used by the Blast classifier.</p>
 <div class="section" id="taxonomic-classifications-of-paired-end-sequences">
 <h2>Taxonomic classifications of paired-end sequences<a class="headerlink" href="#taxonomic-classifications-of-paired-end-sequences" title="Permalink to this headline">¶</a></h2>
@@ -147,7 +150,7 @@ split_libraries_fastq.py -i s_1_3.seqs.fastq -o sl_out.2/ -b s_1_3.barcodes.fast
 <div id="searchbox" style="display: none">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" size="18" />
+      <input type="text" name="q" />
       <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
@@ -171,12 +174,12 @@ split_libraries_fastq.py -i s_1_3.seqs.fastq -o sl_out.2/ -b s_1_3.barcodes.fast
       </ul>
     </div>
 <div style="text-align: center; padding: 0px;"><br />
-<a href="http://pycogent.sourceforge.net" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
+<a href="http://www.pycogent.org" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
 <br /></div>
 
     <div class="footer">
         &copy; Copyright 2012, QIIME Team.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");

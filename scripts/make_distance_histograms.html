@@ -3,17 +3,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
+
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
     <title>make_distance_histograms.py – Make distance histograms &mdash; Homepage</title>
+    
     <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.5.0',
+        VERSION:     '1.6.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -56,7 +59,24 @@
   <span class="target" id="make-distance-histograms"></span><div class="section" id="make-distance-histograms-py-make-distance-histograms">
 <span id="index-0"></span><h1><em>make_distance_histograms.py</em> &#8211; Make distance histograms<a class="headerlink" href="#make-distance-histograms-py-make-distance-histograms" title="Permalink to this headline">¶</a></h1>
 <p><strong>Description:</strong></p>
-<p>To visualize the distance between samples and/or categories in the metadata mapping file, the user can generate histograms to represent the distances between samples. This script generates an HTML file, where the user can compare the distances between samples based on the different categories associated to each sample in the metadata mapping file.</p>
+<p>To visualize the distance between samples and/or categories in the metadata
+mapping file, the user can generate histograms to represent the distances
+between samples. This script generates an HTML file, where the user can compare
+the distances between samples based on the different categories associated to
+each sample in the metadata mapping file.</p>
+<p>Distance histograms provide a way to compare different categories and see which
+tend to have larger/smaller distances than others. For example, in a hand
+study, you may want to compare the distances between hands to the distances
+between individuals (with the file &#8220;hand_distances.txt&#8221; using the parameter -d
+hand_distances.txt). The categories are defined in the metadata mapping file
+(specified using the parameter -m hand_map.txt). If you want to look at the
+distances between hands and individuals, choose the &#8220;Hand&#8221; field and
+&#8220;Individual&#8221; field (using the parameter &#8211;fields Hand,Individual (notice the
+fields are comma-delimited)). For each of these groups of distances a
+histogram is made. The output is an HTML file which is created in the
+&#8220;Distance_Histograms&#8221; directory (using the parameter -o Distance_Histograms to
+specify output directory) where you can look at all the distance histograms
+individually, and compare them between each other.</p>
 <p><strong>Usage:</strong> <tt class="file docutils literal"><span class="pre">make_distance_histograms.py</span> <span class="pre">[options]</span></tt></p>
 <p><strong>Input Arguments:</strong></p>
 <div class="admonition note">
@@ -64,7 +84,7 @@
 <p><strong>[REQUIRED]</strong></p>
 <dl class="docutils">
 <dt>-d, <cite>-</cite>-distance_matrix_file</dt>
-<dd>Input distance matrix filepath (i.e. the result of <a class="reference external" href="./beta_diversity.html">beta_diversity.py</a>).</dd>
+<dd>Input distance matrix filepath (i.e. the result of <a class="reference external" href="./beta_diversity.html">beta_diversity.py</a>). WARNING: Only symmetric, hollow distance matrices may be used as input. Asymmetric distance matrices, such as those obtained by the UniFrac Gain metric (i.e. <a class="reference external" href="./beta_diversity.html">beta_diversity.py</a> -m unifrac_g), should not be used as input</dd>
 <dt>-m, <cite>-</cite>-map_fname</dt>
 <dd>Input metadata mapping filepath.</dd>
 </dl>
@@ -81,28 +101,31 @@
 <dt><cite>-</cite>-suppress_html_output</dt>
 <dd>Suppress HTML output. [default: False]</dd>
 <dt>-f, <cite>-</cite>-fields</dt>
-<dd>Comma-separated list of fields to compare, where the list of fields should be in quotes (e.g. &#8220;Field1,Field2,Field3&#8221;). Note: if this option is passed on the command-line, it will overwrite the fields in prefs file. [default:None; first field in mapping file is used]</dd>
+<dd>Comma-separated list of fields to compare, where the list of fields should be in quotes (e.g. &#8220;Field1,Field2,Field3&#8221;). Note: if this option is passed on the command-line, it will overwrite the fields in prefs file. [default: first field in mapping file is used]</dd>
 <dt><cite>-</cite>-monte_carlo_iters</dt>
 <dd>Number of iterations to perform for Monte Carlo analysis. [default: 0; No monte carlo simulation performed]</dd>
 </dl>
 </div>
 <p><strong>Output:</strong></p>
-<p>The result of this script will be a folder containing images and/or an html file (with appropriate javascript files), depending on the user-defined parameters.</p>
-<p><strong>Examples:</strong></p>
-<p>Distance Histograms are a way to compare different categories and see which tend to have larger/smaller distances than others. For example, in the hand study, you may want to compare the distances between hands to the distances between individuals (with the file &#8220;hand_distances.txt&#8221; using the parameter -d hand_distances.txt). The categories are defined in the metadata mapping file (specified using the parameter -m hand_map.txt). If you want to look at the distances between hands and individuals, choose the &#8220;Hand&#8221; field and &#8220;Individual&#8221; field (using the parameter &#8211;fields Hand,Individual (notice the fields are comma delimited)). For each of these groups of distances a histogram is made. The output is a HTML file which is created in the &#8220;Distance_Histograms&#8221; directory (using the parameter -o Distance_Histograms to specify output directory) where you can look at all the distance histograms individually, and compare them between each other.</p>
-<p>In the following command, the user only supplies a distance matrix (i.e. resulting file from <a class="reference external" href="./beta_diversity.html">beta_diversity.py</a>), the user-generated metadata mapping file and one category (e.g. pH):</p>
-<div class="highlight-python"><pre>make_distance_histograms.py -d beta_div.txt -m Mapping_file.txt --fields pH</pre>
+<p>The result of this script will be a folder containing images and/or an HTML
+file (with appropriate javascript files), depending on the user-defined
+parameters.</p>
+<p><strong>Distance histograms example:</strong></p>
+<p>In the following command, the user supplies a distance matrix (i.e. the resulting file from <a class="reference external" href="./beta_diversity.html">beta_diversity.py</a>), the user-generated metadata mapping file and one category &#8220;Treatment&#8221; to generate distance histograms.</p>
+<div class="highlight-python"><pre>make_distance_histograms.py -d unweighted_unifrac_dm.txt -m Fasting_Map.txt --fields Treatment -o example1</pre>
 </div>
-<p>For comparison of multiple categories (e.g. pH, salinity), you can use the following command:</p>
-<div class="highlight-python"><pre>make_distance_histograms.py -d beta_div.txt -m Mapping_file.txt --fields pH,salinity</pre>
+<p><strong>Multiple categories:</strong></p>
+<p>For comparison of multiple categories (e.g. Treatment, DOB), you can use the following command (separating each category with a comma).</p>
+<div class="highlight-python"><pre>make_distance_histograms.py -d unweighted_unifrac_dm.txt -m Fasting_Map.txt --fields Treatment,DOB -o example2</pre>
 </div>
-<p>HTML output is automatically generated. If the user would like to suppress the HTML output, you can use the following command:</p>
-<div class="highlight-python"><pre>make_distance_histograms.py -d beta_div.txt -m Mapping_file.txt --fields pH --suppress_html_output</pre>
+<p><strong>Suppress HTML output:</strong></p>
+<p>By default, HTML output is automatically generated. If the user would like to suppress the HTML output, you can use the following command.</p>
+<div class="highlight-python"><pre>make_distance_histograms.py -d unweighted_unifrac_dm.txt -m Fasting_Map.txt --fields Treatment --suppress_html_output -o example3</pre>
 </div>
-<p>In the case that the user generates their own preferences file (prefs.txt), they can use the following command:</p>
-<div class="highlight-python"><pre>make_distance_histograms.py -d beta_div.txt -m Mapping_file.txt -p prefs.txt</pre>
+<p><strong>Preferences file:</strong></p>
+<p>You can provide your own preferences file (prefs.txt) with the following command. If a preferences file is supplied, you do not need to supply fields on the command-line.</p>
+<div class="highlight-python"><pre>make_distance_histograms.py -d unweighted_unifrac_dm.txt -m Fasting_Map.txt -p prefs.txt -o example4</pre>
 </div>
-<p>Note: In the case that a preferences file is passed, the user does not need to supply fields in the command-line.</p>
 </div>
 
 
@@ -128,7 +151,7 @@
 <div id="searchbox" style="display: none">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" size="18" />
+      <input type="text" name="q" />
       <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
@@ -152,12 +175,12 @@
       </ul>
     </div>
 <div style="text-align: center; padding: 0px;"><br />
-<a href="http://pycogent.sourceforge.net" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
+<a href="http://www.pycogent.org" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
 <br /></div>
 
     <div class="footer">
         &copy; Copyright 2012, QIIME Team.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");

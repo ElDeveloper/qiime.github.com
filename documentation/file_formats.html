@@ -3,17 +3,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
+
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
     <title>Input Files &mdash; Homepage</title>
+    
     <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.5.0',
+        VERSION:     '1.6.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -157,11 +160,11 @@
 </div>
 <div class="section" id="mapping-files-without-barcodes-and-or-primers">
 <h3>Mapping Files Without Barcodes and/or Primers<a class="headerlink" href="#mapping-files-without-barcodes-and-or-primers" title="Permalink to this headline">¶</a></h3>
-<p>In some circumstances, users may need to generate a mapping file that does not contain barcodes and/or primers.  To generate such a mapping file, the header and column for &#8220;BarcodeSequence&#8221; is removed and &#8220;LinkerPrimerSequence&#8221; fields can be left empty.  An example of such a file is below (note that the tabs are still present for the empty &#8220;LinkerPrimerSequence&#8221; field):</p>
+<p>In some circumstances, users may need to generate a mapping file that does not contain barcodes and/or primers.  To generate such a mapping file, fields for &#8220;BarcodeSequence&#8221; and &#8220;LinkerPrimerSequence&#8221; can be left empty.  An example of such a file is below (note that the tabs are still present for the empty &#8220;BarcodeSequence&#8221; and &#8220;LinkerPrimerSequence&#8221; fields):</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <ul class="last simple">
-<li>#SampleID  LinkerPrimerSequence    Treatment DOB   Description</li>
+<li>#SampleID  BarcodeSequence LinkerPrimerSequence    Treatment DOB   Description</li>
 <li>#Example mapping file for the QIIME analysis package. These 9 samples are from a study of the effects of</li>
 <li>#exercise and diet on mouse cardiac physiology (Crawford, et al, PNAS, 2009).</li>
 <li>PC.354             Control 20061218        Control_mouse__I.D._354</li>
@@ -283,29 +286,7 @@ downstream capabilities of the QIIME workflow starting directly from an OTU tabl
 </div>
 <div class="section" id="qiime-parameters">
 <h2>QIIME parameters<a class="headerlink" href="#qiime-parameters" title="Permalink to this headline">¶</a></h2>
-<p>The QIIME parameters files is used to pass per-script parameters to the QIIME &#8216;workflow&#8217; scripts. An example is provided as <tt class="docutils literal"><span class="pre">Qiime/qiime_parameters.txt</span></tt>.</p>
-<p>This file is used to give workflow script users control over the parameters to the individual scripts without having an extremely complex and hard to maintain interface to the workflow scripts. Users should copy the example <tt class="docutils literal"><span class="pre">qiime_parameters.txt</span></tt> script to the directory where they are performing their analysis, and edit the values in this file accordingly. This copy will be referred to as the user&#8217;s working <tt class="docutils literal"><span class="pre">qiime_parameters.txt</span></tt> file. The parameters are defined as <tt class="docutils literal"><span class="pre">script_name:parameter_name</span></tt>, followed by a tab, and then the value. For example:</p>
-<div class="highlight-python"><pre>align_seqs:alignment_method     pynast</pre>
-</div>
-<p>This indicates that the <tt class="docutils literal"><span class="pre">--alignment_method</span></tt> will be set to <tt class="docutils literal"><span class="pre">pynast</span></tt> when calling <tt class="docutils literal"><span class="pre">align_seqs.py</span></tt>. To get information on what a parameter in the <tt class="docutils literal"><span class="pre">qiime_parameters.txt</span></tt> file is, you should call the script name followed by <tt class="docutils literal"><span class="pre">-h</span></tt> to access the usage information for that script. In the above example, you could call:</p>
-<div class="highlight-python"><pre>python align_seqs.py -h</pre>
-</div>
-<p>Boolean options are specified by passing <tt class="xref docutils literal"><span class="pre">True</span></tt> or <tt class="xref docutils literal"><span class="pre">False</span></tt> after the tab. For example:</p>
-<div class="highlight-python"><pre>parallel:retain_temp_files      False</pre>
-</div>
-<p>When a parameter is not followed by an option, that indicates that it will not be passed to the script resulting in the default value being used instead. For example:</p>
-<div class="highlight-python"><pre>align_seqs:blast_db</pre>
-</div>
-<p>This results in no <tt class="docutils literal"><span class="pre">--blast_db</span></tt> parameter being passed to <tt class="docutils literal"><span class="pre">align_seqs.py</span></tt>. Alternatively, you can delete this line from your working <tt class="docutils literal"><span class="pre">qiime_parameters.txt</span></tt> file.</p>
-<p>You can find information on the QIIME workflow scripts at:</p>
-<blockquote>
-<div><ul class="simple">
-<li><a class="reference external" href="../scripts/pick_otus_through_otu_table.html">pick_otus_through_otu_table.py</a></li>
-<li><a class="reference external" href="../scripts/alpha_rarefaction.html">alpha_rarefaction.py</a></li>
-<li><a class="reference external" href="../scripts/beta_diversity_through_plots.html">beta_diversity_through_plots.py</a></li>
-<li><a class="reference external" href="../scripts/jackknifed_beta_diversity.html">jackknifed_beta_diversity.py</a></li>
-</ul>
-</div></blockquote>
+<p>The QIIME parameters files is used to pass per-script parameters to the QIIME &#8216;workflow&#8217; scripts. You can find details on these files in <a class="reference internal" href="qiime_parameters_files.html"><em>QIIME parameters files</em></a>.</p>
 </div>
 </div>
 
@@ -361,7 +342,7 @@ downstream capabilities of the QIIME workflow starting directly from an OTU tabl
 <div id="searchbox" style="display: none">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" size="18" />
+      <input type="text" name="q" />
       <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
@@ -385,12 +366,12 @@ downstream capabilities of the QIIME workflow starting directly from an OTU tabl
       </ul>
     </div>
 <div style="text-align: center; padding: 0px;"><br />
-<a href="http://pycogent.sourceforge.net" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
+<a href="http://www.pycogent.org" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
 <br /></div>
 
     <div class="footer">
         &copy; Copyright 2012, QIIME Team.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");

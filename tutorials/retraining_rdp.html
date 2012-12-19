@@ -3,17 +3,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
+
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
     <title>Re-training the RDP Classifier &mdash; Homepage</title>
+    
     <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.5.0',
+        VERSION:     '1.6.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -92,12 +95,37 @@ assign_taxonomy:id_to_taxonomy_fp       /home/qiime/gg_otus_4feb2011/taxonomies/
 <div class="section" id="defining-alternate-training-files">
 <h2>Defining alternate training files<a class="headerlink" href="#defining-alternate-training-files" title="Permalink to this headline">¶</a></h2>
 <p>Training files can be defined by users for other taxonomies. The format is the same as the <tt class="docutils literal"><span class="pre">id_to_taxonomy_map</span></tt> used by the BLAST taxonomy assigner, defined <a class="reference external" href="../documentation/file_formats.html#sequence-id-to-taxonomy-mapping-files">here</a>. You must provide this file as well as a fasta file of reference sequences where the identifiers correspond to the ids in the <tt class="docutils literal"><span class="pre">id_to_taxonomy_map</span></tt>.</p>
-<p>The RDP Classifier has several requirements about its taxonomy strings for retraining. The first entry in each taxonomy string must be <tt class="docutils literal"><span class="pre">Root</span></tt>, and there must be exactly six levels, including <tt class="docutils literal"><span class="pre">Root</span></tt>. For example, the first four lines in the <tt class="docutils literal"><span class="pre">4feb2011</span></tt> greengenes OTUs are:</p>
-<div class="highlight-python"><pre>573145  Root;k__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Enterobacteriales;f__Enterobacteriaceae
-89440   Root;k__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Enterobacteriales;f__Enterobacteriaceae
-452783  Root;k__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Enterobacteriales;f__Enterobacteriaceae
-430240  Root;k__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Enterobacteriales;f__Enterobacteriaceae</pre>
+<p>The RDP Classifier has several requirements about its taxonomy strings for retraining.  The first column of this tab separated file is the sequence identifiers (see the reference sequence file below).  The second column is the taxonomy strings in descending order of taxonomic specification, separated by semicolons.  The number of taxonomic levels must be equal for every line.</p>
+<p>An example set of four lines in the <tt class="docutils literal"><span class="pre">4feb2011</span></tt> greengenes OTUs that are valid for RDP retraining are:</p>
+<div class="highlight-python"><pre>573145  k__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Enterobacteriales;f__Enterobacteriaceae;g__Escherichia;s__
+89440   k__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Enterobacteriales;f__Enterobacteriaceae;g__Escherichia;s__
+222043  k__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Enterobacteriales;f__Enterobacteriaceae;g__Raoultella;s__Raoultellaornithinolytica
+430240  k__Bacteria;p__Proteobacteria;c__Gammaproteobacteria;o__Enterobacteriales;f__Enterobacteriaceae;g__Serratia;s__Serratiamarcescens</pre>
 </div>
+<p>The reference sequence file should have fasta labels that match all of the labels as listed in the taxonomy mapping file.  Orientation of the sequences does not matter for RDP, but as this can impact other software such as uclust, so it is suggested that the sequences be in the same orientation to avoid complications with other QIIME scripts.</p>
+<p>An example fasta file (with truncated nucleotide sequences) that matches the above taxonomy strings is:</p>
+<div class="highlight-python"><pre>&gt;573145
+AGAGTTTGATCATGGCTCAGATTGAACGCAGGCGGCAGGCCTAACACATGCAAGTCGAACGGTAACAGGAAGCAGCT
+&gt;89440
+AGAGTTTGATCCTGGCTCAGATTGAACGCTGGCGGCAGGCCTAACACATGCAAGTCGAACGGTAACAGGAAGC
+&gt;222043
+AGAGTTTGATCCTGGCTCAGATTGAACGCTGGCGGCAGGCCTAACACATGCAAGTCGAGCGGTAGCACAGAAAGCTTACTC
+&gt;101567
+TGAAGAAGGCCTTCGGGTTGTAAAGTACTTTCAGCGAGGAGGAAGGCATTAAGGTTAATAACCTTAGTGATTGA</pre>
+</div>
+</div>
+<div class="section" id="tips-for-building-and-troubleshooting-custom-rdp-retraining-files">
+<h2>Tips for building and troubleshooting custom RDP retraining files<a class="headerlink" href="#tips-for-building-and-troubleshooting-custom-rdp-retraining-files" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Always use a plain-text editor when modifying taxonomy mapping or reference sequence files to avoid the addition of unwanted characters.  If errors occur, it may be necessary to check a file using a command such as <tt class="docutils literal"><span class="pre">less</span></tt> in the terminal to check for hidden characters.</li>
+<li>Always have the same number of taxonomic levels (separated by semicolons) in the taxonomy mapping file.</li>
+<li>The memory requirements can change when alternative files are used.  Additionally memory can be allocated with the &#8211;rdp_max_memory parameter when calling assign_taxonomy.py.</li>
+<li>Avoid having white space in the taxonomy mapping data.  In the above example taxonomy mapping data, if the first line had an extra space before the class level, an error would be raised.</li>
+<li>Avoid empty levels in the taxonomy mapping with double semicolons.  At an unknown taxonomic level, use a consistent naming convention (such as the <cite>s__</cite> listed above for unknown species), rather than leaving a level empty.</li>
+<li>Used consistent capitalization.  For instance, do not have one class level named c__Gammaproteobacteria and another named c__gammaproteobacteria, as these would be considered distinct taxonomies.</li>
+<li>Reference sequences should be unaligned (no gap or leading/trailing characters such as . or -) with nucleotide characters only.</li>
+<li>As the exact line causing an error is sometimes difficult to detect, it may be advisable to break apart the taxonomy mapping file and reference sequences into smaller subsets to determine which part(s) are causing error(s).</li>
+</ol>
 </div>
 </div>
 
@@ -120,6 +148,7 @@ assign_taxonomy:id_to_taxonomy_fp       /home/qiime/gg_otus_4feb2011/taxonomies/
 </li>
 <li><a class="reference internal" href="#retraining-rdp-using-a-custom-parameters-file">Retraining RDP using a custom parameters file</a></li>
 <li><a class="reference internal" href="#defining-alternate-training-files">Defining alternate training files</a></li>
+<li><a class="reference internal" href="#tips-for-building-and-troubleshooting-custom-rdp-retraining-files">Tips for building and troubleshooting custom RDP retraining files</a></li>
 </ul>
 </li>
 </ul>
@@ -139,7 +168,7 @@ assign_taxonomy:id_to_taxonomy_fp       /home/qiime/gg_otus_4feb2011/taxonomies/
 <div id="searchbox" style="display: none">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" size="18" />
+      <input type="text" name="q" />
       <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
@@ -163,12 +192,12 @@ assign_taxonomy:id_to_taxonomy_fp       /home/qiime/gg_otus_4feb2011/taxonomies/
       </ul>
     </div>
 <div style="text-align: center; padding: 0px;"><br />
-<a href="http://pycogent.sourceforge.net" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
+<a href="http://www.pycogent.org" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
 <br /></div>
 
     <div class="footer">
         &copy; Copyright 2012, QIIME Team.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");

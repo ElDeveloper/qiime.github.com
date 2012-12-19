@@ -3,17 +3,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
+
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
     <title>Report and fixing bugs &mdash; Homepage</title>
+    
     <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.5.0',
+        VERSION:     '1.6.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -57,15 +60,15 @@
 <h1>Report and fixing bugs<a class="headerlink" href="#report-and-fixing-bugs" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="i-found-a-bug-in-qiime-what-should-i-do">
 <h2>I found a bug in QIIME. What should I do?<a class="headerlink" href="#i-found-a-bug-in-qiime-what-should-i-do" title="Permalink to this headline">¶</a></h2>
-<p>If you find a bug in QIIME, you should <a class="reference external" href="http://sourceforge.net/tracker/?group_id=272178&amp;atid=1157164">report it as a bug in the bug tracker on sourceforge</a>. It&#8217;s useful to report even small bugs with the bug tracker, and it allows us to keep records of how frequently bugs are found and fixed. You may first want to review the <a class="reference external" href="http://groups.google.com/group/qiime-forum">Qiime Forum</a> to ensure that no one has run into your issue before.</p>
-<p>This will alert the project managers about the bug, and the bug tracker is actively monitored by the QIIME team.</p>
-<p>Please include some way for us to get it touch with you regarding the bug as we may have questions about your bug report. You can do this by logging in with your sourceforge account before reporting the bug, including your e-mail address in the bug report (which you may not want to do), or sending an e-mail to the <a class="reference external" href="http://groups.google.com/group/qiime-forum">QIIME Forum</a> with the bug tracker ID number, and any contact details that we might need.</p>
+<p>If you find a bug in QIIME, you should <a class="reference external" href="https://github.com/qiime/qiime/issues">report it as a bug in the issue tracker on GitHub</a>. It&#8217;s useful to report even small bugs with the issue tracker, and it allows us to keep records of how frequently bugs are found and fixed. You may first want to review the <a class="reference external" href="http://groups.google.com/group/qiime-forum">Qiime Forum</a> to ensure that no one has run into your issue before.</p>
+<p>In order to report a bug on the GitHub issue tracker, you will need to create a free GitHub account.</p>
+<p>This will alert the project managers about the bug, and the issue tracker is actively monitored by the QIIME team.</p>
 <p>We aim to be very responsive regarding QIIME bugs, and we greatly appreciate your help in making QIIME a better software package.</p>
 </div>
 <div class="section" id="writing-useful-bug-reports">
 <h2>Writing useful bug reports<a class="headerlink" href="#writing-useful-bug-reports" title="Permalink to this headline">¶</a></h2>
 <p>Regardless of whether you plan to fix the bug yourself, or wait for the developer to fix it, you should write a good bug report. If you do plan to fix it, this is important for the records. If you are not comfortable with fixing the bug because you don&#8217;t know what&#8217;s causing it, or because you are not familiar with the code that is failing, a good bug report is likely to speed up the bug fix. Since you are the person who found it, you know the most about it, so you&#8217;re in a position to help out a lot.</p>
-<p>The developers will need to reproduce the bug into order to fix it, so part of the purpose of a bug report is to help the developers reproduce the bug. To do this, you should include the following information in your sourceforge bug report:</p>
+<p>The developers will need to reproduce the bug into order to fix it, so part of the purpose of a bug report is to help the developers reproduce the bug. To do this, you should include the following information in your bug report:</p>
 <blockquote>
 <div><ol class="arabic simple">
 <li>The exact command or function call that you issue to create the bug.</li>
@@ -75,18 +78,7 @@
 </div>
 <div class="section" id="fixing-bugs-yourself">
 <h2>Fixing bugs yourself<a class="headerlink" href="#fixing-bugs-yourself" title="Permalink to this headline">¶</a></h2>
-<p>After adding a bug report, there are two paths you can follow. If you are comfortable with fixing the bug, you should do that. The steps you should take are as follows:</p>
-<blockquote>
-<div><ol class="arabic simple">
-<li>Contact the primary developer of the relevant file(s), to let them know you found a bug and would like to fix it. The primary developer is the person listed in the <tt class="docutils literal"><span class="pre">__maintainer__</span></tt> variable at the top of the file.  You should include a description of the bug, the ID for the bug report, and a proposal for how you plan to fix it.</li>
-<li>Once you hear back that it is OK to make changes (i.e., they don&#8217;t have local edits, they agree with the change you&#8217;d like to make, and they&#8217;re comfortable your editing their code), you should assign the bug to yourself on Sourceforge.</li>
-<li>Run an svn update to ensure that you have the latest version of all files (especially important for the file(s) you plan to edit).</li>
-<li>Run Qiime/tests/all_tests.py to confirm that tests pass before you make any changes. You make get some failures, for example if you don&#8217;t have an external application (e.g., RDP Classifier) installed. It is acceptable to continue if the failing tests are unrelated to the the code your working with. However, if you want to make changes to align_seqs.py and test_align_seqs.py is failing because of missing external applications, you should not proceed until you have installed the external applications and all tests pass.</li>
-<li>Make your changes to the code and the tests.</li>
-<li>Run Qiime/tests/all_tests.py to ensure that your changes did not cause anything unexpected to break.</li>
-<li>Once all of the tests pass, you should check your changes in with svn. Note that some tests may fail again because you do not have external applications installed. This is OK, but this is why it is important that you run all_tests.py prior to making changes: if the same tests fail, then you should be OK.</li>
-</ol>
-</div></blockquote>
+<p>After adding a bug report, there are two paths you can follow. If you are comfortable with fixing the bug, you should do that. Otherwise, you can monitor the issue for progress. If you&#8217;re going to fix the bug yourself, see <a class="reference internal" href="contributing_to_qiime.html"><em>Contributing to QIIME</em></a>.</p>
 </div>
 </div>
 
@@ -123,7 +115,7 @@
 <div id="searchbox" style="display: none">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" size="18" />
+      <input type="text" name="q" />
       <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
@@ -147,12 +139,12 @@
       </ul>
     </div>
 <div style="text-align: center; padding: 0px;"><br />
-<a href="http://pycogent.sourceforge.net" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
+<a href="http://www.pycogent.org" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
 <br /></div>
 
     <div class="footer">
         &copy; Copyright 2012, QIIME Team.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");

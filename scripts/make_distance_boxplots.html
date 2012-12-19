@@ -3,17 +3,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
+
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
     <title>make_distance_boxplots.py – Creates boxplots to compare distances between categories &mdash; Homepage</title>
+    
     <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.5.0',
+        VERSION:     '1.6.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -54,10 +57,22 @@
           <div class="body">
             
   <span class="target" id="make-distance-boxplots"></span><div class="section" id="make-distance-boxplots-py-creates-boxplots-to-compare-distances-between-categories">
-<span id="index-0"></span><h1><em>make_distance_boxplots.py</em> &#8211; Creates boxplots to compare distances                                     between categories<a class="headerlink" href="#make-distance-boxplots-py-creates-boxplots-to-compare-distances-between-categories" title="Permalink to this headline">¶</a></h1>
+<span id="index-0"></span><h1><em>make_distance_boxplots.py</em> &#8211; Creates boxplots to compare distances between categories<a class="headerlink" href="#make-distance-boxplots-py-creates-boxplots-to-compare-distances-between-categories" title="Permalink to this headline">¶</a></h1>
 <p><strong>Description:</strong></p>
-<p>This script creates boxplots that allow for the comparison between different categories found within the mapping file. The boxplots that are created show the distances within all samples of a field value, as well as between different field values. Individual within and individual between distances are also plotted.</p>
-<p>For more information and examples pertaining to this script, please refer to the accompanying tutorial, which can be found at <a class="reference external" href="http://qiime.org/tutorials/creating_distance_comparison_plots.html">http://qiime.org/tutorials/creating_distance_comparison_plots.html</a>.</p>
+<p>This script creates boxplots that allow for the comparison between different
+categories found within the mapping file. The boxplots that are created compare
+distances within all samples of a field value, as well as between different
+field values. Individual within and between distances are also plotted.</p>
+<p>The script also performs two-sample t-tests for all pairs of boxplots to help
+determine which boxplots (distributions) are significantly different.</p>
+<p>Tip: the script tries its best to fit everything into the plot, but there are
+cases where plot elements may get cut off (e.g. if axis labels are extremely
+long), or things may appear squashed, cluttered, or too small (e.g. if
+there are many boxplots in one plot). Increasing the width and/or height of the
+plot (using &#8211;width and &#8211;height) usually fixes these problems.</p>
+<p>For more information and examples pertaining to this script, please refer to
+the accompanying tutorial, which can be found at
+<a class="reference external" href="http://qiime.org/tutorials/creating_distance_comparison_plots.html">http://qiime.org/tutorials/creating_distance_comparison_plots.html</a>.</p>
 <p><strong>Usage:</strong> <tt class="file docutils literal"><span class="pre">make_distance_boxplots.py</span> <span class="pre">[options]</span></tt></p>
 <p><strong>Input Arguments:</strong></p>
 <div class="admonition note">
@@ -69,7 +84,7 @@
 <dt>-o, <cite>-</cite>-output_dir</dt>
 <dd>Path to the output directory</dd>
 <dt>-d, <cite>-</cite>-distance_matrix_fp</dt>
-<dd>Input distance matrix filepath (i.e. the result of <a class="reference external" href="./beta_diversity.html">beta_diversity.py</a>)</dd>
+<dd>Input distance matrix filepath (i.e. the result of <a class="reference external" href="./beta_diversity.html">beta_diversity.py</a>). WARNING: Only symmetric, hollow distance matrices may be used as input. Asymmetric distance matrices, such as those obtained by the UniFrac Gain metric (i.e. <a class="reference external" href="./beta_diversity.html">beta_diversity.py</a> -m unifrac_g), should not be used as input</dd>
 <dt>-f, <cite>-</cite>-fields</dt>
 <dd>Comma-separated list of fields to compare, where the list of fields should be in quotes (e.g. &#8220;Field1,Field2,Field3&#8221;)</dd>
 </dl>
@@ -87,6 +102,12 @@
 <dd>Suppress plotting of individual &#8220;within&#8221; boxplot(s) [default: False]</dd>
 <dt><cite>-</cite>-suppress_individual_between</dt>
 <dd>Suppress plotting of individual &#8220;between&#8221; boxplot(s) [default: False]</dd>
+<dt><cite>-</cite>-suppress_significance_tests</dt>
+<dd>Suppress performing signifance tests between each pair of boxplots [default: False]</dd>
+<dt>-n, <cite>-</cite>-num_permutations</dt>
+<dd>The number of Monte Carlo permutations to perform when calculating the nonparametric p-value in the significance tests. Must be an integer greater than or equal to zero. If zero, the nonparametric p-value will not be calculated and will instead be reported as &#8220;N/A&#8221;. This option has no effect if &#8211;suppress_significance_tests is supplied [default: 0]</dd>
+<dt>-t, <cite>-</cite>-tail_type</dt>
+<dd>The type of tail test to compute when calculating the p-values in the significance tests. &#8220;high&#8221; specifies a one-tailed test for values greater than the observed t statistic, while &#8220;low&#8221; specifies a one-tailed test for values less than the observed t statistic. &#8220;two-sided&#8221; specifies a two-tailed test for values greater in magnitude than the observed t statistic. This option has no effect if &#8211;suppress_significance_tests is supplied. Valid choices: low or high or two-sided [default: two-sided]</dd>
 <dt><cite>-</cite>-y_min</dt>
 <dd>The minimum y-axis value in the resulting plot. If &#8220;auto&#8221;, it is automatically calculated [default: 0]</dd>
 <dt><cite>-</cite>-y_max</dt>
@@ -108,18 +129,25 @@
 </dl>
 </div>
 <p><strong>Output:</strong></p>
-<p>Images of the plots are written to                                     the specified output directory (one image                                     per field). The raw data used in the                                     plots can optionally be written into                                     tab-delimited files (one file per field).</p>
-<p><strong>Compare distances between Fast and Control for Treatment field:</strong></p>
-<p>This example will generate an image with boxplots for all within and all between distances for the field Treatment, and will also include plots for individual within (e.g. Control vs. Control, Fast vs. Fast) and individual between (e.g. Control vs. Fast). The generated plot image PDF will be written to the output directory &#8216;out_files&#8217;.</p>
-<div class="highlight-python"><pre>make_distance_boxplots.py -d dist_matrix.txt -m map.txt -f "Treatment" -o out_files</pre>
+<p>Images of the plots are written to the specified output directory (one image
+per field). The raw data used in the plots and the results of significance
+tests can optionally be written into tab-delimited files (one file per field)
+that are most easily viewed in a spreadsheet program such as Microsoft Excel.</p>
+<p><strong>Compare distances between Fast and Control samples:</strong></p>
+<p>This example will generate an image with boxplots for all within and all between distances for the field Treatment, and will also include plots for individual within (e.g. Control vs. Control, Fast vs. Fast) and individual between (e.g. Control vs. Fast). The generated plot PDF and signifiance testing results will be written to the output directory &#8216;out1&#8217;.</p>
+<div class="highlight-python"><pre>make_distance_boxplots.py -d unweighted_unifrac_dm.txt -m Fasting_Map.txt -f "Treatment" -o out1</pre>
 </div>
-<p><strong>Only plot individual distances:</strong></p>
-<p>This example will generate a PNG of all of individual distances (within and between) for the Treatment field.</p>
-<div class="highlight-python"><pre>make_distance_boxplots.py -d dist_matrix.txt -m map.txt -f "Treatment" -o out_files -g png --suppress_all_within --suppress_all_between</pre>
+<p><strong>Only plot individual field value distances:</strong></p>
+<p>This example will generate a PNG of all individual field value distances (within and between) for the Treatment field.</p>
+<div class="highlight-python"><pre>make_distance_boxplots.py -d unweighted_unifrac_dm.txt -m Fasting_Map.txt -f "Treatment" -o out2 -g png --suppress_all_within --suppress_all_between</pre>
 </div>
 <p><strong>Save raw data:</strong></p>
 <p>This example will generate an SVG image of the boxplots and also output the plotting data to a tab-delimited file.</p>
-<div class="highlight-python"><pre>make_distance_boxplots.py -d dist_matrix.txt -m map.txt -f "Treatment" -o out_files -g svg --save_raw_data</pre>
+<div class="highlight-python"><pre>make_distance_boxplots.py -d unweighted_unifrac_dm.txt -m Fasting_Map.txt -f "Treatment" -o out3 -g svg --save_raw_data</pre>
+</div>
+<p><strong>Suppress significance tests:</strong></p>
+<p>This example will only generate a plot and skip the significance testing step. This can be useful if you are operating on a large dataset and are not interested in performing the statistical tests (or at least not initially).</p>
+<div class="highlight-python"><pre>make_distance_boxplots.py -d unweighted_unifrac_dm.txt -m Fasting_Map.txt -f "Treatment" -o out4 --suppress_significance_tests</pre>
 </div>
 </div>
 
@@ -146,7 +174,7 @@
 <div id="searchbox" style="display: none">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" size="18" />
+      <input type="text" name="q" />
       <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
@@ -170,12 +198,12 @@
       </ul>
     </div>
 <div style="text-align: center; padding: 0px;"><br />
-<a href="http://pycogent.sourceforge.net" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
+<a href="http://www.pycogent.org" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
 <br /></div>
 
     <div class="footer">
         &copy; Copyright 2012, QIIME Team.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");

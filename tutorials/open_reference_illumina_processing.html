@@ -3,17 +3,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
+
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Open-reference OTU picking on Illumina data &mdash; Homepage</title>
+    <title>Open-reference OTU picking applied to Illumina data &mdash; Homepage</title>
+    
     <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.5.0',
+        VERSION:     '1.6.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -53,9 +56,9 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="open-reference-otu-picking-on-illumina-data">
-<h1>Open-reference OTU picking on Illumina data<a class="headerlink" href="#open-reference-otu-picking-on-illumina-data" title="Permalink to this headline">¶</a></h1>
-<p>This document describes how to use QIIME to analyze very large data sets, generally on the HiSeq2000, using an open-reference OTU picking protocol. There are two primary options here: first is to use standard open-reference uclust (i.e., uclust_ref allowing for new clusters); and second is to use the subsampled open-reference OTU picking protocol. The results from both will be nearly identical. The difference is that the first option is slower, but available in QIIME 1.4.0 (and most earlier versions). The runtime will be limiting for multiple HiSeq2000 lanes, or for single HiSeq2000 lanes with high diversity. The second option is much faster, and will work for multiple HiSeq2000 lanes or runs, but is currently only available in the development version of QIIME (1.4.0-dev).</p>
+  <div class="section" id="open-reference-otu-picking-applied-to-illumina-data">
+<h1>Open-reference OTU picking applied to Illumina data<a class="headerlink" href="#open-reference-otu-picking-applied-to-illumina-data" title="Permalink to this headline">¶</a></h1>
+<p>This document describes how to use QIIME to analyze very large data sets, generally on the HiSeq2000, using an open-reference OTU picking protocol. There are two primary options here: first is to use standard open-reference uclust (i.e., uclust_ref allowing for new clusters); and second is to use the subsampled open-reference OTU picking protocol. The results from both will be nearly identical. The difference is that the first option is slower, but available in QIIME 1.4.0 (and most earlier versions). The runtime will be limiting for multiple HiSeq2000 lanes, or for single HiSeq2000 lanes with high diversity. The second option is much faster, and will work for multiple HiSeq2000 lanes or runs. It is available in QIIME 1.5.0 and later.</p>
 <p>This document very briefly covers option 1. Most of the text covers option 2, including a description of how to use it, what exactly is happening, and test results from applying this to some well-understood 454 data.</p>
 <blockquote>
 <div><div class="admonition note">
@@ -73,8 +76,7 @@
 <p>Your parameters file should look like the following:</p>
 <div class="highlight-python"><pre>pick_otus:otu_picking_method uclust_ref
 pick_otus:refseqs_fp &lt;PATH TO REFERENCE COLLECTION&gt;
-pick_otus:enable_rev_strand_match True
-align_seqs:min_length 75</pre>
+pick_otus:enable_rev_strand_match True</pre>
 </div>
 <p>Where <tt class="docutils literal"><span class="pre">&lt;PATH</span> <span class="pre">TO</span> <span class="pre">REFERENCE</span> <span class="pre">COLLECTION&gt;</span></tt> is replaced with the path to the reference data set you&#8217;d like to pick OTUs against. The QIIME development group frequently used the Greengenes reference OTUs. On the QIIME EC2 instance, this path would be <tt class="docutils literal"><span class="pre">/software/gg_otus-4feb2011-release/rep_set/gg_97_otus_4feb2011.fasta</span></tt>.</p>
 <p>This command should be run in parallel. Each job will need approximately 4GB of RAM, so if running on EC2 and you want to start 8 parallel jobs (recommended setting for EC2), your instance type should be <tt class="docutils literal"><span class="pre">m2.4xlarge</span></tt>.</p>
@@ -143,8 +145,7 @@ align_seqs:min_length 75</pre>
 </ol>
 <p>To apply this analysis to <tt class="docutils literal"><span class="pre">seqs1.fna</span></tt>, picking OTUs against the reference collection <tt class="docutils literal"><span class="pre">refseqs.fna</span></tt> you can run the following command. Your parameters file should contain the following:</p>
 <div class="highlight-python"><pre>pick_otus:otu_picking_method uclust_ref
-pick_otus:enable_rev_strand_match True
-align_seqs:min_length 75</pre>
+pick_otus:enable_rev_strand_match True</pre>
 </div>
 <p>You should <em>always use full paths</em> which are represented here by <tt class="docutils literal"><span class="pre">$PWD</span></tt>, but will usually look something like <tt class="docutils literal"><span class="pre">/home/ubuntu/my_data/</span></tt> (in other words, they should start with a <tt class="docutils literal"><span class="pre">/</span></tt>). In this example your input sequences (<tt class="docutils literal"><span class="pre">seqs1.fna</span></tt>), and your metadata mapping file (<tt class="docutils literal"><span class="pre">map.txt</span></tt>) are all in the same directory represented by <tt class="docutils literal"><span class="pre">$PWD</span></tt>. If you work from the directory containing those files, you can leave <tt class="docutils literal"><span class="pre">$PWD</span></tt> in the commands instead of specifying the full paths:</p>
 <div class="highlight-python"><pre>pick_subsampled_reference_otus_through_otu_table.py -i $PWD/seqs1.fna -r $PWD/refseqs.fna -o $PWD/ucrss/ -aO 8 -p $PWD/ucrss_params.txt</pre>
@@ -159,6 +160,13 @@ align_seqs:min_length 75</pre>
 </div>
 <p>Again the <tt class="docutils literal"><span class="pre">-aO8</span></tt> specifies that the job should be run in parallel on 8 processors. Adjust this according to your resources. When this completes you can open 3D interactive PCoA plots by opening the file <tt class="docutils literal"><span class="pre">bdiv_even25000/unweighted_unifrac_3d_continuous/unweighted_unifrac_pc_3D_PCoA_plots.html</span></tt> in a web browser. This may take a minute to load for very large sets of samples.</p>
 </div>
+</div>
+<div class="section" id="filtering-an-open-reference-otu-table-to-reference-otus-only">
+<span id="filter-to-closed-ref"></span><h2>Filtering an open-reference OTU table to reference OTUs only<a class="headerlink" href="#filtering-an-open-reference-otu-table-to-reference-otus-only" title="Permalink to this headline">¶</a></h2>
+<p>There are cases where you may be interested in working with the closed reference subset of your open reference OTU table (meaning only those OTUs that hit the reference collection, excluding the new OTUs). Following from the above commands, to do that you can filter the new OTUs from the OTU table with the following command:</p>
+<div class="highlight-python"><pre>filter_otus_from_otu_table.py -i $PWD/ucrss/otu_table_mc2_w_tax_no_pynast_failures.biom -o $PWD/ucrss/otu_table_mc2_w_tax_no_pynast_failures.reference_only.biom --negate_ids_to_exclude -e $PWD/refseqs.fna</pre>
+</div>
+<p>What this does is filter exclude all OTUs with identifiers that are not present in <tt class="docutils literal"><span class="pre">$PWD/refseqs.fna</span></tt>, so all of the new OTUs.</p>
 </div>
 <div class="section" id="subsampled-otu-picking-workflow-evaluation">
 <h2>Subsampled OTU picking workflow evaluation<a class="headerlink" href="#subsampled-otu-picking-workflow-evaluation" title="Permalink to this headline">¶</a></h2>
@@ -226,29 +234,29 @@ align_seqs:min_length 75</pre>
 <col width="62%" />
 </colgroup>
 <thead valign="bottom">
-<tr><th class="head">OTU ID</th>
+<tr class="row-odd"><th class="head">OTU ID</th>
 <th class="head">Bonferroni-adjusted p-value</th>
 <th class="head">Taxonomy</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr><td>New.CleanUp.ReferenceOTU26927</td>
+<tr class="row-even"><td>New.CleanUp.ReferenceOTU26927</td>
 <td>1.99e-11</td>
 <td>k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Chromatiales; f__Sinobacteraceae</td>
 </tr>
-<tr><td>New.CleanUp.ReferenceOTU34053</td>
+<tr class="row-odd"><td>New.CleanUp.ReferenceOTU34053</td>
 <td>7.06e-09</td>
 <td>k__Bacteria; p__Acidobacteria; c__Solibacteres; o__Solibacterales; f__Solibacteraceae</td>
 </tr>
-<tr><td>212596</td>
+<tr class="row-even"><td>212596</td>
 <td>9.26e-09</td>
 <td>k__Bacteria; p__Acidobacteria; c__Solibacteres; o__Solibacterales; f__Solibacteraceae</td>
 </tr>
-<tr><td>112859</td>
+<tr class="row-odd"><td>112859</td>
 <td>1.22e-08</td>
 <td>k__Bacteria; p__Proteobacteria; c__Alphaproteobacteria; o__Rhizobiales; f__Hyphomicrobiaceae</td>
 </tr>
-<tr><td>New.CleanUp.ReferenceOTU36189</td>
+<tr class="row-even"><td>New.CleanUp.ReferenceOTU36189</td>
 <td>4.35e-08</td>
 <td>k__Bacteria; p__Actinobacteria; c__Actinobacteria; o__Rubrobacterales; f__Rubrobacteraceae</td>
 </tr>
@@ -262,29 +270,29 @@ align_seqs:min_length 75</pre>
 <col width="62%" />
 </colgroup>
 <thead valign="bottom">
-<tr><th class="head">OTU ID</th>
+<tr class="row-odd"><th class="head">OTU ID</th>
 <th class="head">Bonferroni-adjusted p-value</th>
 <th class="head">Taxonomy</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr><td>26819</td>
+<tr class="row-even"><td>26819</td>
 <td>3.19e-11</td>
 <td>k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Chromatiales; f__Sinobacteraceae</td>
 </tr>
-<tr><td>28062</td>
+<tr class="row-odd"><td>28062</td>
 <td>5.92e-10</td>
 <td>k__Bacteria; p__Acidobacteria; c__; o__; f__Koribacteraceae</td>
 </tr>
-<tr><td>35264</td>
+<tr class="row-even"><td>35264</td>
 <td>2.43e-09</td>
 <td>k__Bacteria; p__Acidobacteria; c__Solibacteres; o__Solibacterales; f__Solibacteraceae</td>
 </tr>
-<tr><td>45059</td>
+<tr class="row-odd"><td>45059</td>
 <td>5.48e-09</td>
 <td>k__Bacteria; p__Proteobacteria; c__Alphaproteobacteria; o__; f__</td>
 </tr>
-<tr><td>7687</td>
+<tr class="row-even"><td>7687</td>
 <td>2.056e-08</td>
 <td>k__Bacteria; p__Acidobacteria; c__Solibacteres; o__Solibacterales; f__Solibacteraceae</td>
 </tr>
@@ -298,29 +306,29 @@ align_seqs:min_length 75</pre>
 <col width="62%" />
 </colgroup>
 <thead valign="bottom">
-<tr><th class="head">OTU ID</th>
+<tr class="row-odd"><th class="head">OTU ID</th>
 <th class="head">Bonferroni-adjusted p-value</th>
 <th class="head">Taxonomy</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr><td>DeNovoOTU26928</td>
+<tr class="row-even"><td>DeNovoOTU26928</td>
 <td>1.99e-11</td>
 <td>k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Chromatiales; f__Sinobacteraceae</td>
 </tr>
-<tr><td>DeNovoOTU34054</td>
+<tr class="row-odd"><td>DeNovoOTU34054</td>
 <td>7.06e-09</td>
 <td>k__Bacteria; p__Acidobacteria; c__Solibacteres; o__Solibacterales; f__Solibacteraceae</td>
 </tr>
-<tr><td>212596</td>
+<tr class="row-even"><td>212596</td>
 <td>9.26e-09</td>
 <td>k__Bacteria; p__Acidobacteria; c__Solibacteres; o__Solibacterales; f__Solibacteraceae</td>
 </tr>
-<tr><td>112859</td>
+<tr class="row-odd"><td>112859</td>
 <td>1.22e-08</td>
 <td>k__Bacteria; p__Proteobacteria; c__Alphaproteobacteria; o__Rhizobiales; f__Hyphomicrobiaceae</td>
 </tr>
-<tr><td>DeNovoOTU36190</td>
+<tr class="row-even"><td>DeNovoOTU36190</td>
 <td>4.35e-08</td>
 <td>k__Bacteria; p__Actinobacteria; c__Actinobacteria; o__Rubrobacterales; f__Rubrobacteraceae</td>
 </tr>
@@ -334,29 +342,29 @@ align_seqs:min_length 75</pre>
 <col width="67%" />
 </colgroup>
 <thead valign="bottom">
-<tr><th class="head">OTU ID</th>
+<tr class="row-odd"><th class="head">OTU ID</th>
 <th class="head">Bonferroni-adjusted p-value</th>
 <th class="head">Taxonomy</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr><td>212596</td>
+<tr class="row-even"><td>212596</td>
 <td>4.03e-09</td>
 <td>k__Bacteria; p__Acidobacteria; c__Solibacteres; o__Solibacterales; f__Solibacteraceae; g__CandidatusSolibacter; s__</td>
 </tr>
-<tr><td>112859</td>
+<tr class="row-odd"><td>112859</td>
 <td>4.62e-09</td>
 <td>k__Bacteria; p__Proteobacteria; c__Alphaproteobacteria; o__Rhizobiales; f__; g__; s__</td>
 </tr>
-<tr><td>544749</td>
+<tr class="row-even"><td>544749</td>
 <td>5.56e-08</td>
 <td>k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Chromatiales; f__Sinobacteraceae; g__; s__</td>
 </tr>
-<tr><td>541300</td>
+<tr class="row-odd"><td>541300</td>
 <td>1.28e-07</td>
 <td>k__Bacteria; p__Acidobacteria; c__Solibacteres; o__Solibacterales; f__Solibacteraceae; g__CandidatusSolibacter; s__</td>
 </tr>
-<tr><td>563862</td>
+<tr class="row-even"><td>563862</td>
 <td>1.95e-07</td>
 <td>k__Bacteria; p__Acidobacteria; c__Solibacteres; o__Solibacterales; f__Solibacteraceae; g__CandidatusSolibacter; s__</td>
 </tr>
@@ -432,29 +440,29 @@ pick_otus:enable_rev_strand_match True</pre>
 <col width="62%" />
 </colgroup>
 <thead valign="bottom">
-<tr><th class="head">OTU ID</th>
+<tr class="row-odd"><th class="head">OTU ID</th>
 <th class="head">Bonferroni-adjusted p-value</th>
 <th class="head">Taxonomy</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr><td>470747</td>
+<tr class="row-even"><td>470747</td>
 <td>5.37e-151</td>
 <td>k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Lachnospiraceae</td>
 </tr>
-<tr><td>471122</td>
+<tr class="row-odd"><td>471122</td>
 <td>4.35e-143</td>
 <td>k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Prevotellaceae</td>
 </tr>
-<tr><td>470477</td>
+<tr class="row-even"><td>470477</td>
 <td>4.14e-135</td>
 <td>k__Bacteria; p__Firmicutes; c__Bacilli; o__Lactobacillales; f__Carnobacteriaceae</td>
 </tr>
-<tr><td>94166</td>
+<tr class="row-odd"><td>94166</td>
 <td>1.61e-125</td>
 <td>k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pasteurellales; f__Pasteurellaceae</td>
 </tr>
-<tr><td>442949</td>
+<tr class="row-even"><td>442949</td>
 <td>1.33e-124</td>
 <td>k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Veillonellaceae</td>
 </tr>
@@ -468,29 +476,29 @@ pick_otus:enable_rev_strand_match True</pre>
 <col width="62%" />
 </colgroup>
 <thead valign="bottom">
-<tr><th class="head">OTU ID</th>
+<tr class="row-odd"><th class="head">OTU ID</th>
 <th class="head">Bonferroni-adjusted p-value</th>
 <th class="head">Taxonomy</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr><td>6389</td>
+<tr class="row-even"><td>6389</td>
 <td>4.54e-148</td>
 <td>k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Lachnospiraceae</td>
 </tr>
-<tr><td>17234</td>
+<tr class="row-odd"><td>17234</td>
 <td>1.16e-141</td>
 <td>k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Prevotellaceae</td>
 </tr>
-<tr><td>18227</td>
+<tr class="row-even"><td>18227</td>
 <td>3.05e-139</td>
 <td>k__Bacteria; p__Firmicutes; c__Bacilli; o__Lactobacillales; f__Carnobacteriaceae</td>
 </tr>
-<tr><td>7262</td>
+<tr class="row-odd"><td>7262</td>
 <td>1.22e-134</td>
 <td>k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Veillonellaceae</td>
 </tr>
-<tr><td>18575</td>
+<tr class="row-even"><td>18575</td>
 <td>2.74e-122</td>
 <td>k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pasteurellales; f__Pasteurellaceae</td>
 </tr>
@@ -504,29 +512,29 @@ pick_otus:enable_rev_strand_match True</pre>
 <col width="62%" />
 </colgroup>
 <thead valign="bottom">
-<tr><th class="head">OTU ID</th>
+<tr class="row-odd"><th class="head">OTU ID</th>
 <th class="head">Bonferroni-adjusted p-value</th>
 <th class="head">Taxonomy</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr><td>470747</td>
+<tr class="row-even"><td>470747</td>
 <td>5.37e-151</td>
 <td>k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Lachnospiraceae</td>
 </tr>
-<tr><td>471122</td>
+<tr class="row-odd"><td>471122</td>
 <td>4.35e-143</td>
 <td>k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Prevotellaceae</td>
 </tr>
-<tr><td>470477</td>
+<tr class="row-even"><td>470477</td>
 <td>4.14e-135</td>
 <td>k__Bacteria; p__Firmicutes; c__Bacilli; o__Lactobacillales; f__Carnobacteriaceae</td>
 </tr>
-<tr><td>94166</td>
+<tr class="row-odd"><td>94166</td>
 <td>1.61e-125</td>
 <td>k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pasteurellales; f__Pasteurellaceae</td>
 </tr>
-<tr><td>442949</td>
+<tr class="row-even"><td>442949</td>
 <td>1.33e-124</td>
 <td>k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Veillonellaceae</td>
 </tr>
@@ -540,29 +548,29 @@ pick_otus:enable_rev_strand_match True</pre>
 <col width="66%" />
 </colgroup>
 <thead valign="bottom">
-<tr><th class="head">OTU ID</th>
+<tr class="row-odd"><th class="head">OTU ID</th>
 <th class="head">Bonferroni-adjusted p-value</th>
 <th class="head">Taxonomy</th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr><td>470747</td>
+<tr class="row-even"><td>470747</td>
 <td>3.25e-150</td>
 <td>k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Lachnospiraceae</td>
 </tr>
-<tr><td>471122</td>
+<tr class="row-odd"><td>471122</td>
 <td>2.20e-148</td>
 <td>k__Bacteria; p__Bacteroidetes; c__Bacteroidia; o__Bacteroidales; f__Prevotellaceae</td>
 </tr>
-<tr><td>470477</td>
+<tr class="row-even"><td>470477</td>
 <td>2.51e-138</td>
 <td>k__Bacteria; p__Firmicutes; c__Bacilli; o__Lactobacillales; f__Carnobacteriaceae</td>
 </tr>
-<tr><td>94166</td>
+<tr class="row-odd"><td>94166</td>
 <td>4.30e-130</td>
 <td>k__Bacteria; p__Proteobacteria; c__Gammaproteobacteria; o__Pasteurellales; f__Pasteurellaceae</td>
 </tr>
-<tr><td>442949</td>
+<tr class="row-even"><td>442949</td>
 <td>2.04e-121</td>
 <td>k__Bacteria; p__Firmicutes; c__Clostridia; o__Clostridiales; f__Veillonellaceae</td>
 </tr>
@@ -611,8 +619,7 @@ CTGAAACCCTGGGTCACCAAAAGGCAGGAGGAGGAGGGACAGGGCAAGGCAGGGGAAGAGAGGGGAGGCTGACTCACATA
 <p>To apply this analysis to <tt class="docutils literal"><span class="pre">seqs1.fna</span></tt> and <tt class="docutils literal"><span class="pre">seqs2.fna</span></tt> in iterative mode, picking OTUs against the reference collection <tt class="docutils literal"><span class="pre">refseqs.fna</span></tt> you can run the following command.</p>
 <p>To apply this analysis to <tt class="docutils literal"><span class="pre">seqs1.fna</span></tt>, picking OTUs against the reference collection <tt class="docutils literal"><span class="pre">refseqs.fna</span></tt> you can run the following command. Your parameters file should contain the following:</p>
 <div class="highlight-python"><pre>pick_otus:otu_picking_method uclust_ref
-pick_otus:enable_rev_strand_match True
-align_seqs:min_length 75</pre>
+pick_otus:enable_rev_strand_match True</pre>
 </div>
 <p>You should <em>always use full paths</em> which are represented here by <tt class="docutils literal"><span class="pre">$PWD</span></tt>, but will usually look something like <tt class="docutils literal"><span class="pre">/home/ubuntu/my_data/</span></tt> (in other words, they should start with a <tt class="docutils literal"><span class="pre">/</span></tt>). In this example your input sequences (<tt class="docutils literal"><span class="pre">seqs1.fna</span></tt>), and your metadata mapping file (<tt class="docutils literal"><span class="pre">map.txt</span></tt>) are all in the same directory represented by <tt class="docutils literal"><span class="pre">$PWD</span></tt>. If you work from the directory containing those files, you can leave <tt class="docutils literal"><span class="pre">$PWD</span></tt> in the commands instead of specifying the full paths:</p>
 <div class="highlight-python"><pre>pick_subsampled_reference_otus_through_otu_table.py -i $PWD/seqs1.fna,$PWD/seqs2.fna -r $PWD/refseqs.fna -o $PWD/ucrss_iter/ -aO 8 -p $PWD/ucrss_params.txt</pre>
@@ -632,7 +639,7 @@ align_seqs:min_length 75</pre>
     
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Open-reference OTU picking on Illumina data</a><ul>
+<li><a class="reference internal" href="#">Open-reference OTU picking applied to Illumina data</a><ul>
 <li><a class="reference internal" href="#option-1-standard-open-reference-otu-picking">Option 1: Standard open-reference OTU picking</a></li>
 <li><a class="reference internal" href="#option-2-subsampled-open-reference-otu-picking">Option 2: Subsampled open-reference OTU picking</a><ul>
 <li><a class="reference internal" href="#step-0-prefilter-parallel">Step 0: Prefilter (parallel)</a></li>
@@ -643,6 +650,7 @@ align_seqs:min_length 75</pre>
 <li><a class="reference internal" href="#post-otu-processing-parallel-and-serial-depending-on-step">Post-OTU processing (parallel and serial, depending on step)</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#filtering-an-open-reference-otu-table-to-reference-otus-only">Filtering an open-reference OTU table to reference OTUs only</a></li>
 <li><a class="reference internal" href="#subsampled-otu-picking-workflow-evaluation">Subsampled OTU picking workflow evaluation</a></li>
 <li><a class="reference internal" href="#soils-analysis">88 soils analysis</a><ul>
 <li><a class="reference internal" href="#alpha-diversity">Alpha diversity</a><ul>
@@ -707,7 +715,7 @@ align_seqs:min_length 75</pre>
 <div id="searchbox" style="display: none">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" size="18" />
+      <input type="text" name="q" />
       <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
@@ -731,12 +739,12 @@ align_seqs:min_length 75</pre>
       </ul>
     </div>
 <div style="text-align: center; padding: 0px;"><br />
-<a href="http://pycogent.sourceforge.net" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
+<a href="http://www.pycogent.org" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
 <br /></div>
 
     <div class="footer">
         &copy; Copyright 2012, QIIME Team.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");

@@ -3,17 +3,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
+
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
     <title>otu_category_significance.py – OTU significance and co-occurence analysis &mdash; Homepage</title>
+    
     <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.5.0',
+        VERSION:     '1.6.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -86,7 +89,7 @@
 <dt>-o, <cite>-</cite>-output_fp</dt>
 <dd>Path to output file. [default: otu_category_significance_results.txt]</dd>
 <dt>-f, <cite>-</cite>-filter</dt>
-<dd>Minimum number of samples that must contain the OTU for the OTU to be included in the analysis. For longitudinal options, is the number of samples from the individuals/sites that were not ignored because of the OTU not being observed in any of the samples from that individual/site. As an example, if 5 samples per individual were collected over a timeseries that was being evaluated with longitudinal_correlation, a value of 10 would indicate that the OTU would have to have been detected in at least 2 individuals. The default value=10.</dd>
+<dd>Minimum fraction of samples that must contain the OTU for the OTU to be included in the analysis. For longitudinal options, is the fraction of individuals/sites that were not ignored because of the OTU not being observed in any of the samples from that individual/site. [default: 0.25]</dd>
 <dt>-t, <cite>-</cite>-threshold</dt>
 <dd>Threshold under which to consider something absent: Only used if you have numerical data that should be converted to present or absent based on a threshold. Should be None for categorical data or with the correlation test. default value is None</dd>
 <dt>-l, <cite>-</cite>-otu_include_fp</dt>
@@ -144,16 +147,16 @@
 <li>Consensus lineage: The consensus lineage for that OTU will be listed in the last column if it was present in the input OTU table.</li>
 </ul>
 <p><strong>G-test:</strong></p>
-<p>Perform a G test on otu_table.biom testing OTUs that occur in 4 or more samples (-f) for differences in the abundance across the category &#8220;Treatment&#8221;:</p>
-<div class="highlight-python"><pre>otu_category_significance.py -i otu_table.biom -m Fasting_Map.txt -s g_test -c Treatment -f 4 -o single_g_test.txt</pre>
+<p>Perform a G test on otu_table.biom testing OTUs for differences in the abundance across the category &#8220;Treatment&#8221;:</p>
+<div class="highlight-python"><pre>otu_category_significance.py -i otu_table.biom -m Fasting_Map.txt -s g_test -c Treatment -o single_g_test.txt</pre>
 </div>
 <p><strong>ANOVA:</strong></p>
-<p>Perform an ANOVA on otu_table.biom testing OTUs that occur in 4 or more samples (-f) for differences in the abundance across the category &#8220;Treatment&#8221;:</p>
-<div class="highlight-python"><pre>otu_category_significance.py -i otu_table.biom -m Fasting_Map.txt -s ANOVA -c Treatment -f 4 -o single_anova.txt</pre>
+<p>Perform an ANOVA on otu_table.biom testing OTUs for differences in the abundance across the category &#8220;Treatment&#8221;:</p>
+<div class="highlight-python"><pre>otu_category_significance.py -i otu_table.biom -m Fasting_Map.txt -s ANOVA -c Treatment -o single_anova.txt</pre>
 </div>
 <p><strong>ANOVA on mutliple OTU tables:</strong></p>
-<p>Perform an ANOVA on all OTU tables in rarefied_otu_tables testing OTUs that occur in 4 or more samples (-f) for differences in the abundance across the category &#8220;Treatment&#8221;:</p>
-<div class="highlight-python"><pre>otu_category_significance.py -i rarefied_otu_tables -m Fasting_Map.txt -s ANOVA -c Treatment -f 4 -o multiple_anova.txt</pre>
+<p>Perform an ANOVA on all OTU tables in rarefied_otu_tables testing OTUs for differences in the abundance across the category &#8220;Treatment&#8221;:</p>
+<div class="highlight-python"><pre>otu_category_significance.py -i rarefied_otu_tables -m Fasting_Map.txt -s ANOVA -c Treatment -o multiple_anova.txt</pre>
 </div>
 </div>
 
@@ -180,7 +183,7 @@
 <div id="searchbox" style="display: none">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" size="18" />
+      <input type="text" name="q" />
       <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
@@ -204,12 +207,12 @@
       </ul>
     </div>
 <div style="text-align: center; padding: 0px;"><br />
-<a href="http://pycogent.sourceforge.net" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
+<a href="http://www.pycogent.org" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
 <br /></div>
 
     <div class="footer">
         &copy; Copyright 2012, QIIME Team.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");

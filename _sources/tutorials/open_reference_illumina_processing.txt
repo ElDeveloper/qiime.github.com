@@ -1,8 +1,8 @@
 =========================================================
- Open-reference OTU picking on Illumina data
+ Open-reference OTU picking applied to Illumina data
 =========================================================
 
-This document describes how to use QIIME to analyze very large data sets, generally on the HiSeq2000, using an open-reference OTU picking protocol. There are two primary options here: first is to use standard open-reference uclust (i.e., uclust_ref allowing for new clusters); and second is to use the subsampled open-reference OTU picking protocol. The results from both will be nearly identical. The difference is that the first option is slower, but available in QIIME 1.4.0 (and most earlier versions). The runtime will be limiting for multiple HiSeq2000 lanes, or for single HiSeq2000 lanes with high diversity. The second option is much faster, and will work for multiple HiSeq2000 lanes or runs, but is currently only available in the development version of QIIME (1.4.0-dev).
+This document describes how to use QIIME to analyze very large data sets, generally on the HiSeq2000, using an open-reference OTU picking protocol. There are two primary options here: first is to use standard open-reference uclust (i.e., uclust_ref allowing for new clusters); and second is to use the subsampled open-reference OTU picking protocol. The results from both will be nearly identical. The difference is that the first option is slower, but available in QIIME 1.4.0 (and most earlier versions). The runtime will be limiting for multiple HiSeq2000 lanes, or for single HiSeq2000 lanes with high diversity. The second option is much faster, and will work for multiple HiSeq2000 lanes or runs. It is available in QIIME 1.5.0 and later.
 
 This document very briefly covers option 1. Most of the text covers option 2, including a description of how to use it, what exactly is happening, and test results from applying this to some well-understood 454 data. 
 
@@ -21,7 +21,6 @@ Your parameters file should look like the following::
 	pick_otus:otu_picking_method uclust_ref
 	pick_otus:refseqs_fp <PATH TO REFERENCE COLLECTION>
 	pick_otus:enable_rev_strand_match True
-	align_seqs:min_length 75
 
 Where ``<PATH TO REFERENCE COLLECTION>`` is replaced with the path to the reference data set you'd like to pick OTUs against. The QIIME development group frequently used the Greengenes reference OTUs. On the QIIME EC2 instance, this path would be ``/software/gg_otus-4feb2011-release/rep_set/gg_97_otus_4feb2011.fasta``. 
 
@@ -101,7 +100,6 @@ To apply this analysis to ``seqs1.fna``, picking OTUs against the reference coll
 
 	pick_otus:otu_picking_method uclust_ref
 	pick_otus:enable_rev_strand_match True
-	align_seqs:min_length 75
 
 You should *always use full paths* which are represented here by ``$PWD``, but will usually look something like ``/home/ubuntu/my_data/`` (in other words, they should start with a ``/``). In this example your input sequences (``seqs1.fna``), and your metadata mapping file (``map.txt``) are all in the same directory represented by ``$PWD``. If you work from the directory containing those files, you can leave ``$PWD`` in the commands instead of specifying the full paths::
 
@@ -123,6 +121,17 @@ After choosing an even sampling depth you can use the ``beta_diversity_through_p
 
 Again the ``-aO8`` specifies that the job should be run in parallel on 8 processors. Adjust this according to your resources. When this completes you can open 3D interactive PCoA plots by opening the file ``bdiv_even25000/unweighted_unifrac_3d_continuous/unweighted_unifrac_pc_3D_PCoA_plots.html`` in a web browser. This may take a minute to load for very large sets of samples.
 
+.. _filter_to_closed_ref:
+
+---------------------------------------------------------------
+Filtering an open-reference OTU table to reference OTUs only
+---------------------------------------------------------------
+
+There are cases where you may be interested in working with the closed reference subset of your open reference OTU table (meaning only those OTUs that hit the reference collection, excluding the new OTUs). Following from the above commands, to do that you can filter the new OTUs from the OTU table with the following command::
+
+	filter_otus_from_otu_table.py -i $PWD/ucrss/otu_table_mc2_w_tax_no_pynast_failures.biom -o $PWD/ucrss/otu_table_mc2_w_tax_no_pynast_failures.reference_only.biom --negate_ids_to_exclude -e $PWD/refseqs.fna
+
+What this does is filter exclude all OTUs with identifiers that are not present in ``$PWD/refseqs.fna``, so all of the new OTUs.
 
 --------------------------------------------
  Subsampled OTU picking workflow evaluation
@@ -388,7 +397,6 @@ To apply this analysis to ``seqs1.fna``, picking OTUs against the reference coll
 
 	pick_otus:otu_picking_method uclust_ref
 	pick_otus:enable_rev_strand_match True
-	align_seqs:min_length 75
 
 You should *always use full paths* which are represented here by ``$PWD``, but will usually look something like ``/home/ubuntu/my_data/`` (in other words, they should start with a ``/``). In this example your input sequences (``seqs1.fna``), and your metadata mapping file (``map.txt``) are all in the same directory represented by ``$PWD``. If you work from the directory containing those files, you can leave ``$PWD`` in the commands instead of specifying the full paths::
 

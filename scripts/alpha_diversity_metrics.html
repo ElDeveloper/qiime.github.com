@@ -3,17 +3,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
+
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
     <title>alpha_diversity_metrics – List of available metrics &mdash; Homepage</title>
+    
     <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.5.0',
+        VERSION:     '1.6.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -66,7 +69,9 @@
 <li>doubles (# otus with exactly two individuals in sample)</li>
 <li>equitability</li>
 <li>fisher_alpha</li>
-<li>heip_e</li>
+<li>gini index</li>
+<li>goods coverage</li>
+<li>heip_e (note, using heip_e at low (&lt;5) individuals may cause errors</li>
 <li>kempton_taylor_q</li>
 <li>margalef</li>
 <li>mcintosh_d</li>
@@ -75,10 +80,10 @@
 <li>michaelis_menten_fit</li>
 <li>observed_species</li>
 <li>osd (observed # otus, singleton OTUs, doubleton OTUs)</li>
-<li>reciprocal_simpson</li>
 <li>robbins</li>
-<li>shannon</li>
+<li>shannon (base 2 is used in the logarithms)</li>
 <li>simpson (1 - Dominance)</li>
+<li>simpson_reciprocal (1 / Dominance)</li>
 <li>simpson_e</li>
 <li>singles (# OTUs with exactly one individual present in sample)</li>
 <li>strong</li>
@@ -115,7 +120,7 @@
 <div id="searchbox" style="display: none">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" size="18" />
+      <input type="text" name="q" />
       <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
@@ -139,12 +144,12 @@
       </ul>
     </div>
 <div style="text-align: center; padding: 0px;"><br />
-<a href="http://pycogent.sourceforge.net" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
+<a href="http://www.pycogent.org" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
 <br /></div>
 
     <div class="footer">
         &copy; Copyright 2012, QIIME Team.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
