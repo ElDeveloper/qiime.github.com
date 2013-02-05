@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.5.0-dev',
+        VERSION:     '1.6.0-dev',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -87,7 +87,11 @@
 <p>The output is either a single number (with -s), or a more detailed output of the similarity between and within clusters.</p>
 <p><strong>cluster quality based on the treatment category:</strong></p>
 <p>to compute the quality of clusters, and print to stdout, use the following idiom:</p>
-<div class="highlight-python"><pre>cluster_quality.py -i unweighted_unifrac_distance_matrix.txt -m Fasting_Map.txt -c Treatment</pre>
+<div class="highlight-python"><pre>cluster_quality.py -i weighted_unifrac_otu_table.txt -m Fasting_Map.txt -c Treatment</pre>
+</div>
+<p><strong>cluster quality based on the DOB category:</strong></p>
+<p>to compute the quality of clusters, and print to stdout, use the following idiom:</p>
+<div class="highlight-python"><pre>cluster_quality.py -i weighted_unifrac_otu_table.txt -m Fasting_Map.txt -c DOB</pre>
 </div>
 </div>
 
@@ -138,7 +142,7 @@
       </ul>
     </div>
 <div style="text-align: center; padding: 0px;"><br />
-<a href="http://pycogent.sourceforge.net" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
+<a href="http://www.pycogent.org" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
 <br /></div>
 
     <div class="footer">

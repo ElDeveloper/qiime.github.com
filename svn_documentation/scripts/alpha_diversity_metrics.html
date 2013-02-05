@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.5.0-dev',
+        VERSION:     '1.6.0-dev',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -69,7 +69,9 @@
 <li>doubles (# otus with exactly two individuals in sample)</li>
 <li>equitability</li>
 <li>fisher_alpha</li>
-<li>heip_e</li>
+<li>gini index</li>
+<li>goods coverage</li>
+<li>heip_e (note, using heip_e at low (&lt;5) individuals may cause errors</li>
 <li>kempton_taylor_q</li>
 <li>margalef</li>
 <li>mcintosh_d</li>
@@ -79,7 +81,7 @@
 <li>observed_species</li>
 <li>osd (observed # otus, singleton OTUs, doubleton OTUs)</li>
 <li>robbins</li>
-<li>shannon</li>
+<li>shannon (base 2 is used in the logarithms)</li>
 <li>simpson (1 - Dominance)</li>
 <li>simpson_reciprocal (1 / Dominance)</li>
 <li>simpson_e</li>
@@ -142,7 +144,7 @@
       </ul>
     </div>
 <div style="text-align: center; padding: 0px;"><br />
-<a href="http://pycogent.sourceforge.net" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
+<a href="http://www.pycogent.org" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
 <br /></div>
 
     <div class="footer">

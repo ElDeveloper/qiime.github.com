@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.5.0-dev',
+        VERSION:     '1.6.0-dev',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -72,7 +72,7 @@
 </div>
 <p>See below for the relevant references for this data set.</p>
 <p>Begin by unzipping the resulting file and changing into that directory:</p>
-<div class="highlight-python"><pre>tar -xzf shotgun_analysis_gn.tgz
+<div class="highlight-python"><pre>tar -xvzf shotgun_analysis_gn.tgz
 cd shotgun_analysis_gn</pre>
 </div>
 <p>Because this tutorial can take a long time to run, we provide the output from all steps for review. If you&#8217;d like to run the steps yourself, either remove or rename the <tt class="docutils literal"><span class="pre">blat_mapped</span></tt> directory:</p>
@@ -85,19 +85,20 @@ cd shotgun_analysis_gn</pre>
 <div class="section" id="defining-environment-variables-for-use-in-this-tutorial">
 <h2>Defining environment variables for use in this tutorial<a class="headerlink" href="#defining-environment-variables-for-use-in-this-tutorial" title="Permalink to this headline">¶</a></h2>
 <p>Begin by defining some environment variables to easily refer to the reference sequences and associated metadata. In the QIIME Virtual Machines, this would look like this:</p>
-<div class="highlight-python"><pre>export reference_seqs /home/ubuntu/qiime_software/img-ref-arp14sept2012/gene_aa_seqs.faa
-export reference_md /home/ubuntu/qiime_software/img-ref-arp14sept2012/gene_ko_pathway.txt</pre>
+<div class="highlight-python"><pre>export reference_seqs=/home/ubuntu/qiime_software/img-qiime-***/gene_aa_seqs.faa
+export reference_md=/home/ubuntu/qiime_software/img-qiime-***/gene_ko_pathway.txt</pre>
 </div>
+<p>where <tt class="docutils literal"><span class="pre">img-qiime-***</span></tt> will be specific to the version of the reference dataset you downloaded from the <a class="reference external" href="http://qiime.org/home_static/dataFiles.html">QIIME resources page</a>.</p>
 </div>
 <div class="section" id="assigning-nucleotide-reads-to-protein-reference-sequences">
 <h2>Assigning nucleotide reads to protein reference sequences<a class="headerlink" href="#assigning-nucleotide-reads-to-protein-reference-sequences" title="Permalink to this headline">¶</a></h2>
 <p>The script used for assigning nucleotide reads to protein reference sequences is <tt class="docutils literal"><span class="pre">map_reads_to_reference.py</span></tt>, and the parallel version, <tt class="docutils literal"><span class="pre">parallel_map_reads_to_reference.py</span></tt>. You can run this as follows:</p>
-<div class="highlight-python"><pre>map_reads_to_reference.py -s 0.55 -i seqs.fna -o blat_mapped/ -r $reference_fp -t $reference_md -m blat</pre>
+<div class="highlight-python"><pre>map_reads_to_reference.py -s 0.55 -i seqs.fna -o blat_mapped/ -r $reference_seqs -t $reference_md -m blat</pre>
 </div>
-<p>To run in parallel on four processors (<tt class="docutils literal"><span class="pre">-O</span></tt>), you could run:</p>
-<div class="highlight-python"><pre>parallel_map_reads_to_reference.py -s 0.55 -i seqs.fna -o blat_mapped/ -r $reference_fp -t $reference_md -O 4 -m blat</pre>
+<p>Or to run in parallel on four processors (<tt class="docutils literal"><span class="pre">-O</span></tt>), you could run:</p>
+<div class="highlight-python"><pre>parallel_map_reads_to_reference.py -s 0.55 -i seqs.fna -o blat_mapped/ -r $reference_seqs -t $reference_md -O 4 -m blat -T</pre>
 </div>
-<p>Several output files will be generated during this process. Most important for downstream analysis is <tt class="docutils literal"><span class="pre">observation_table.biom</span></tt>, the <a class="reference external" href="http://www.biom-format.org">BIOM file</a>, which contains the sample-by-gene count matrix. This file, along with your metadata mapping file, is central for down-stream analyses.</p>
+<p>Several output files will be generated during this process. Most important for downstream analysis is <tt class="docutils literal"><span class="pre">observation_table.biom</span></tt>, the <a class="reference external" href="http://www.biom-format.org">BIOM file</a>, which contains the sample-by-gene count matrix. This file, along with your metadata mapping file, is central for down-stream analyses. (Note that running in parallel without the -T flag requires an additional step to create the .biom file).</p>
 </div>
 <div class="section" id="computing-beta-diversity-and-generating-pcoa-plots">
 <h2>Computing beta diversity and generating PCoA plots<a class="headerlink" href="#computing-beta-diversity-and-generating-pcoa-plots" title="Permalink to this headline">¶</a></h2>
@@ -129,9 +130,6 @@ summarize_taxa_through_plots.py -i blat_mapped/observation_table.Layer_sorted.bi
 <img alt="../_images/shotgun_analysis_gn_ec_summary_legend.png" src="../_images/shotgun_analysis_gn_ec_summary_legend.png" style="height: 400px;" />
 <p>Above is an summary of EC by layer (which could be achieved by running <tt class="docutils literal"><span class="pre">export</span> <span class="pre">reference_md</span> <span class="pre">/home/ubuntu/qiime_software/img-ref-arp14sept2012/gene_ko_pathway.txt</span></tt> prior to the <tt class="docutils literal"><span class="pre">map_reads_to_reference.py</span></tt> step of this tutorial), collapsed at EC Level 2.</p>
 </div>
-</div>
-<div class="section" id="notes">
-<h1>Notes<a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="a-note-on-input-data">
 <h2>A note on input data<a class="headerlink" href="#a-note-on-input-data" title="Permalink to this headline">¶</a></h2>
 <p>This tutorial assumes that data is provided in post-split-libraries format, as with the <tt class="docutils literal"><span class="pre">seqs.fna</span></tt> file used here. If you obtain Illumina data in fastq files with one sample/metagenome per fasta file, you can use <tt class="docutils literal"><span class="pre">split_libraries_fastq.py</span></tt> in <tt class="docutils literal"><span class="pre">not-barcoded</span></tt> mode, and then concatenate the resulting files. For example:</p>
@@ -167,9 +165,6 @@ cat sample.1.slout/seqs.fna sample.2.slout/seqs.fna &gt;&gt; seqs.fna</pre>
 <li><a class="reference internal" href="#computing-beta-diversity-and-generating-pcoa-plots">Computing beta diversity and generating PCoA plots</a></li>
 <li><a class="reference internal" href="#collapsing-functions-for-computation-of-beta-diversity">Collapsing functions for computation of beta diversity</a></li>
 <li><a class="reference internal" href="#generating-summaries-of-samples-by-ko-category">Generating summaries of samples by KO category</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#notes">Notes</a><ul>
 <li><a class="reference internal" href="#a-note-on-input-data">A note on input data</a></li>
 <li><a class="reference internal" href="#references">References</a></li>
 </ul>
@@ -215,7 +210,7 @@ cat sample.1.slout/seqs.fna sample.2.slout/seqs.fna &gt;&gt; seqs.fna</pre>
       </ul>
     </div>
 <div style="text-align: center; padding: 0px;"><br />
-<a href="http://pycogent.sourceforge.net" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
+<a href="http://www.pycogent.org" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
 <br /></div>
 
     <div class="footer">

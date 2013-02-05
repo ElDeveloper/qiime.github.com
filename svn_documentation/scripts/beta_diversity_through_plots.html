@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.5.0-dev',
+        VERSION:     '1.6.0-dev',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -67,7 +67,7 @@
 <p><strong>[REQUIRED]</strong></p>
 <dl class="docutils">
 <dt>-i, <cite>-</cite>-otu_table_fp</dt>
-<dd>The input fasta file [REQUIRED]</dd>
+<dd>The input biom table [REQUIRED]</dd>
 <dt>-m, <cite>-</cite>-mapping_fp</dt>
 <dd>Path to the mapping file [REQUIRED]</dd>
 <dt>-o, <cite>-</cite>-output_dir</dt>
@@ -96,13 +96,13 @@
 <dt><cite>-</cite>-suppress_3d_plots</dt>
 <dd>Do not generate 3D plots [default: False]</dd>
 <dt>-O, <cite>-</cite>-jobs_to_start</dt>
-<dd>Number of jobs to start. NOTE: you must also pass -a to run in parallel, this defines the number of jobs to be started if and only if -a is passed [default: 2]</dd>
+<dd>Number of jobs to start. NOTE: you must also pass -a to run in parallel, this defines the number of jobs to be started if and only if -a is passed [default: 4]</dd>
 </dl>
 </div>
 <p><strong>Output:</strong></p>
 <p>This script results in a distance matrix (from <a class="reference external" href="./beta_diversity.html">beta_diversity.py</a>), a principal coordinates file (from <a class="reference external" href="./principal_coordinates.html">principal_coordinates.py</a>), a preferences file (from <a class="reference external" href="./make_prefs_file.html">make_prefs_file.py</a>) and folders containing the resulting PCoA plots (accessible through html files).</p>
 <p><strong>Example:</strong></p>
-<p>Given an OTU table, a phylogenetic tree, an even sampling depth, and a mapping file, perform the following steps: 1. Randomly subsample otu_table.biom to even number of sequences per sample (100 in this case); 2. Compute a weighted and unweighted unifrac distance matrcies (can add additional metrics by passing a parameters file via -p); 3. Peform a principle coordinates analysis on the result of Step 2; 4. Generate a 2D and 3D plots for all mapping fields.</p>
+<p>Given an OTU table, a phylogenetic tree, an even sampling depth, and a mapping file, perform the following steps: 1. Randomly subsample otu_table.biom to even number of sequences per sample (100 in this case); 2. Compute a weighted and unweighted unifrac distance matrcies (can add additional metrics by passing a parameters file via -p); 3. Peform a principal coordinates analysis on the result of Step 2; 4. Generate a 2D and 3D plots for all mapping fields.</p>
 <div class="highlight-python"><pre>beta_diversity_through_plots.py -i otu_table.biom -o bdiv_even100/ -t rep_set.tre -m Fasting_Map.txt -e 100</pre>
 </div>
 </div>
@@ -154,7 +154,7 @@
       </ul>
     </div>
 <div style="text-align: center; padding: 0px;"><br />
-<a href="http://pycogent.sourceforge.net" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
+<a href="http://www.pycogent.org" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
 <br /></div>
 
     <div class="footer">

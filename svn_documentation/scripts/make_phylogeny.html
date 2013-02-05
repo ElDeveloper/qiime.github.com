@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.5.0-dev',
+        VERSION:     '1.6.0-dev',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -72,7 +72,7 @@
 <p><strong>[OPTIONAL]</strong></p>
 <dl class="last docutils">
 <dt>-t, <cite>-</cite>-tree_method</dt>
-<dd>Method for tree building. Valid choices are: clearcut, clustalw, raxml, fasttree_v1, fasttree, raxml_v730, muscle [default: fasttree]</dd>
+<dd>Method for tree building. Valid choices are: clearcut, clustalw, fasttree_v1, fasttree, raxml_v730, muscle [default: fasttree]</dd>
 <dt>-o, <cite>-</cite>-result_fp</dt>
 <dd>Path to store result file [default: &lt;input_sequences_filename&gt;.tre]</dd>
 <dt>-l, <cite>-</cite>-log_fp</dt>
@@ -86,12 +86,11 @@
 <p>The tips of the tree are the first word from the input sequences from the fasta file, e.g.: &#8216;&gt;101 PC.481_71 RC:1..220&#8217; is represented in the tree as &#8216;101&#8217;.</p>
 <p><strong>Examples:</strong></p>
 <p>A simple example of <a class="reference external" href="./make_phylogeny.html">make_phylogeny.py</a> is shown by the following command, where we use the default tree building method (fasttree) and write the file to the current working directory without a log file:</p>
-<div class="highlight-python"><pre>make_phylogeny.py -i repr_set_seqs_aligned_pfiltered.fasta -o rep_phylo.tre</pre>
+<div class="highlight-python"><pre>make_phylogeny.py -i $PWD/aligned.fasta -o $PWD/rep_phylo.tre</pre>
 </div>
 <p>Alternatively, if the user would prefer using another tree building method (i.e. clearcut (Sheneman, Evans, &amp; Foster, 2006)), then they could use the following command:</p>
-<div class="highlight-python"><pre>make_phylogeny.py -i repr_set_seqs_aligned_pfiltered.fasta -t clearcut</pre>
+<div class="highlight-python"><pre>make_phylogeny.py -i $PWD/aligned.fasta -t clearcut</pre>
 </div>
-<p>Note: For whichever method used, the 3rd party program must be properly installed on the user&#8217;s computer.</p>
 </div>
 
 
@@ -141,7 +140,7 @@
       </ul>
     </div>
 <div style="text-align: center; padding: 0px;"><br />
-<a href="http://pycogent.sourceforge.net" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
+<a href="http://www.pycogent.org" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
 <br /></div>
 
     <div class="footer">

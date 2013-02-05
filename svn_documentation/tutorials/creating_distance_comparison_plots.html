@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.5.0-dev',
+        VERSION:     '1.6.0-dev',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -77,7 +77,7 @@
 <p>This command will create a new output directory named <tt class="file docutils literal"><span class="pre">tutorial_output</span></tt>, which will contain a single PDF called <tt class="file docutils literal"><span class="pre">Treatment_Distances.pdf</span></tt>. Notice that the first part of the filename (i.e. &#8220;Treatment&#8221;) matches the mapping file field that we specified in the -f option. Open up <tt class="file docutils literal"><span class="pre">Treatment_Distances.pdf</span></tt> to see the resulting plot:</p>
 <img alt="../_images/distance_boxplots1.png" class="align-center" src="../_images/distance_boxplots1.png" />
 <p>The first and second boxplots represent all within distances and all between distances, respectively. The first boxplot contains the distances within <cite>Control</cite> samples and the distances within <cite>Fast</cite> samples.  Likewise, the second boxplot contains the distances between <cite>Control</cite> and <cite>Fast</cite> samples. The next two boxplots represent the individual within distances and the final boxplot represents the individual between distances. Since there are only two possible states for the <cite>Treatment</cite> field (i.e. <cite>Control</cite> or <cite>Fast</cite>), the all between boxplot is the same as the individual between boxplot. If there were more possible field states, however, the all between boxplot may not always match the individual between boxplots because there will be more than one individual between boxplot contributing to the all between boxplot.</p>
-<p>Next, open up the file <tt class="file docutils literal"><span class="pre">Treatment_Stats.xls</span></tt> in the <tt class="file docutils literal"><span class="pre">tutorial_output</span></tt> directory:</p>
+<p>Next, open up the file <tt class="file docutils literal"><span class="pre">Treatment_Stats.txt</span></tt> in the <tt class="file docutils literal"><span class="pre">tutorial_output</span></tt> directory:</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <ul class="last simple">
@@ -101,7 +101,7 @@
 <p>This file is most easily viewed in a spreadsheet program such as Microsoft Excel. It contains the results of multiple Student&#8217;s two-sample t-tests, comparing every pair of boxplots to determine if they are significantly different from each other. Note the &#8216;N/A&#8217; cells in the file for the nonparametric p-values. By default, only the parametric p-values (from using the t-distribution) are reported (mainly because doing multiple permutation tests can take a long time on large datasets). To also compute the nonparametric p-values using Monte Carlo permutations, run the following command, which specifies 999 permutations:</p>
 <div class="highlight-python"><pre>make_distance_boxplots.py -m Fasting_Map.txt -d wf_bdiv_even146/unweighted_unifrac_dm.txt -f Treatment -o tutorial_output -n 999</pre>
 </div>
-<p>Open up the resulting file <tt class="file docutils literal"><span class="pre">Treatment_Stats.xls</span></tt>:</p>
+<p>Open up the resulting file <tt class="file docutils literal"><span class="pre">Treatment_Stats.txt</span></tt>:</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <ul class="last simple">
@@ -128,7 +128,7 @@
 <p>To save the data used in the plots in a text file format, specify the &#8211;save_raw_data option:</p>
 <div class="highlight-python"><pre>make_distance_boxplots.py -m Fasting_Map.txt -d wf_bdiv_even146/unweighted_unifrac_dm.txt -f Treatment -o tutorial_output --save_raw_data</pre>
 </div>
-<p>This will generate the file <tt class="file docutils literal"><span class="pre">Treatment_Distances.xls</span></tt> in the <tt class="file docutils literal"><span class="pre">tutorial_output</span></tt> directory, which contains the raw data used in the plots in a tab-separated file format. This file can then be imported into other programs, such as Excel, for easy viewing.</p>
+<p>This will generate the file <tt class="file docutils literal"><span class="pre">Treatment_Distances.txt</span></tt> in the <tt class="file docutils literal"><span class="pre">tutorial_output</span></tt> directory, which contains the raw data used in the plots in a tab-separated file format. This file can then be imported into other programs, such as Excel, for easy viewing.</p>
 <p>To create plots for multiple fields in the metadata mapping file, you can specify a list of fields using the same -f option that we used before to specify the <cite>Treatment</cite> field:</p>
 <div class="highlight-python"><pre>make_distance_boxplots.py -m Fasting_Map.txt -d wf_bdiv_even146/unweighted_unifrac_dm.txt -f "Treatment,DOB" -o tutorial_output -g png</pre>
 </div>
@@ -242,7 +242,7 @@ plotted as a bar chart:</p>
       </ul>
     </div>
 <div style="text-align: center; padding: 0px;"><br />
-<a href="http://pycogent.sourceforge.net" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
+<a href="http://www.pycogent.org" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
 <br /></div>
 
     <div class="footer">

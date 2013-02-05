@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Open-reference OTU picking on Illumina data &mdash; Homepage</title>
+    <title>Open-reference OTU picking applied to Illumina data &mdash; Homepage</title>
     
     <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.5.0-dev',
+        VERSION:     '1.6.0-dev',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -56,8 +56,8 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="open-reference-otu-picking-on-illumina-data">
-<h1>Open-reference OTU picking on Illumina data<a class="headerlink" href="#open-reference-otu-picking-on-illumina-data" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="open-reference-otu-picking-applied-to-illumina-data">
+<h1>Open-reference OTU picking applied to Illumina data<a class="headerlink" href="#open-reference-otu-picking-applied-to-illumina-data" title="Permalink to this headline">¶</a></h1>
 <p>This document describes how to use QIIME to analyze very large data sets, generally on the HiSeq2000, using an open-reference OTU picking protocol. There are two primary options here: first is to use standard open-reference uclust (i.e., uclust_ref allowing for new clusters); and second is to use the subsampled open-reference OTU picking protocol. The results from both will be nearly identical. The difference is that the first option is slower, but available in QIIME 1.4.0 (and most earlier versions). The runtime will be limiting for multiple HiSeq2000 lanes, or for single HiSeq2000 lanes with high diversity. The second option is much faster, and will work for multiple HiSeq2000 lanes or runs. It is available in QIIME 1.5.0 and later.</p>
 <p>This document very briefly covers option 1. Most of the text covers option 2, including a description of how to use it, what exactly is happening, and test results from applying this to some well-understood 454 data.</p>
 <blockquote>
@@ -162,7 +162,7 @@ pick_otus:enable_rev_strand_match True</pre>
 </div>
 </div>
 <div class="section" id="filtering-an-open-reference-otu-table-to-reference-otus-only">
-<h2>Filtering an open-reference OTU table to reference OTUs only<a class="headerlink" href="#filtering-an-open-reference-otu-table-to-reference-otus-only" title="Permalink to this headline">¶</a></h2>
+<span id="filter-to-closed-ref"></span><h2>Filtering an open-reference OTU table to reference OTUs only<a class="headerlink" href="#filtering-an-open-reference-otu-table-to-reference-otus-only" title="Permalink to this headline">¶</a></h2>
 <p>There are cases where you may be interested in working with the closed reference subset of your open reference OTU table (meaning only those OTUs that hit the reference collection, excluding the new OTUs). Following from the above commands, to do that you can filter the new OTUs from the OTU table with the following command:</p>
 <div class="highlight-python"><pre>filter_otus_from_otu_table.py -i $PWD/ucrss/otu_table_mc2_w_tax_no_pynast_failures.biom -o $PWD/ucrss/otu_table_mc2_w_tax_no_pynast_failures.reference_only.biom --negate_ids_to_exclude -e $PWD/refseqs.fna</pre>
 </div>
@@ -639,7 +639,7 @@ pick_otus:enable_rev_strand_match True</pre>
     
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Open-reference OTU picking on Illumina data</a><ul>
+<li><a class="reference internal" href="#">Open-reference OTU picking applied to Illumina data</a><ul>
 <li><a class="reference internal" href="#option-1-standard-open-reference-otu-picking">Option 1: Standard open-reference OTU picking</a></li>
 <li><a class="reference internal" href="#option-2-subsampled-open-reference-otu-picking">Option 2: Subsampled open-reference OTU picking</a><ul>
 <li><a class="reference internal" href="#step-0-prefilter-parallel">Step 0: Prefilter (parallel)</a></li>
@@ -739,7 +739,7 @@ pick_otus:enable_rev_strand_match True</pre>
       </ul>
     </div>
 <div style="text-align: center; padding: 0px;"><br />
-<a href="http://pycogent.sourceforge.net" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
+<a href="http://www.pycogent.org" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
 <br /></div>
 
     <div class="footer">

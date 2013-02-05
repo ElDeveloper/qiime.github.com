@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.5.0-dev',
+        VERSION:     '1.6.0-dev',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -67,8 +67,6 @@
 <dl class="docutils">
 <dt>-i, <cite>-</cite>-sequence_read_fps</dt>
 <dd>The sequence read fastq files (comma-separated if more than one)</dd>
-<dt>-b, <cite>-</cite>-barcode_read_fps</dt>
-<dd>The barcode read fastq files (comma-separated if more than one)</dd>
 <dt>-o, <cite>-</cite>-output_dir</dt>
 <dd>Directory to store output files</dd>
 <dt>-m, <cite>-</cite>-mapping_fps</dt>
@@ -76,8 +74,12 @@
 </dl>
 <p><strong>[OPTIONAL]</strong></p>
 <dl class="last docutils">
+<dt>-b, <cite>-</cite>-barcode_read_fps</dt>
+<dd>The barcode read fastq files (comma-separated if more than one) [default: None]</dd>
 <dt><cite>-</cite>-store_qual_scores</dt>
 <dd>Store qual strings in .qual files [default: False]</dd>
+<dt><cite>-</cite>-sample_id</dt>
+<dd>Single sample id to be applied to all sequences (used when data is not multiplexed) [default: None]</dd>
 <dt><cite>-</cite>-store_demultiplexed_fastq</dt>
 <dd>Write demultiplexed fastq files [default: False]</dd>
 <dt><cite>-</cite>-retain_unassigned_reads</dt>
@@ -104,6 +106,8 @@
 <dd>The type of barcode used. This can be an integer, e.g. for length 6 barcodes, or golay_12 for golay error-correcting barcodes. Error correction will only be applied for golay_12 barcodes. [default: golay_12]</dd>
 <dt><cite>-</cite>-max_barcode_errors</dt>
 <dd>Maximum number of errors in barcode [default: 1.5]</dd>
+<dt><cite>-</cite>-phred_offset</dt>
+<dd>The ascii offset to use when decoding phred scores - warning: in most cases you don&#8217;t need to pass this value [default: determined automatically]</dd>
 </dl>
 </div>
 <p><strong>Output:</strong></p>
@@ -115,6 +119,12 @@
 </div>
 <p><strong>Demultiplex and quality filter (at Phred Q20) two lanes of Illumina fastq data and write results to ./slout_q20.:</strong></p>
 <div class="highlight-python"><pre>split_libraries_fastq.py -i lane1_read1.fastq.gz,lane2_read1.fastq.gz -b lane1_barcode.fastq.gz,lane2_barcode.fastq.gz --rev_comp_mapping_barcodes -o slout_q20/ -m map.txt,map.txt --store_qual_scores -q20</pre>
+</div>
+<p><strong>Quality filter (at Phred Q20) one non-multiplexed lane of Illumina fastq data and write results to ./slout_single_sample_q20.:</strong></p>
+<div class="highlight-python"><pre>split_libraries_fastq.py -i lane1_read1.fastq.gz --sample_id my.sample -o slout_single_sample_q20/ -m map_not_multiplexed.txt -q20 --barcode_type 'not-barcoded'</pre>
+</div>
+<p><strong>Quality filter (at Phred Q20) two non-multiplexed lanes of Illumina fastq data and write results to ./slout_single_sample_q20.:</strong></p>
+<div class="highlight-python"><pre>split_libraries_fastq.py -i lane1_read1.fastq.gz,lane2_read1.fastq.gz --sample_id my.sample -o slout_single_sample_q20/ -m map_not_multiplexed.txt -q20 --barcode_type 'not-barcoded'</pre>
 </div>
 </div>
 
@@ -165,7 +175,7 @@
       </ul>
     </div>
 <div style="text-align: center; padding: 0px;"><br />
-<a href="http://pycogent.sourceforge.net" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
+<a href="http://www.pycogent.org" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
 <br /></div>
 
     <div class="footer">

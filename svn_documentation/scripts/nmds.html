@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.5.0-dev',
+        VERSION:     '1.6.0-dev',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -83,6 +83,10 @@
 <p>For this script, the user supplies a distance matrix (i.e. resulting file from <a class="reference external" href="./beta_diversity.html">beta_diversity.py</a>), along with the output filename (e.g. beta_div_coords.txt), as follows:</p>
 <div class="highlight-python"><pre>nmds.py -i beta_div.txt -o beta_div_coords.txt</pre>
 </div>
+<p><strong>NMDS (Dimensions):</strong></p>
+<p>For this script, the user supplies a distance matrix (i.e. resulting file from <a class="reference external" href="./beta_diversity.html">beta_diversity.py</a>), the number of dimensions of NMDS space and the output filename (e.g. beta_div_coords.txt), as follows:</p>
+<div class="highlight-python"><pre>nmds.py -i beta_div.txt -d 3 -o beta_div_3_coords.txt</pre>
+</div>
 <p><strong>NMDS (Multiple Files):</strong></p>
 <p>The script also functions in batch mode if a folder is supplied as input (e.g. from <a class="reference external" href="./beta_diversity.html">beta_diversity.py</a> run in batch). No other files should be present in the input folder - only the distance matrix files to be analyzed. This script operates on every distance matrix file in the input directory and creates a corresponding nmds results file in the output directory, e.g.:</p>
 <div class="highlight-python"><pre>nmds.py -i beta_div_weighted_unifrac/ -o beta_div_weighted_nmds_results/</pre>
@@ -136,7 +140,7 @@
       </ul>
     </div>
 <div style="text-align: center; padding: 0px;"><br />
-<a href="http://pycogent.sourceforge.net" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
+<a href="http://www.pycogent.org" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
 <br /></div>
 
     <div class="footer">

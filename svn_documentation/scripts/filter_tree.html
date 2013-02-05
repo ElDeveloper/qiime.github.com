@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.5.0-dev',
+        VERSION:     '1.6.0-dev',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -74,9 +74,9 @@
 <p><strong>[OPTIONAL]</strong></p>
 <dl class="last docutils">
 <dt>-n, <cite>-</cite>-negate</dt>
-<dd>If negate is not false will prune tips fed in and save    all others [default: False]</dd>
+<dd>If negate is True will remove input tips/seqs, if    negate is False, will retain input tips/seqs [default: False]</dd>
 <dt>-t, <cite>-</cite>-tips_fp</dt>
-<dd>A list of sequence identifiers (or tab-delimited lines with   a seq identifier in the first field) which should be retained   [default: None]</dd>
+<dd>A list of tips (one tip per line) or sequence identifiers   (tab-delimited lines with a seq identifier in the first field)   which should be retained   [default: None]</dd>
 <dt>-f, <cite>-</cite>-fasta_fp</dt>
 <dd>A fasta file where the seq ids should be retained [default: None]</dd>
 </dl>
@@ -84,10 +84,13 @@
 <p><strong>Output:</strong></p>
 <p>Output is a pruned tree in newick format.</p>
 <p><strong>Prune a tree to include only the tips in tips_to_keep.txt:</strong></p>
-<div class="highlight-python"><pre>filter_tree.py -i rep_seqs.tre -t tips_to_keep.txt -o rep_seqs_subtree.tre</pre>
+<div class="highlight-python"><pre>filter_tree.py -i rep_seqs.tre -t tips_to_keep.txt -o pruned.tre</pre>
 </div>
-<p><strong>Prune a tree to remove the tips in tips_to_remove.txt. Note that the -n/&#8211;negate option must be passed for this functionality.:</strong></p>
-<div class="highlight-python"><pre>filter_tree.py -i rep_seqs.tre -t tips_to_remove.txt -o rep_seqs_subtree.tre -n</pre>
+<p><strong>Prune a tree to remove the tips in tips_to_remove.txt. Note that the -n/&#8211;negate option must be passed for this functionality:</strong></p>
+<div class="highlight-python"><pre>filter_tree.py -i rep_seqs.tre -t tips_to_keep.txt -o negated.tre -n</pre>
+</div>
+<p><strong>Prune a tree to include only the tips found in the fasta file provided:</strong></p>
+<div class="highlight-python"><pre>filter_tree.py -i rep_seqs.tre -f fast_f.fna -o pruned_fast.tre</pre>
 </div>
 </div>
 
@@ -138,7 +141,7 @@
       </ul>
     </div>
 <div style="text-align: center; padding: 0px;"><br />
-<a href="http://pycogent.sourceforge.net" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
+<a href="http://www.pycogent.org" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
 <br /></div>
 
     <div class="footer">

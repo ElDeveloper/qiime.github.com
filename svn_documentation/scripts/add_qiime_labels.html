@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.5.0-dev',
+        VERSION:     '1.6.0-dev',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -63,6 +63,9 @@
 and fasta file names (just the file name itself, not the full or relative
 filepath) is used to generate a combined fasta file with valid
 QIIME labels based upon the SampleIDs specified in the mapping file.</p>
+<p>Example mapping file:
+Sample.1        fasta_dir/seqs1.fna
+Sample.2        fasta_dir/seqs2.fna</p>
 <p>This script is to handle situations where fasta data comes already
 demultiplexed into a one fasta file per sample basis.  Apart from altering
 the fasta label to add a QIIME compatible label at the beginning (example:
@@ -94,7 +97,7 @@ SampleIDs are allowed, so care should be taken that there are no typos.</p>
 </dl>
 </div>
 <p><strong>Output:</strong></p>
-<p>A combined_seqs.fasta file will be created in the output directory</p>
+<p>A combined_seqs.fasta file will be created in the output directory, with the sequences assigned to Sample.1 and Sample.2.</p>
 <p><strong>Example:</strong></p>
 <p>Specify fasta_dir as the input directory of fasta files, use the SampleID to fasta file mapping file example_mapping.txt, start enumerating with 1000000 following SampleIDs, and output the data to the directory combined_fasta</p>
 <div class="highlight-python"><pre>add_qiime_labels.py -i fasta_dir -m example_mapping.txt -n 1000000 -o combined_fasta</pre>
@@ -148,7 +151,7 @@ SampleIDs are allowed, so care should be taken that there are no typos.</p>
       </ul>
     </div>
 <div style="text-align: center; padding: 0px;"><br />
-<a href="http://pycogent.sourceforge.net" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
+<a href="http://www.pycogent.org" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
 <br /></div>
 
     <div class="footer">

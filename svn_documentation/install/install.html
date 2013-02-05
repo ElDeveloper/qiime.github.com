@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.5.0-dev',
+        VERSION:     '1.6.0-dev',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -59,7 +59,8 @@
   <span class="target" id="doc-install"></span><div class="section" id="installing-qiime-natively">
 <span id="index-0"></span><h1>Installing QIIME natively<a class="headerlink" href="#installing-qiime-natively" title="Permalink to this headline">¶</a></h1>
 <p>QIIME consists of native code and additionally wraps many external applications. This gives the user flexibility to easily build their own analysis pipelines, making use of popular microbial community analysis tools. QIIME handles the processing of input and output of these applications, so the user can spend time analyzing their data rather than parsing, writing, and converting file formats.</p>
-<p>As a consequence of this &#8216;pipeline&#8217; architecture, depending on the features of QIIME that you plan to use, you may or may not need all of QIIME dependencies. Getting all of these applications working correctly can be difficult, which is why we distribute the QIIME virtual box. If you are a beginner user, or just testing QIIME to see if it will meet your needs, you may want to begin with the <a class="reference external" href="./virtual_box.html">virtual box</a> which will greatly ease installation.</p>
+<p>As a consequence of this &#8216;pipeline&#8217; architecture, depending on the features of QIIME that you plan to use, you may or may not need all of QIIME&#8217;s dependencies. Getting all of these applications working correctly can be difficult, which is why we distribute the QIIME virtual box. If you are a beginner user, or just testing QIIME to see if it will meet your needs, you may want to begin with the <a class="reference external" href="./virtual_box.html">virtual box</a> which will greatly ease installation.</p>
+<p>Alternatively, if you are interested in installing QIIME on a Linux system, we recommend using the <a class="reference external" href="https://github.com/qiime/qiime-deploy">qiime-deploy</a> tool, particularly if you are using Ubuntu. This tool allows for the easy (and native) installation of QIIME and its various dependencies.</p>
 <p>The following programs and datasets were used to generate the QIIME tutorial. QIIME has been tested with the same versions listed below. Other versions are not guaranteed to work. Download links are provided for convenience, but these are subject to change. We&#8217;ll do our best to keep these up-to-date.</p>
 <p>You should follow instructions provided by the package developers to install the dependencies.</p>
 <div class="section" id="dependencies-required-for-all-features-of-qiime">
@@ -69,10 +70,10 @@
 </div>
 <p>The following are required by QIIME:</p>
 <ul class="simple">
-<li>Python 2.7.1 (<a class="reference external" href="http://www.python.org/ftp/python/2.7.1/Python-2.7.1.tgz">src_python</a>) (license: PSF)</li>
-<li>PyCogent 1.5.1 (<a class="reference external" href="http://sourceforge.net/projects/pycogent/files/PyCogent/1.5.1/PyCogent-1.5.1.tgz/download">src_pycogent</a>) (license: GPL)</li>
+<li>Python 2.7.3 (<a class="reference external" href="http://www.python.org/ftp/python/2.7.3/Python-2.7.3.tgz">src_python</a>) (license: PSF)</li>
+<li>PyCogent 1.5.3 (<a class="reference external" href="http://sourceforge.net/projects/pycogent/files/PyCogent/1.5.3/PyCogent-1.5.3.tgz/download">src_pycogent</a>) (license: GPL)</li>
 <li>Numpy 1.5.1 (<a class="reference external" href="http://sourceforge.net/projects/numpy/files/NumPy/1.5.1/numpy-1.5.1.tar.gz/download">src_numpy</a>) (license: BSD)</li>
-<li>biom-format 0.9.3 (<a class="reference external" href="https://github.com/downloads/biom-format/biom-format/biom-format-0.9.3.tgz">src_biom</a>) (license: GPL)</li>
+<li>biom-format 1.1.2 (<a class="reference external" href="ftp://thebeast.colorado.edu/pub/biom-format-releases/biom-format-1.1.2.tar.gz">src_biom</a>) (license: GPL)</li>
 </ul>
 </div>
 <div class="section" id="dependencies-required-for-a-subset-of-qiime-s-features">
@@ -80,13 +81,14 @@
 <p>PyNAST alignment, tree-building, taxonomy assignment, OTU picking, and other data generation steps (required in default pipeline):</p>
 <ul class="simple">
 <li>uclust 1.2.22q (<a class="reference external" href="http://www.drive5.com/uclust/downloads1_2_22q.html">src_uclust</a>) See <a class="reference internal" href="#uclust-install"><em>uclust install notes</em></a>. (licensed specially for Qiime and PyNAST users)</li>
-<li>PyNAST 1.1 (<a class="reference external" href="http://sourceforge.net/projects/pynast/files/PyNAST%20releases/PyNAST-1.1.tgz/download">src_pynast</a>) (license: GPL)</li>
+<li>PyNAST 1.2 (<a class="reference external" href="https://github.com/downloads/qiime/pynast/PyNAST-1.2.tar.gz">src_pynast</a>) (license: GPL)</li>
 <li>greengenes core set data file (<a class="reference external" href="http://greengenes.lbl.gov/Download/Sequence_Data/Fasta_data_files/core_set_aligned.fasta.imputed">fasta</a>)</li>
 <li>greengenes alignment lanemask file (<a class="reference external" href="http://greengenes.lbl.gov/Download/Sequence_Data/lanemask_in_1s_and_0s">txt</a>)</li>
 <li>fasttree 2.1.3 (<a class="reference external" href="http://www.microbesonline.org/fasttree/FastTree-2.1.3.c">src_fasttree</a>) (license: GPL)</li>
 <li>jre1.6.0_05 (<a class="reference external" href="http://java.sun.com/javase/downloads/index.jsp">src_jre</a>) (license: GPL2)</li>
 <li>rdp_classifier-2.2 (<a class="reference external" href="http://sourceforge.net/projects/rdp-classifier/files/rdp-classifier/rdp_classifier_2.2.zip/download">src_rdp</a>) See <a class="reference internal" href="#rdp-install"><em>RDP install notes</em></a>. (license: GPL)</li>
-<li>usearch v5.2.32 (<a class="reference external" href="http://www.drive5.com/usearch/">src_usearch</a>) (license: see <a class="reference external" href="http://www.drive5.com/usearch/nonprofit_form.html">http://www.drive5.com/usearch/nonprofit_form.html</a>)</li>
+<li>usearch v5.2.236 (<a class="reference external" href="http://www.drive5.com/usearch/">src_usearch</a>) (license: see <a class="reference external" href="http://www.drive5.com/usearch/nonprofit_form.html">http://www.drive5.com/usearch/nonprofit_form.html</a>)</li>
+<li>tax2tree 1.0.0 (<a class="reference external" href="https://downloads.sourceforge.net/project/tax2tree/tax2tree-v1.0.tar.gz">src_tax2tree</a>)</li>
 </ul>
 <p>Alignment, tree-building, taxonomy assignment, OTU picking, and other data generation steps (required for alternative pipelines):</p>
 <ul class="simple">
@@ -99,7 +101,7 @@
 <li>infernal 1.0.2 (<a class="reference external" href="ftp://selab.janelia.org/pub/software/infernal/infernal.tar.gz">src_infernal</a>) (license: GPL)</li>
 <li>cdbtools (<a class="reference external" href="ftp://occams.dfci.harvard.edu/pub/bio/tgi/software/cdbfasta/cdbfasta.tar.gz">src_cdbtools</a>)</li>
 <li>muscle 3.8.31 (<a class="reference external" href="http://www.drive5.com/muscle/downloads.htm">src_muscle</a>) (Public domain)</li>
-<li>rtax 0.982 (<a class="reference external" href="http://dev.davidsoergel.com/trac/rtax/raw-attachment/wiki/Releases/rtax-0.982.tgz">src_rtax</a>) (license: GPL)</li>
+<li>rtax 0.983 (<a class="reference external" href="http://static.davidsoergel.com/rtax-0.983.tgz">src_rtax</a>) (license: GPL)</li>
 <li>pplacer 1.1 (<a class="reference external" href="http://matsen.fhcrc.org/pplacer/builds/pplacer-v1.1-Linux.tar.gz">src_pplacer</a>) (license: GPL)</li>
 <li>ParsInsert 1.04 (<a class="reference external" href="http://downloads.sourceforge.net/project/parsinsert/ParsInsert.1.04.tgz">src_parsinsert</a>) (license: GPL)</li>
 </ul>
@@ -110,7 +112,7 @@
 <p>Denoising 454 data:</p>
 <ul class="simple">
 <li>GNU Science Library (required by AmpliconNoise) (<a class="reference external" href="ftp://ftp.gnu.org/gnu/gsl/gsl-1.9.tar.gz">src_gsl</a>)</li>
-<li>AmpliconNoise 1.25 (<a class="reference external" href="http://ampliconnoise.googlecode.com/files/AmpliconNoiseV1.25.tar.gz">src_ampliconnoise</a>) See <a class="reference internal" href="#ampliconnoise-install"><em>AmpliconNoise install notes</em></a>.</li>
+<li>AmpliconNoise 1.27 (<a class="reference external" href="http://ampliconnoise.googlecode.com/files/AmpliconNoiseV1.27.tar.gz">src_ampliconnoise</a>) See <a class="reference internal" href="#ampliconnoise-install"><em>AmpliconNoise install notes</em></a>.</li>
 <li>ghc 6.8 (required by the QIIME denoiser) (<a class="reference external" href="http://haskell.org/ghc">src_ghc</a>)</li>
 </ul>
 <p>Visualization and plotting steps:</p>
@@ -118,17 +120,21 @@
 <li>MatPlotLib 1.1.0 (<a class="reference external" href="http://downloads.sourceforge.net/project/matplotlib/matplotlib/matplotlib-1.1.0/matplotlib-1.1.0.tar.gz">src_matplotlib</a>) (license: PFS)</li>
 <li>cytoscape v2.7.0 (<a class="reference external" href="http://www.cytoscape.org/">src_cytoscape</a>) (license: LGPL)</li>
 </ul>
-<p>Supervised learning (<tt class="docutils literal"><span class="pre">supervised_learning.py</span></tt>):</p>
+<p>Supervised learning (<tt class="docutils literal"><span class="pre">supervised_learning.py</span></tt>) and <tt class="docutils literal"><span class="pre">compare_categories.py</span></tt>:</p>
 <ul class="simple">
 <li>R 2.12.0 (<a class="reference external" href="http://www.r-project.org/">src_r</a>) See <a class="reference internal" href="#r-install"><em>R install notes</em></a>. (license: GPL2)</li>
 </ul>
 <p>Assigning taxonomy using BLAST or picking OTUs against Greengenes filtered at 97% identity:</p>
 <ul class="simple">
-<li>Greengenes 97% OTUs, taxonomies, and tree (<a class="reference external" href="http://greengenes.lbl.gov/Download/Sequence_Data/Fasta_data_files/Caporaso_Reference_OTUs/gg_otus_4feb2011.tgz">zip</a>)</li>
+<li>Greengenes OTUs, taxonomies, and trees (<a class="reference external" href="ftp://greengenes.microbio.me/greengenes_release/gg_12_10/gg_12_10_otus.tar.gz">.tar.gz</a>)</li>
 </ul>
 <p>If you plan to build the QIIME documentation locally:</p>
 <ul class="simple">
 <li>Sphinx 1.0.4 (<a class="reference external" href="http://pypi.python.org/pypi/Sphinx">src</a>) See <a class="reference internal" href="#build-qiime-docs"><em>Building the QIIME documentation</em></a> (license: BSD)</li>
+</ul>
+<p>If you plan to use remote mapping files (stored as Google Spreadsheets) with QIIME (see the tutorial <a class="reference external" href="../tutorials/remote_mapping_files.html">here</a>):</p>
+<ul class="simple">
+<li>gdata 2.0.17 (<a class="reference external" href="http://gdata-python-client.googlecode.com/files/gdata-2.0.17.tar.gz">src</a>) (license: Apache 2.0)</li>
 </ul>
 </div>
 <div class="section" id="license-information-for-external-dependencies">
@@ -145,29 +151,29 @@
 <div class="highlight-python"><div class="highlight"><pre><span class="n">cd</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">qiime_user</span>
 </pre></div>
 </div>
-<div class="section" id="stable-pre-release">
-<h3>Stable Pre-Release<a class="headerlink" href="#stable-pre-release" title="Permalink to this headline">¶</a></h3>
-<p>Currently the most stable version of QIIME is our 1.5.0-dev release, which you can download from <a class="reference external" href="http://sourceforge.net/projects/qiime/files/releases/Qiime-1.5.0.tar.gz/download">here</a>.</p>
+<div class="section" id="stable-release">
+<h3>Stable Release<a class="headerlink" href="#stable-release" title="Permalink to this headline">¶</a></h3>
+<p>Currently the most stable version of QIIME is our 1.6.0-dev release, which you can download from <a class="reference external" href="ftp://thebeast.colorado.edu/pub/qiime-releases/qiime-1.6.0.tar.gz">here</a>.</p>
 </div>
 <div class="section" id="latest-development-version">
 <h3>Latest Development Version<a class="headerlink" href="#latest-development-version" title="Permalink to this headline">¶</a></h3>
-<p>To get the latest development version of QIIME, you should check it out of our Sourceforge repository. While this code is subject to changes in interface and hasn&#8217;t been as extensively tested as the release version, it will provide access to the latest and greatest QIIME features. The official web documentation is likely to be out-of-date with respect to the development software. You should instead refer to the svn documentation in <tt class="docutils literal"><span class="pre">Qiime/doc</span></tt>. Check out the latest version of QIIME using svn with the commands:</p>
-<div class="highlight-python"><pre>svn co https://qiime.svn.sourceforge.net/svnroot/qiime/trunk Qiime</pre>
+<p>To get the latest development version of QIIME, you should check it out of our git repository, which is hosted on GitHub. While this code is subject to changes in interface and hasn&#8217;t been as extensively tested as the release version, it will provide access to the latest and greatest QIIME features. The official web documentation is likely to be out-of-date with respect to the development software. You should instead refer to the documentation in <tt class="docutils literal"><span class="pre">Qiime/doc</span></tt>. Check out the latest version of QIIME using git with the command:</p>
+<div class="highlight-python"><pre>git clone git://github.com/qiime/qiime.git Qiime</pre>
 </div>
-<p>svn users should periodically update QIIME by using the following command:</p>
-<div class="highlight-python"><pre>svn update /home/qiime/Qiime/</pre>
+<p>If you are using the latest development version of QIIME, you should periodically update your checkout by running the following command (from within your checkout):</p>
+<div class="highlight-python"><pre>git pull</pre>
 </div>
 </div>
 </div>
 <div class="section" id="unpacking-qiime-release-only">
 <h2>Unpacking QIIME (release only)<a class="headerlink" href="#unpacking-qiime-release-only" title="Permalink to this headline">¶</a></h2>
 <p>After downloading the QIIME release tar file you&#8217;ll need to unpack the code. For simplicity in this document, we will assume that you have downloaded QIIME to the directory <tt class="docutils literal"><span class="pre">/home/qiime/</span></tt>.</p>
-<p>Unpack the release Qiime tar file with the commands:</p>
-<div class="highlight-python"><pre>cd /home/qiime_user
-tar -xvzf Qiime-1.5.0.tar.gz
-ln -s /home/qiime/Qiime-1.5.0 /home/qiime/Qiime</pre>
+<p>Unpack the release .tar.gz file with the commands:</p>
+<div class="highlight-python"><pre>cd /home/qiime
+tar -xvzf qiime-1.6.0.tar.gz
+ln -s /home/qiime/qiime-1.6.0 /home/qiime/Qiime</pre>
 </div>
-<p>If you have downloaded from svn, QIIME is already unpacked.</p>
+<p>If you have downloaded the development version from GitHub, QIIME is already unpacked.</p>
 </div>
 <div class="section" id="installing-qiime">
 <h2>Installing QIIME<a class="headerlink" href="#installing-qiime" title="Permalink to this headline">¶</a></h2>
@@ -179,8 +185,8 @@ ln -s /home/qiime/Qiime-1.5.0 /home/qiime/Qiime</pre>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">cd</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">qiime</span><span class="o">/</span><span class="n">Qiime</span>
 </pre></div>
 </div>
-<p>By default the QIIME scripts will be installed in <tt class="docutils literal"><span class="pre">/usr/local/bin</span></tt>. As there are a lot of QIIME scripts, we highly recommend customizing the script directory to keep your system organized. This can be customized with the <tt class="docutils literal"><span class="pre">--install_scripts</span></tt> option. You also can specify and alternate directory for the library files with <tt class="docutils literal"><span class="pre">--install-purelib</span></tt>, but if you do so you must also specify <tt class="docutils literal"><span class="pre">--install-data</span></tt> as the same directory. Failure to do this will result in a broken QIIME install. An example command is:</p>
-<div class="highlight-python"><pre>python setup.py install --install-scripts=/home/qiime/bin/ --install-purelib=/home/qiime/lib/ --install-data=/home/qiime/lib/</pre>
+<p>By default the QIIME scripts will be installed in <tt class="docutils literal"><span class="pre">/usr/local/bin</span></tt>. As there are a lot of QIIME scripts, we highly recommend customizing the script directory to keep your system organized. This can be customized with the <tt class="docutils literal"><span class="pre">--install_scripts</span></tt> option. You also can specify an alternate directory for the library files with <tt class="docutils literal"><span class="pre">--install-purelib</span></tt>. An example command is:</p>
+<div class="highlight-python"><pre>python setup.py install --install-scripts=/home/qiime/bin/ --install-purelib=/home/qiime/lib/</pre>
 </div>
 <p>For a complete discussion of customizations related to the setup.py script, <a class="reference external" href="http://docs.python.org/release/2.7.1/install/index.html#alternate-installation">see this page</a>.</p>
 <p>If you used default values for <tt class="docutils literal"><span class="pre">--install-scripts</span></tt> and <tt class="docutils literal"><span class="pre">--install-purelib</span></tt> (by not specifying them), your installation should be complete. If you specified an alternate value for <tt class="docutils literal"><span class="pre">--install-scripts</span></tt>, you&#8217;ll need to ensure that the shell knows where to look for the scripts. If you are using the bash shell and the locations specified in the examples above, you can do this with the following command:</p>
@@ -237,10 +243,11 @@ source /home/qiime/.bashrc</pre>
 </div>
 <div class="section" id="rdp-jar-path-environment-variable">
 <h3>RDP_JAR_PATH Environment Variable<a class="headerlink" href="#rdp-jar-path-environment-variable" title="Permalink to this headline">¶</a></h3>
-<p id="rdp-install">If you plan to use the RDP classifier for taxonomy assignment you must also define an RDP_JAR_PATH variable. If you have the RDP classifier jar file (<tt class="docutils literal"><span class="pre">rdp_classifier-2.0.1.jar</span></tt>) in <tt class="docutils literal"><span class="pre">/home/qiime/app</span></tt> you can do this with the following command:</p>
-<div class="highlight-python"><pre>echo "export RDP_JAR_PATH=/home/qiime/app/rdp_classifier-2.0.1.jar" &gt;&gt; /home/qiime/.bashrc
+<p id="rdp-install">If you plan to use the RDP classifier for taxonomy assignment you must define an <tt class="docutils literal"><span class="pre">RDP_JAR_PATH</span></tt> environment variable. If you downloaded and unzipped the RDP classifier folder in <tt class="docutils literal"><span class="pre">/home/qiime/app/</span></tt>, you can do this with the following commands:</p>
+<div class="highlight-python"><pre>echo "export RDP_JAR_PATH=/home/qiime/app/rdp_classifier_2.2/rdp_classifier-2.2.jar" &gt;&gt; /home/qiime/.bashrc
 source /home/qiime/.bashrc</pre>
 </div>
+<p>Note that you will need the contents inside <tt class="docutils literal"><span class="pre">rdp_classifier_2.2</span></tt> for the program to function properly.</p>
 </div>
 <div class="section" id="uclust-install-notes">
 <h3>uclust Install Notes<a class="headerlink" href="#uclust-install-notes" title="Permalink to this headline">¶</a></h3>
@@ -250,8 +257,8 @@ source /home/qiime/.bashrc</pre>
 </div>
 <div class="section" id="usearch-install-notes">
 <h3>usearch Install Notes<a class="headerlink" href="#usearch-install-notes" title="Permalink to this headline">¶</a></h3>
-<p id="usearch-install">The usearch binary must be called <tt class="docutils literal"><span class="pre">usearch</span></tt>, which differs from the names of the posted binaries, but is the name of the binary if you build from source. If you&#8217;ve installed the binary <tt class="docutils literal"><span class="pre">usearch5.2.32_i86linux32</span></tt> as <tt class="docutils literal"><span class="pre">/home/qiime/bin/usearch5.2.32_i86linux32</span></tt>, we recommend creating a symbolic link to this file:</p>
-<div class="highlight-python"><pre>ln -s /home/qiime/bin/usearch5.2.32_i86linux32 /home/qiime/bin/usearch</pre>
+<p id="usearch-install">The usearch binary must be called <tt class="docutils literal"><span class="pre">usearch</span></tt>, which differs from the names of the posted binaries, but is the name of the binary if you build from source. If you&#8217;ve installed the binary <tt class="docutils literal"><span class="pre">usearch5.2.236_i86linux32</span></tt> as <tt class="docutils literal"><span class="pre">/home/qiime/bin/usearch5.2.236_i86linux32</span></tt>, we recommend creating a symbolic link to this file:</p>
+<div class="highlight-python"><pre>ln -s /home/qiime/bin/usearch5.2.236_i86linux32 /home/qiime/bin/usearch</pre>
 </div>
 </div>
 <div class="section" id="chimeraslayer-install-notes">
@@ -269,19 +276,26 @@ source /home/qiime/.bashrc</pre>
 </div>
 <div class="section" id="r-install-notes">
 <h3>R Install Notes<a class="headerlink" href="#r-install-notes" title="Permalink to this headline">¶</a></h3>
-<p id="r-install">To install R visit <a class="reference external" href="http://www.r-project.org/">http://www.r-project.org/</a> and follow the install instructions. Once R is installed, run R and excecute the command:</p>
+<p id="r-install">To install R visit <a class="reference external" href="http://www.r-project.org/">http://www.r-project.org/</a> and follow the install instructions. Once R is installed, run R and excecute the following commands:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">install</span><span class="o">.</span><span class="n">packages</span><span class="p">(</span><span class="s">&#39;randomForest&#39;</span><span class="p">)</span>
+<span class="n">install</span><span class="o">.</span><span class="n">packages</span><span class="p">(</span><span class="s">&#39;optparse&#39;</span><span class="p">)</span>
+<span class="n">install</span><span class="o">.</span><span class="n">packages</span><span class="p">(</span><span class="s">&#39;vegan&#39;</span><span class="p">)</span>
+<span class="n">install</span><span class="o">.</span><span class="n">packages</span><span class="p">(</span><span class="s">&#39;ape&#39;</span><span class="p">)</span>
+<span class="n">install</span><span class="o">.</span><span class="n">packages</span><span class="p">(</span><span class="s">&#39;MASS&#39;</span><span class="p">)</span>
+<span class="n">install</span><span class="o">.</span><span class="n">packages</span><span class="p">(</span><span class="s">&#39;gtools&#39;</span><span class="p">)</span>
+<span class="n">install</span><span class="o">.</span><span class="n">packages</span><span class="p">(</span><span class="s">&#39;klaR&#39;</span><span class="p">)</span>
+<span class="n">install</span><span class="o">.</span><span class="n">packages</span><span class="p">(</span><span class="s">&#39;RColorBrewer&#39;</span><span class="p">)</span>
 <span class="n">q</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="ampliconnoise-install-notes">
 <h3>AmpliconNoise Install Notes<a class="headerlink" href="#ampliconnoise-install-notes" title="Permalink to this headline">¶</a></h3>
-<p id="ampliconnoise-install">AmpliconNoise requires that several environment variables are set. After you&#8217;ve installed AmpliconNoise, you can set these with the following commands (assuming your AmpliconNoise install directory is <tt class="docutils literal"><span class="pre">/home/qiime/AmpliconNoiseV1.24/</span></tt>):</p>
-<div class="highlight-python"><pre>echo "export PATH=/home/qiime/AmpliconNoiseV1.24/Scripts:/home/qiime/AmpliconNoiseV1.24/bin:$PATH" &gt;&gt; /home/qiime/.bashrc
+<p id="ampliconnoise-install">AmpliconNoise requires that several environment variables are set. After you&#8217;ve installed AmpliconNoise, you can set these with the following commands (assuming your AmpliconNoise install directory is <tt class="docutils literal"><span class="pre">/home/qiime/AmpliconNoiseV1.27/</span></tt>):</p>
+<div class="highlight-python"><pre>echo "export PATH=/home/qiime/AmpliconNoiseV1.27/Scripts:/home/qiime/AmpliconNoiseV1.27/bin:$PATH" &gt;&gt; /home/qiime/.bashrc
 
-echo "export PYRO_LOOKUP_FILE=/home/qiime/AmpliconNoiseV1.24/Data/LookUp_E123.dat" &gt;&gt; /home/qiime/.bashrc
-echo "export SEQ_LOOKUP_FILE=/home/qiime/AmpliconNoiseV1.24/Data/Tran.dat" &gt;&gt; /home/qiime/.bashrc</pre>
+echo "export PYRO_LOOKUP_FILE=/home/qiime/AmpliconNoiseV1.27/Data/LookUp_E123.dat" &gt;&gt; /home/qiime/.bashrc
+echo "export SEQ_LOOKUP_FILE=/home/qiime/AmpliconNoiseV1.27/Data/Tran.dat" &gt;&gt; /home/qiime/.bashrc</pre>
 </div>
 </div>
 <div class="section" id="qiime-denoiser-install-notes">
@@ -293,10 +307,10 @@ echo "export SEQ_LOOKUP_FILE=/home/qiime/AmpliconNoiseV1.24/Data/Tran.dat" &gt;&
 </div>
 <div class="section" id="building-the-qiime-documentation">
 <h2>Building The QIIME Documentation<a class="headerlink" href="#building-the-qiime-documentation" title="Permalink to this headline">¶</a></h2>
-<p id="build-qiime-docs">If you are using the svn version of QIIME, you may want to build the documentation locally for access to the latest version. You can change to the <tt class="docutils literal"><span class="pre">Qiime/doc</span></tt> directory and run:</p>
+<p id="build-qiime-docs">If you are using the development version of QIIME, you may want to build the documentation locally for access to the latest version. You can change to the <tt class="docutils literal"><span class="pre">Qiime/doc</span></tt> directory and run:</p>
 <div class="highlight-python"><pre>make html</pre>
 </div>
-<p>We try to update the documentation as we update the code, but svn users may notice some discrepancies. After building the documentation, you can view it in a web browser by opening the file <tt class="docutils literal"><span class="pre">Qiime/doc/_build/html/index.html</span></tt>. You may want to bookmark that page for easy access.</p>
+<p>We try to update the documentation as we update the code, but development version users may notice some discrepancies. After building the documentation, you can view it in a web browser by opening the file <tt class="docutils literal"><span class="pre">Qiime/doc/_build/html/index.html</span></tt>. You may want to bookmark that page for easy access.</p>
 </div>
 </div>
 
@@ -316,7 +330,7 @@ echo "export SEQ_LOOKUP_FILE=/home/qiime/AmpliconNoiseV1.24/Data/Tran.dat" &gt;&
 <li><a class="reference internal" href="#license-information-for-external-dependencies">License information for external dependencies</a></li>
 <li><a class="reference internal" href="#shortcuts-in-this-document">Shortcuts in this document</a></li>
 <li><a class="reference internal" href="#getting-qiime">Getting QIIME</a><ul>
-<li><a class="reference internal" href="#stable-pre-release">Stable Pre-Release</a></li>
+<li><a class="reference internal" href="#stable-release">Stable Release</a></li>
 <li><a class="reference internal" href="#latest-development-version">Latest Development Version</a></li>
 </ul>
 </li>
@@ -383,7 +397,7 @@ echo "export SEQ_LOOKUP_FILE=/home/qiime/AmpliconNoiseV1.24/Data/Tran.dat" &gt;&
       </ul>
     </div>
 <div style="text-align: center; padding: 0px;"><br />
-<a href="http://pycogent.sourceforge.net" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
+<a href="http://www.pycogent.org" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
 <br /></div>
 
     <div class="footer">

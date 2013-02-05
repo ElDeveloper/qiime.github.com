@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.5.0-dev',
+        VERSION:     '1.6.0-dev',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -82,13 +82,13 @@
 <p><strong>Output:</strong></p>
 <p>Outputs a value for specified tests</p>
 <p><strong>Calculate both NRI and NTI from the given tree and group of taxa:</strong></p>
-<div class="highlight-python"><pre>relatedness.py -t gg_tree.tre -i ids.txt -m nri,nti</pre>
+<div class="highlight-python"><pre>relatedness.py -t reference.tre -g group1_otus.txt -m nri,nti</pre>
 </div>
 <p><strong>Calculate only NRI:</strong></p>
-<div class="highlight-python"><pre>relatedness.py -t gg_tree.tre -i ids.txt -m nri</pre>
+<div class="highlight-python"><pre>relatedness.py -t reference.tre -g group1_otus.txt -m nri</pre>
 </div>
 <p><strong>Calculate only NTI using a different number of iterations:</strong></p>
-<div class="highlight-python"><pre>relatedness.py -t gg_tree.tre -i ids.txt -m nti -i 100</pre>
+<div class="highlight-python"><pre>relatedness.py -t reference.tre -g group1_otus.txt -m nti -i 100</pre>
 </div>
 </div>
 
@@ -139,7 +139,7 @@
       </ul>
     </div>
 <div style="text-align: center; padding: 0px;"><br />
-<a href="http://pycogent.sourceforge.net" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
+<a href="http://www.pycogent.org" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
 <br /></div>
 
     <div class="footer">

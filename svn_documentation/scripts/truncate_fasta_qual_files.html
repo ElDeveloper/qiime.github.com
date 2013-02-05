@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.5.0-dev',
+        VERSION:     '1.6.0-dev',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -72,9 +72,9 @@ removed in the output filtered files.</p>
 <p><strong>[REQUIRED]</strong></p>
 <dl class="docutils">
 <dt>-f, <cite>-</cite>-fasta_fp</dt>
-<dd>Fasta file.  Needed to test for congruety between the number of nucleotides in the fasta file and quality scores in the qual file.</dd>
+<dd>Input fasta filepath to be truncated.</dd>
 <dt>-q, <cite>-</cite>-qual_fp</dt>
-<dd>Quality score file used to generate histogram data.</dd>
+<dd>Input quality scores filepath to be truncated.</dd>
 <dt>-b, <cite>-</cite>-base_pos</dt>
 <dd>Nucleotide position to truncate the fasta and quality score files at.</dd>
 </dl>
@@ -87,8 +87,8 @@ removed in the output filtered files.</p>
 <p><strong>Output:</strong></p>
 <p>Filtered versions of the input fasta and qual file (based on input name with &#8216;_filtered&#8217; appended) will be generated in the output directory</p>
 <p><strong>Example:</strong></p>
-<p>Truncate the input fasta and quality files at base position 215, output to the filtered_seqs directory:</p>
-<div class="highlight-python"><pre>truncate_fasta_qual_files.py -f seqs.fna -q seqs.qual -b 215 -o filtered_seqs/</pre>
+<p>Truncate the input fasta and quality files at base position 100, output to the filtered_seqs directory:</p>
+<div class="highlight-python"><pre>truncate_fasta_qual_files.py -f seqs.fna -q seqs.qual -b 100 -o filtered_seqs/</pre>
 </div>
 </div>
 
@@ -139,7 +139,7 @@ removed in the output filtered files.</p>
       </ul>
     </div>
 <div style="text-align: center; padding: 0px;"><br />
-<a href="http://pycogent.sourceforge.net" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
+<a href="http://www.pycogent.org" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
 <br /></div>
 
     <div class="footer">

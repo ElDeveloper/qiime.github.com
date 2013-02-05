@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.5.0-dev',
+        VERSION:     '1.6.0-dev',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -73,7 +73,7 @@
 <dt><cite>-</cite>-method</dt>
 <dd>Matrix correlation method to use. Valid options: [mantel, partial_mantel, mantel_corr]</dd>
 <dt>-i, <cite>-</cite>-input_dms</dt>
-<dd>The input distance matrices, comma-separated</dd>
+<dd>The input distance matrices, comma-separated. WARNING: Only symmetric, hollow distance matrices may be used as input. Asymmetric distance matrices, such as those obtained by the UniFrac Gain metric (i.e. <a class="reference external" href="./beta_diversity.html">beta_diversity.py</a> -m unifrac_g), should not be used as input</dd>
 <dt>-o, <cite>-</cite>-output_dir</dt>
 <dd>Path to the output directory</dd>
 </dl>
@@ -98,16 +98,16 @@
 <p>Partial Mantel: One file is created in the output directory, which contains the partial Mantel statistic and p-value.</p>
 <p>Mantel Correlogram: Two files are created in the output directory: a text file containing information about the distance classes, their associated Mantel statistics and p-values, etc. and an image of the correlogram plot.</p>
 <p><strong>Partial Mantel:</strong></p>
-<p>Performs a partial Mantel test on two distance matrices, using a third matrix as a control. Runs 100 permutations to calculate the p-value.</p>
-<div class="highlight-python"><pre>compare_distance_matrices.py --method partial_mantel -i weighted_unifrac_dm.txt,unweighted_unifrac_dm.txt -c PH_dm.txt -o mantel_out -n 100</pre>
+<p>Performs a partial Mantel test on two distance matrices, using a third matrix as a control. Runs 99 permutations to calculate the p-value.</p>
+<div class="highlight-python"><pre>compare_distance_matrices.py --method partial_mantel -i weighted_unifrac_dm.txt,unweighted_unifrac_dm.txt -c PH_dm.txt -o partial_mantel_out -n 99</pre>
 </div>
 <p><strong>Mantel:</strong></p>
-<p>Performs a Mantel test on all pairs of four distance matrices, including 1000 permutations for each test.</p>
-<div class="highlight-python"><pre>compare_distance_matrices.py --method mantel -i weighted_unifrac_dm.txt,unweighted_unifrac_dm.txt,weighted_unifrac_even100_dm.txt,unweighted_unifrac_even100_dm.txt -o mantel_out -n 1000</pre>
+<p>Performs a Mantel test on all pairs of four distance matrices, including 999 permutations for each test.</p>
+<div class="highlight-python"><pre>compare_distance_matrices.py --method mantel -i weighted_unifrac_dm.txt,unweighted_unifrac_dm.txt,weighted_unifrac_even100_dm.txt,unweighted_unifrac_even100_dm.txt -o mantel_out -n 999</pre>
 </div>
 <p><strong>Mantel Correlogram:</strong></p>
-<p>This example computes a Mantel correlogram on two distance matrices using 999 permutations in each Mantel test. Output is written to the mantel_output directory.</p>
-<div class="highlight-python"><pre>compare_distance_matrices.py --method mantel_corr -i unweighted_unifrac_dm.txt,PH_dm.txt -o mantel_output -n 999</pre>
+<p>This example computes a Mantel correlogram on two distance matrices using 999 permutations in each Mantel test. Output is written to the mantel_correlogram_out directory.</p>
+<div class="highlight-python"><pre>compare_distance_matrices.py --method mantel_corr -i unweighted_unifrac_dm.txt,PH_dm.txt -o mantel_correlogram_out -n 999</pre>
 </div>
 </div>
 
@@ -158,7 +158,7 @@
       </ul>
     </div>
 <div style="text-align: center; padding: 0px;"><br />
-<a href="http://pycogent.sourceforge.net" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
+<a href="http://www.pycogent.org" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
 <br /></div>
 
     <div class="footer">

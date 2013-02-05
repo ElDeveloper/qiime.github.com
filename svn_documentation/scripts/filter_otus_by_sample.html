@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.5.0-dev',
+        VERSION:     '1.6.0-dev',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -82,8 +82,8 @@
 <p><strong>Output:</strong></p>
 <p>As a result a new OTU and sequence file is generated and written to a randomly generated folder where the name of the folder starts with &#8220;filter_by_otus&#8221; Also included in the folder, is another FASTA file containing the removed sequences, leaving the user with 3 files.</p>
 <p><strong>Example:</strong></p>
-<p>The following command can be used, where all options are passed (using the resulting OTU file from <a class="reference external" href="./pick_otus.html">pick_otus.py</a>, FASTA file from <a class="reference external" href="./split_libraries.html">split_libraries.py</a> and removal of Sample1) with the resulting data being written to the output directory &#8220;filtered_otus/&#8221;:</p>
-<div class="highlight-python"><pre>filter_otus_by_sample.py -i seqs_otus.txt -f seqs.fna -s Sample1 -o filtered_otus/</pre>
+<p>The following command can be used, where all options are passed (using the resulting OTU file from <a class="reference external" href="./pick_otus.html">pick_otus.py</a>, FASTA file from <a class="reference external" href="./split_libraries.html">split_libraries.py</a> and removal of sample &#8216;PC.636&#8217;) with the resulting data being written to the output directory &#8220;filtered_otus/&#8221;:</p>
+<div class="highlight-python"><pre>filter_otus_by_sample.py -i seqs_otus.txt -f seqs.fna -s PC.636 -o filtered_otus/</pre>
 </div>
 </div>
 
@@ -134,7 +134,7 @@
       </ul>
     </div>
 <div style="text-align: center; padding: 0px;"><br />
-<a href="http://pycogent.sourceforge.net" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
+<a href="http://www.pycogent.org" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
 <br /></div>
 
     <div class="footer">

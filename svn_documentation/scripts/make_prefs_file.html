@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.5.0-dev',
+        VERSION:     '1.6.0-dev',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -96,22 +96,22 @@
 <div class="highlight-python"><pre>make_prefs_file.py -m mapping.txt -o prefs_out.txt</pre>
 </div>
 <p>If the user would like to use specified categories (&#8216;SampleID,Individual&#8217;) or combinations of categories (&#8216;SampleID&amp;&amp;Individual&#8217;), they will need to use the -b option, where each category is comma delimited, as follows:</p>
-<div class="highlight-python"><pre>make_prefs_file.py -b "SampleID,Individual,SampleID&amp;&amp;Individual" -o prefs_out.txt</pre>
+<div class="highlight-python"><pre>make_prefs_file.py -m mapping.txt -b "SampleID,Treatment,SampleID&amp;&amp;Treatment" -o prefs_out_1.txt</pre>
 </div>
 <p>If the user would like to change the background color for their plots, they can pass the &#8216;-k&#8217; option, where the colors: black and white can be used for 3D plots and many additional colors can be used for the 2D plots, such as cyan, pink, yellow, etc.:</p>
-<div class="highlight-python"><pre>make_prefs_file.py -k white -o prefs_out.txt</pre>
+<div class="highlight-python"><pre>make_prefs_file.py -m mapping.txt -k white -o prefs_out_white.txt</pre>
 </div>
 <p>If the user would like to change the monte_carlo distances, they can pass the &#8216;-d&#8217; option as follows:</p>
-<div class="highlight-python"><pre>make_prefs_file.py -d 15 -o prefs_out.txt</pre>
+<div class="highlight-python"><pre>make_prefs_file.py -m mapping.txt -d 15 -o prefs_out_d15.txt</pre>
 </div>
 <p>If the user would like to add a list of taxons they can pass the &#8216;-i&#8217; option, which is the resulting taxa file from <a class="reference external" href="./summarize_taxa.html">summarize_taxa.py</a>, as follows:</p>
-<div class="highlight-python"><pre>make_prefs_file.py -i taxa_level_3.txt -o prefs_out.txt</pre>
+<div class="highlight-python"><pre>make_prefs_file.py -m mapping.txt -i taxa_level_3.txt -o prefs_out_taxa_l3.txt</pre>
 </div>
 <p>If the user would like to add the ball size scale they can pass the &#8216;-s&#8217; option as follows:</p>
-<div class="highlight-python"><pre>make_prefs_file.py -m map_fname.txt -s 2.5 -o prefs_out.txt</pre>
+<div class="highlight-python"><pre>make_prefs_file.py -m mapping.txt -s 3 -o prefs_out_s3.txt</pre>
 </div>
 <p>If the user would like to add the head and line color for the arrows in the procrustes analysis plot they can pass the &#8216;-a&#8217; and &#8216;-l&#8217; options as follows:</p>
-<div class="highlight-python"><pre>make_prefs_file.py -m map_fname.txt -a black -l blue -o prefs_out.txt</pre>
+<div class="highlight-python"><pre>make_prefs_file.py -m mapping.txt -a black -l blue -o prefs_out_procrustes.txt</pre>
 </div>
 </div>
 
@@ -162,7 +162,7 @@
       </ul>
     </div>
 <div style="text-align: center; padding: 0px;"><br />
-<a href="http://pycogent.sourceforge.net" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
+<a href="http://www.pycogent.org" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
 <br /></div>
 
     <div class="footer">

@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.5.0-dev',
+        VERSION:     '1.6.0-dev',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -59,6 +59,7 @@
   <span class="target" id="filter-distance-matrix"></span><div class="section" id="filter-distance-matrix-py-filter-a-distance-matrix-to-contain-only-a-specified-set-of-samples">
 <span id="index-0"></span><h1><em>filter_distance_matrix.py</em> &#8211; Filter a distance matrix to contain only a specified set of samples.<a class="headerlink" href="#filter-distance-matrix-py-filter-a-distance-matrix-to-contain-only-a-specified-set-of-samples" title="Permalink to this headline">¶</a></h1>
 <p><strong>Description:</strong></p>
+<p>Remove samples from a distance matrix based on a mapping file or an otu table or a list of sample ids.</p>
 <p><strong>Usage:</strong> <tt class="file docutils literal"><span class="pre">filter_distance_matrix.py</span> <span class="pre">[options]</span></tt></p>
 <p><strong>Input Arguments:</strong></p>
 <div class="admonition note">
@@ -79,20 +80,20 @@
 <dt>-m, <cite>-</cite>-mapping_fp</dt>
 <dd>Path to the mapping file</dd>
 <dt>-s, <cite>-</cite>-valid_states</dt>
-<dd>String containing valid states, e.g. &#8216;STUDY_NAME:DOG&#8217;</dd>
+<dd>String containing valid states, e.g. &#8216;STUDY_NAME:DOB&#8217;</dd>
 <dt><cite>-</cite>-negate</dt>
 <dd>Discard specified samples (instead of keeping them) [default: False]</dd>
 </dl>
 </div>
 <p><strong>Output:</strong></p>
 <p>Filter samples ids listed in sample_id_list.txt from dm.txt</p>
-<div class="highlight-python"><pre>filter_distance_matrix.py -i dm.txt -o dm_out.txt --sample_id_fp sample_id_list.txt</pre>
+<div class="highlight-python"><pre>filter_distance_matrix.py -i dm.txt -o dm_out_sample_list.txt --sample_id_fp sample_id_list.txt</pre>
 </div>
 <p>Filter samples ids in otu_table.biom from dm.txt</p>
-<div class="highlight-python"><pre>filter_distance_matrix.py -i dm.txt -o dm_out.txt -t otu_table.biom</pre>
+<div class="highlight-python"><pre>filter_distance_matrix.py -i dm.txt -o dm_out_otu_table.txt -t otu_table.biom</pre>
 </div>
 <p>Filter samples ids where DOB is 20061218 in Fasting_Map.txt. (Run &#8220;<a class="reference external" href="./filter_samples_from_otu_table.html">filter_samples_from_otu_table.py</a> -h&#8221; for additional information on how metadata filtering can be specified.)</p>
-<div class="highlight-python"><pre>filter_distance_matrix.py -i dm.txt -o dm_out4.txt -m Fasting_Map.txt -s "DOB:20061218"</pre>
+<div class="highlight-python"><pre>filter_distance_matrix.py -i dm.txt -o dm_out_mapping_file.txt -m Fasting_Map.txt -s "DOB:20061218"</pre>
 </div>
 </div>
 
@@ -143,7 +144,7 @@
       </ul>
     </div>
 <div style="text-align: center; padding: 0px;"><br />
-<a href="http://pycogent.sourceforge.net" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
+<a href="http://www.pycogent.org" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
 <br /></div>
 
     <div class="footer">

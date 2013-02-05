@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.5.0-dev',
+        VERSION:     '1.6.0-dev',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -76,6 +76,8 @@
 <dl class="last docutils">
 <dt>-p, <cite>-</cite>-parameter_fp</dt>
 <dd>Path to the parameter file, which specifies changes to the default behavior. See <a class="reference external" href="http://www.qiime.org/documentation/file_formats.html#qiime-parameters">http://www.qiime.org/documentation/file_formats.html#qiime-parameters</a> . [if omitted, default values will be used]</dd>
+<dt><cite>-</cite>-prefilter_refseqs_fp</dt>
+<dd>The reference sequences to use for the prefilter, if different from the reference sequecnces to use for the OTU picking [default: same as passed for &#8211;reference_fp]</dd>
 <dt>-n, <cite>-</cite>-new_ref_set_id</dt>
 <dd>Unique identifier for OTUs that get created in this ref set (this is useful to support combining of reference sets) [default:New]</dd>
 <dt>-f, <cite>-</cite>-force</dt>
@@ -83,7 +85,7 @@
 <dt>-a, <cite>-</cite>-parallel</dt>
 <dd>Run in parallel where available [default: False]</dd>
 <dt>-O, <cite>-</cite>-jobs_to_start</dt>
-<dd>Number of jobs to start. NOTE: you must also pass -a to run in parallel, this defines the number of jobs to be started if and only if -a is passed [default: 2]</dd>
+<dd>Number of jobs to start. NOTE: you must also pass -a to run in parallel, this defines the number of jobs to be started if and only if -a is passed [default: 4]</dd>
 <dt>-s, <cite>-</cite>-percent_subsample</dt>
 <dd>Percent of failure sequences to include in the subsample to cluster de novo (larger numbers should give more comprehensive ,results but will be slower) [default:0.001]</dd>
 <dt><cite>-</cite>-prefilter_percent_id</dt>
@@ -96,6 +98,10 @@
 <dd>Suppress the final de novo OTU picking step  (may be necessary for extremely large data sets) [default: False]</dd>
 <dt><cite>-</cite>-min_otu_size</dt>
 <dd>The minimum otu size (in number of sequences) to retain the otu [default: 2]</dd>
+<dt><cite>-</cite>-suppress_taxonomy_assignment</dt>
+<dd>Skip the taxonomy assignment step, resulting in an OTU table without taxonomy [default: False]</dd>
+<dt><cite>-</cite>-suppress_align_and_tree</dt>
+<dd>Skip the sequence alignment and tree-building steps [default: False]</dd>
 </dl>
 </div>
 <p><strong>Output:</strong></p>
@@ -104,6 +110,12 @@
 </div>
 <p>Run the subsampled open-reference OTU picking workflow in iterative mode on seqs1.fna and seqs2.fna using refseqs.fna as the initial reference collection. ALWAYS SPECIFY ABSOLUTE FILE PATHS (absolute path represented here as $PWD, but will generally look something like /home/ubuntu/my_analysis/</p>
 <div class="highlight-python"><pre>pick_subsampled_reference_otus_through_otu_table.py -i $PWD/seqs1.fna,$PWD/seqs2.fna -r $PWD/refseqs.fna -o $PWD/ucrss_iter/ -s 0.1 -p $PWD/ucrss_params.txt</pre>
+</div>
+<p>Run the subsampled open-reference OTU picking workflow in iterative mode on seqs1.fna and seqs2.fna using refseqs.fna as the initial reference collection. This is useful if you&#8217;re working with marker genes that do not result in useful alignment (e.g., fungal ITS). ALWAYS SPECIFY ABSOLUTE FILE PATHS (absolute path represented here as $PWD, but will generally look something like /home/ubuntu/my_analysis/</p>
+<div class="highlight-python"><pre>pick_subsampled_reference_otus_through_otu_table.py -i $PWD/seqs1.fna,$PWD/seqs2.fna -r $PWD/refseqs.fna -o $PWD/ucrss_iter_no_tree/ -s 0.1 -p $PWD/ucrss_params.txt --suppress_align_and_tree</pre>
+</div>
+<p>Run the subsampled open-reference OTU picking workflow in iterative mode on seqs1.fna and seqs2.fna using refseqs.fna as the initial reference collection, suppressing assignment of taxonomy. This is useful if you&#8217;re working with a reference collection without associated taxonomy. ALWAYS SPECIFY ABSOLUTE FILE PATHS (absolute path represented here as $PWD, but will generally look something like /home/ubuntu/my_analysis/</p>
+<div class="highlight-python"><pre>pick_subsampled_reference_otus_through_otu_table.py -i $PWD/seqs1.fna,$PWD/seqs2.fna -r $PWD/refseqs.fna -o $PWD/ucrss_iter_no_tax/ -s 0.1 -p $PWD/ucrss_params.txt --suppress_taxonomy_assignment</pre>
 </div>
 </div>
 
@@ -154,7 +166,7 @@
       </ul>
     </div>
 <div style="text-align: center; padding: 0px;"><br />
-<a href="http://pycogent.sourceforge.net" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
+<a href="http://www.pycogent.org" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
 <br /></div>
 
     <div class="footer">

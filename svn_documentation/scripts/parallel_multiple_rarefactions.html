@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.5.0-dev',
+        VERSION:     '1.6.0-dev',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -79,16 +79,12 @@
 <dl class="last docutils">
 <dt>-n, <cite>-</cite>-num-reps</dt>
 <dd>Num iterations at each seqs/sample level [default: 10]</dd>
-<dt><cite>-</cite>-lineages_included</dt>
-<dd>Deprecated: lineages are now included by default. Pass &#8211;supress_lineages_included to prevent output OTU tables from including taxonomic (lineage) information for each OTU. Note: this will only work if lineage information is in the input OTU table.</dd>
 <dt><cite>-</cite>-suppress_lineages_included</dt>
 <dd>Exclude taxonomic (lineage) information for each OTU.</dd>
-<dt>-N, <cite>-</cite>-single_rarefaction_fp</dt>
-<dd>Full path to scripts/<a class="reference external" href="./single_rarefaction.html">single_rarefaction.py</a> [default: $HOME/qiime_software/scripts/<a class="reference external" href="./single_rarefaction.html">single_rarefaction.py</a>]</dd>
 <dt>-s, <cite>-</cite>-step</dt>
 <dd>Levels: min, min+step... for level &lt;= max [default: 1]</dd>
-<dt>-P, <cite>-</cite>-poller_fp</dt>
-<dd>Full path to qiime/parallel/<a class="reference external" href="./poller.html">poller.py</a> [default: $HOME/qiime_software/scripts/<a class="reference external" href="./poller.html">poller.py</a>]</dd>
+<dt><cite>-</cite>-subsample_multinomial</dt>
+<dd>Subsample using subsampling with replacement [default: False]</dd>
 <dt>-R, <cite>-</cite>-retain_temp_files</dt>
 <dd>Retain temporary files after runs complete (useful for debugging) [default: False]</dd>
 <dt>-S, <cite>-</cite>-suppress_submit_jobs</dt>
@@ -96,17 +92,15 @@
 <dt>-T, <cite>-</cite>-poll_directly</dt>
 <dd>Poll directly for job completion rather than running poller as a separate job. If -T is specified this script will not return until all jobs have completed. [default: False]</dd>
 <dt>-U, <cite>-</cite>-cluster_jobs_fp</dt>
-<dd>Path to cluster jobs script (defined in qiime_config)  [default: $HOME/qiime_software/scripts/<a class="reference external" href="./start_parallel_jobs.html">start_parallel_jobs.py</a>]</dd>
+<dd>Path to cluster jobs script (defined in qiime_config)  [default: <a class="reference external" href="./start_parallel_jobs.html">start_parallel_jobs.py</a>]</dd>
 <dt>-W, <cite>-</cite>-suppress_polling</dt>
 <dd>Suppress polling of jobs and merging of results upon completion [default: False]</dd>
 <dt>-X, <cite>-</cite>-job_prefix</dt>
 <dd>Job prefix [default: descriptive prefix + random chars]</dd>
-<dt>-Y, <cite>-</cite>-python_exe_fp</dt>
-<dd>Full path to python executable [default: /usr/local/bin/python2.7]</dd>
 <dt>-Z, <cite>-</cite>-seconds_to_sleep</dt>
-<dd>Number of seconds to sleep between checks for run  completion when polling runs [default: 60]</dd>
+<dd>Number of seconds to sleep between checks for run  completion when polling runs [default: 1]</dd>
 <dt>-O, <cite>-</cite>-jobs_to_start</dt>
-<dd>Number of jobs to start [default: 2]</dd>
+<dd>Number of jobs to start [default: 4]</dd>
 </dl>
 </div>
 <p><strong>Output:</strong></p>
@@ -168,7 +162,7 @@
       </ul>
     </div>
 <div style="text-align: center; padding: 0px;"><br />
-<a href="http://pycogent.sourceforge.net" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
+<a href="http://www.pycogent.org" target="_blank"><img src="../_static/PoweredByPycogent.jpg" border="0" alt="sampledoc" height="70px"/></a>
 <br /></div>
 
     <div class="footer">
