@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.6.0',
+        VERSION:     '1.6.0-dev',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -72,23 +72,31 @@ sffinfo -q run_2.sff &gt; run_2.qual</pre>
 </div>
 <p>Note that the qiime since package v1.2 has a replacement for the sfftools.
 It&#8217;s slower but fully functional.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Warning: Since late 2012, 454 machines have a new feature (flow pattern B) that is supposed to allow for longer reads. Unfortunately, files using this feature can not be denoised, but result in nonsense output. To make sure that your file uses the older, more common flow pattern A, open the .sff.txt file and look for the <tt class="docutils literal"><span class="pre">Flow</span> <span class="pre">Chars:</span></tt> section in the header. If it shows a constant repeat of TACG you are fine. If however the pattern deviates after the third repeat, you are looking at the new flow patten B that can not be denoised. In any case, all other qiime programs are not affected by this and can be used as usual.</p>
+</div>
 <p>For more details on the available options of each script explained in
 the following use the -h option.</p>
 <p><strong>Quality filtering and barcode assignment:</strong></p>
 <p>Prior to denoising, each read has to be assigned to one barcode/sample
 and low quality reads need to be filtered out. This can be done using
 <a class="reference external" href="../scripts/split_libraries.html">split_libraries.py</a>. An example command would be:</p>
-<div class="highlight-python"><pre>split_libraries.py -o run1 -f run1.fasta -q run1.qual -m run1_mapping.txt -w 50 -r -l 150 -L 350
-split_libraries.py -o run2 -f run2.fasta -q run2.qual -m run2_mapping.txt -w 50 -r -l 150 -L 350 -n 1000000</pre>
+<div class="highlight-python"><pre>split_libraries.py -o run1 -f run1.fasta -q run1.qual -m run1_mapping.txt -w 50 -g -r -l 150 -L 350
+split_libraries.py -o run2 -f run2.fasta -q run2.qual -m run2_mapping.txt -w 50 -g -r -l 150 -L 350 -n 1000000</pre>
 </div>
-<p>This step has to be done separately for each 454 pool, following the usual guidelines for running several data sets through <a class="reference external" href="../scripts/split_libraries.html">split_libraries.py</a>.</p>
+<p>This step has to be done separately for each 454 pool, following the usual guidelines for running several data sets through <a class="reference external" href="../scripts/split_libraries.html">split_libraries.py</a>. Note that all options to <a class="reference external" href="../scripts/split_libraries.html">split_libraries.py</a> that truncate the sequences on the 3&#8217; end should not be used as they do not affect the sff.txt files used for denoising. This includes the <tt class="docutils literal"><span class="pre">-x</span></tt>, <tt class="docutils literal"><span class="pre">-z</span> <span class="pre">truncate_only</span></tt>, and <tt class="docutils literal"><span class="pre">-w</span></tt> without <tt class="docutils literal"><span class="pre">-g</span></tt> options. We recommend though to use the <tt class="docutils literal"><span class="pre">-w</span> <span class="pre">50</span> <span class="pre">-g</span></tt> combination to discard reads of bad quality.
+Also, do not use the <a class="reference external" href="../scripts/truncate_fasta_qual_files.html">truncate_fasta_qual_files.py</a> script if you plan to denoise your data.
+If you need to truncate your data, use the <tt class="docutils literal"><span class="pre">sfffile</span></tt> program from the Roche sfftools package and recreate your fasta and qual files from the truncated sff file.</p>
 <p>For a single, non-barcoded sample, <a class="reference external" href="../scripts/split_libraries.html">split_libraries.py</a>
 can be provided with a mapping file that has an empty field for the BarcodeSequence.</p>
 <p>Example:</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">#SampleID   BarcodeSequence     LinkerPrimerSequence     Description
-Artificial                      ATTAGATACCCNGGTAG        ArtificialGSFLX_from_Quince_et_al</p>
+<ul class="last simple">
+<li>#SampleID   BarcodeSequence        LinkerPrimerSequence     Description</li>
+<li>Artificial                         ATTAGATACCCNGGTAG        ArtificialGSFLX_from_Quince_et_al</li>
+</ul>
 </div>
 <p>Note that fields must be separated by a single tab. For the empty barcode there must be two
 tabs between SampleID and the primer sequence. Use QIIME&#8217;s
@@ -284,8 +292,8 @@ For very large data sets(&gt;1 FLX plate), this is the recommended way to go. Wh
 <li>high_cut-off=HIGH_CUTOFF  high clustering threshold for phase III [default: 4.5]</li>
 <li>percent_id=PERCENT_ID     sequence similarity clustering threshold [default: 0.97]</li>
 </ul>
-<p>The <tt class="file docutils literal"><span class="pre">low_cut_off</span></tt> and the <tt class="file docutils literal"><span class="pre">percent_id</span></tt> are used for clustering in the second, greedy clustering step.
-The <tt class="file docutils literal"><span class="pre">high_cut_off</span></tt> is used in the third clustering step, where unclustered reads are mapped according to their best match to any of the clusters of phase II. For good values for the thresholds, we refer to the plot S2 in the supplementary material of the denoiser paper (Reeder and Knight, Nature Methods 2010).</p>
+<p>The <tt class="docutils literal"><span class="pre">low_cut_off</span></tt> and the <tt class="docutils literal"><span class="pre">percent_id</span></tt> are used for clustering in the second, greedy clustering step.
+The <tt class="docutils literal"><span class="pre">high_cut_off</span></tt> is used in the third clustering step, where unclustered reads are mapped according to their best match to any of the clusters of phase II. For good values for the thresholds, we refer to the plot S2 in the supplementary material of the denoiser paper (Reeder and Knight, Nature Methods 2010).</p>
 <p>Q: Denoising on the clusters &#8220;hangs&#8221; after a while. What is going on?</p>
 <p>A: If not provided with already preprocessed data via the -p option, the denoiser.py script automatically starts the preprocessing phase (cluster phase I in the paper) on one CPU on the cluster. This preprocessing takes from a few minutes for partial GS FLX runs to an hour or more for large Titanium runs. After this step, the parallel cluster phase II starts. First, all requested workers are started one-by-one. Depending on your queueing system and the number of jobs this might take from few seconds to several minutes. If one or more of the jobs are not started by the queueing system, all submitted jobs will block and wait. This is most likely the state your process is in if nothing seems to happen. We know this is not optimally and already thinking about a better solution for the future. In the meantime, make sure you only request as many jobs as you can safely run in your queue and monitor (qstat) the startup phase to see if all jobs are properly scheduled. If you finf that you requested to many CPUs and need to restart, simply kill the master process (denoiser.py) and it should bring down all but the last submitted jobs. The last job might need to be killed by hand.
 Once all workers are succesfully started, you can monitor the progress by following the log file in verbose mode (toggled by the -v option):</p>
