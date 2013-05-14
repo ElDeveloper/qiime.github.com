@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -8,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>QIIME Overview Tutorial: de novo OTU picking and diversity analyses &mdash; Homepage</title>
+    <title>454 Overview Tutorial: de novo OTU picking and diversity analyses using 454 data &mdash; Homepage</title>
     
     <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -16,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.6.0',
+        VERSION:     '1.7.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -56,8 +54,8 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="qiime-overview-tutorial-de-novo-otu-picking-and-diversity-analyses">
-<span id="tutorial"></span><h1>QIIME Overview Tutorial: de novo OTU picking and diversity analyses<a class="headerlink" href="#qiime-overview-tutorial-de-novo-otu-picking-and-diversity-analyses" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="overview-tutorial-de-novo-otu-picking-and-diversity-analyses-using-454-data">
+<span id="tutorial"></span><h1>454 Overview Tutorial: de novo OTU picking and diversity analyses using 454 data<a class="headerlink" href="#overview-tutorial-de-novo-otu-picking-and-diversity-analyses-using-454-data" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>This tutorial explains how to use the <strong>QIIME</strong> (Quantitative Insights Into Microbial Ecology) Pipeline to process data from high-throughput 16S rRNA sequencing studies. If you have not already installed qiime, please see the section <a class="reference external" href="../install/index.html">Installing Qiime</a> first. The purpose of this pipeline is to provide a start-to-finish workflow, beginning with multiplexed sequence reads and finishing with taxonomic and phylogenetic profiles and comparisons of the samples in the study. With this information in hand, it is possible to determine biological and environmental factors that alter microbial community ecology in your experiment.</p>
@@ -191,7 +189,7 @@
 </div>
 <div class="section" id="picking-operational-taxonomic-units-otus-through-making-otu-table">
 <span id="pickotusandrepseqs"></span><h2>Picking Operational Taxonomic Units (OTUs) through making OTU table<a class="headerlink" href="#picking-operational-taxonomic-units-otus-through-making-otu-table" title="Permalink to this headline">¶</a></h2>
-<p>Here we will be running the <a class="reference external" href="../scripts/pick_otus_through_otu_table.html">pick_otus_through_otu_table.py</a> workflow, which performs a series of small steps by calling a series of other scripts automatically. This workflow consists of the following steps:</p>
+<p>Here we will be running the <a class="reference external" href="../scripts/pick_de_novo_otus.html">pick_de_novo_otus.py</a> workflow, which performs a series of small steps by calling a series of other scripts automatically. This workflow consists of the following steps:</p>
 <ol class="arabic simple">
 <li>Picking OTUs (for more information, refer to <a class="reference external" href="../scripts/pick_otus.html">pick_otus.py</a>)</li>
 <li>Picking a representative sequence set, one sequence from each OTU (for more information, refer to <a class="reference external" href="../scripts/pick_rep_set.html">pick_rep_set.py</a>)</li>
@@ -202,14 +200,14 @@
 <li>Building an OTU table (for more information, refer to <a class="reference external" href="../scripts/make_otu_table.html">make_otu_table.py</a>)</li>
 </ol>
 <p>Using the output from split_libraries.py (the seqs.fna file), run the following command:</p>
-<div class="highlight-python"><pre>pick_otus_through_otu_table.py -i split_library_output/seqs.fna -o otus</pre>
+<div class="highlight-python"><pre>pick_de_novo_otus.py -i split_library_output/seqs.fna -o otus</pre>
 </div>
-<p>Optionally, we could denoise the sequences based on clustering the flowgram sequences. For a single library/sff file we can simply use the workflow script <a class="reference external" href="../scripts/pick_otus_through_otu_table.html">pick_otus_through_otu_tables.py</a>, by providing the script with the sff file and the metadata mapping file. For multiple sff files refer to the special purpose tutorial <a class="reference external" href="denoising_454_data.html">Denoising of 454 Data Sets</a>.</p>
-<p>The results of <cite>pick_otus_through_otu_table.py</cite> are in <tt class="file docutils literal"><span class="pre">otus/</span></tt>, and a description of the steps performed and the results follow:</p>
+<p>Optionally, we could denoise the sequences based on clustering the flowgram sequences. For a single library/sff file we can simply use the workflow script <a class="reference external" href="../scripts/pick_de_novo_otus.html">pick_de_novo_otuss.py</a>, by providing the script with the sff file and the metadata mapping file. For multiple sff files refer to the special purpose tutorial <a class="reference external" href="denoising_454_data.html">Denoising of 454 Data Sets</a>.</p>
+<p>The results of <cite>pick_de_novo_otus.py</cite> are in <tt class="file docutils literal"><span class="pre">otus/</span></tt>, and a description of the steps performed and the results follow:</p>
 <div class="section" id="step-1-pick-otus-based-on-sequence-similarity-within-the-reads">
 <span id="pickotusseqsim"></span><h3>Step 1. Pick OTUs based on Sequence Similarity within the Reads<a class="headerlink" href="#step-1-pick-otus-based-on-sequence-similarity-within-the-reads" title="Permalink to this headline">¶</a></h3>
 <p>At this step, all of the sequences from all of the samples will be clustered into Operational Taxonomic Units (OTUs) based on their sequence similarity. OTUs in QIIME are clusters of sequences, frequently intended to represent some degree of taxonomic relatedness. For example, when sequences are clustered at 97% sequence similarity with uclust, each resulting cluster is typically thought of as representing a species. This model and the current techniques for picking OTUs are known to be flawed, however, in that 97% OTUs do not match what humans have called species for many microbes. Determining exactly how OTUs should be defined, and what they represent, is an active area of research.</p>
-<p><cite>pick_otus_through_otu_table.py</cite> assigns sequences to OTUs at 97% similarity by default. Further information on how to view and change default behavior will be discussed later.</p>
+<p><cite>pick_de_novo_otus.py</cite> assigns sequences to OTUs at 97% similarity by default. Further information on how to view and change default behavior will be discussed later.</p>
 </div>
 <div class="section" id="step-2-pick-representative-sequences-for-each-otu">
 <span id="pickrepseqsforotu"></span><h3>Step 2. Pick Representative Sequences for each OTU<a class="headerlink" href="#step-2-pick-representative-sequences-for-each-otu" title="Permalink to this headline">¶</a></h3>
@@ -263,7 +261,7 @@
 <div class="section" id="view-statistics-of-the-otu-table">
 <span id="perlibrarystats"></span><h2>View statistics of the OTU table<a class="headerlink" href="#view-statistics-of-the-otu-table" title="Permalink to this headline">¶</a></h2>
 <p>To view the number of sequence reads which were assigned to the otu table (otus/otu_table.biom), type:</p>
-<div class="highlight-python"><pre>per_library_stats.py -i otus/otu_table.biom</pre>
+<div class="highlight-python"><pre>print_biom_table_summary.py -i otus/otu_table.biom</pre>
 </div>
 <p>The output shows that there are relatively few sequences in this tutorial example, but the sequences present are fairly evenly distributed among the 9 microbial communities.</p>
 <div class="admonition note">
@@ -435,7 +433,7 @@
 <li>Generate 2D PCoA plots (for more information, refer to <a class="reference external" href="../scripts/make_2d_plots.html">make_2d_plots.py</a>)</li>
 <li>Make Distance Histograms (for more information, refer to <a class="reference external" href="../scripts/make_distance_histograms.html">make_distance_histograms.py</a>)</li>
 </ol>
-<p>To run the workflow, type the following command, which defines the input OTU table &#8220;-i&#8221; and tree file &#8220;-t&#8221; (from <a class="reference external" href="../scripts/pick_otus_through_otu_table.html">pick_otus_through_otu_table.py</a>), the user-defined mapping file &#8220;-m&#8221;, the output directory &#8220;-o&#8221;, and the number of sequences per sample (sequencing depth) as 146:</p>
+<p>To run the workflow, type the following command, which defines the input OTU table &#8220;-i&#8221; and tree file &#8220;-t&#8221; (from <a class="reference external" href="../scripts/pick_de_novo_otus.html">pick_de_novo_otus.py</a>), the user-defined mapping file &#8220;-m&#8221;, the output directory &#8220;-o&#8221;, and the number of sequences per sample (sequencing depth) as 146:</p>
 <div class="highlight-python"><pre>beta_diversity_through_plots.py -i otus/otu_table.biom -m Fasting_Map.txt -o wf_bdiv_even146/ -t otus/rep_set.tre -e 146</pre>
 </div>
 <p>Descriptions of the steps involved in <cite>beta_diversity_through_plots.py</cite> follow:</p>
@@ -500,7 +498,7 @@
 <div class="section" id="step-6-generate-2d-pcoa-plots">
 <h3>Step 6. Generate 2D PCoA Plots<a class="headerlink" href="#step-6-generate-2d-pcoa-plots" title="Permalink to this headline">¶</a></h3>
 <p>The two dimensional plot will be rendered as a html file which can be opened with a standard web browser. The html file created in directories <tt class="file docutils literal"><span class="pre">wf_bdiv_even146/unweighted_unifrac_2d...</span></tt> shows a plot for each combination of the first three principal coordinates. You can view the name for each sample by holding your mouse cursor over the data point.</p>
-<img alt="../_images/pcoa1.png" class="align-center" src="../_images/pcoa1.png" style="width: 900px;" />
+<a class="reference internal image-reference" href="../_images/pcoa1.png"><img alt="../_images/pcoa1.png" class="align-center" src="../_images/pcoa1.png" style="width: 900px;" /></a>
 </div>
 <div class="section" id="step-7-generate-distance-histograms">
 <span id="gendisthist"></span><h3>Step 7. Generate Distance Histograms<a class="headerlink" href="#step-7-generate-distance-histograms" title="Permalink to this headline">¶</a></h3>
@@ -516,7 +514,7 @@
 <div><ol class="arabic simple">
 <li>Compute the beta diversity distance matrix from the full OTU table (and tree, if applicable) (for more information, refer to <a class="reference external" href="../scripts/beta_diversity.html">beta_diversity.py</a>)</li>
 <li>Build UPGMA tree from full distance matrix; (for more information, refer to <a class="reference external" href="../scripts/upgma_cluster.html">upgma_cluster.py</a>)</li>
-<li>Build rarefied OTU tables (for more information, refer to <a class="reference external" href="../scripts/multiple_rarefactions.html">multiple_rarefactions.py</a>)</li>
+<li>Build rarefied OTU tables (for more information, refer to <a class="reference external" href="../scripts/multiple_rarefactions_even_depth.py.html">multiple_rarefactions_even_depth.py.py</a>)</li>
 <li>Compute distance matrices for rarefied OTU tables (for more information, refer to <a class="reference external" href="../scripts/beta_diversity.html">beta_diversity.py</a>) &lt;../scripts/beta_diversity.html&gt;`_)</li>
 <li>Build UPGMA trees from rarefied distance matrices (for more information, refer to <a class="reference external" href="../scripts/upgma_cluster.html">upgma_cluster.py</a>)</li>
 <li>Compare rarefied UPGMA trees and determine jackknife support for tree nodes. (for more information, refer to <a class="reference external" href="../scripts/tree_compare.html">tree_compare.py</a> and <a class="reference external" href="../scripts/consensus_tree.html">consensus_tree.py</a>)</li>
@@ -531,13 +529,13 @@
 <span id="hiarchclust"></span><h3>Steps 1 and 2. UPGMA Clustering<a class="headerlink" href="#steps-1-and-2-upgma-clustering" title="Permalink to this headline">¶</a></h3>
 <p>Unweighted Pair Group Method with Arithmetic mean (UPGMA) is type of hierarchical clustering method using average linkage and can be used to interpret the distance matrix produced by <a class="reference external" href="../scripts/beta_diversity.html">beta_diversity.py</a>.</p>
 <p>The output is a file that can be opened with tree viewing software, such as FigTree.</p>
-<img alt="../_images/UPGMAbytreatment.png" class="align-center" src="../_images/UPGMAbytreatment.png" style="width: 700px;" />
+<a class="reference internal image-reference" href="../_images/UPGMAbytreatment.png"><img alt="../_images/UPGMAbytreatment.png" class="align-center" src="../_images/UPGMAbytreatment.png" style="width: 700px;" /></a>
 <p>This tree shows the relationship among the 9 samples, and reveals that the 4 samples from the guts of fasting mice cluster together (PC.6xx, fasting data is in <tt class="file docutils literal"><span class="pre">Fasting_Map.txt</span></tt>).</p>
 </div>
 <div class="section" id="steps-3-4-and-5-perform-jackknifing-support">
 <span id="jacksupport"></span><h3>Steps 3, 4 and 5. Perform Jackknifing Support<a class="headerlink" href="#steps-3-4-and-5-perform-jackknifing-support" title="Permalink to this headline">¶</a></h3>
 <p>To measure the robustness of this result to sequencing effort, we perform a jackknifing analysis, wherein a smaller number of sequences are chosen at random from each sample, and the resulting UPGMA tree from this subset of data is compared with the tree representing the entire available data set. This process is repeated with many random subsets of data, and the tree nodes which prove more consistent across jackknifed datasets are deemed more robust.</p>
-<p>First the jackknifed OTU tables must be generated, by subsampling the full available data set. In this tutorial, each sample contains between 146 and 150 sequences, as shown with <a class="reference internal" href="#perlibrarystats">per_library_stats.py</a>:</p>
+<p>First the jackknifed OTU tables must be generated, by subsampling the full available data set. In this tutorial, each sample contains between 146 and 150 sequences, as shown with <a class="reference internal" href="#perlibrarystats">print_biom_table_summary.py</a>:</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <div class="last line-block">
@@ -570,7 +568,7 @@
 <div class="section" id="steps-7-and-8-compare-principal-coordinates-plots">
 <span id="comppcoa"></span><h3>Steps 7 and 8. Compare Principal Coordinates plots<a class="headerlink" href="#steps-7-and-8-compare-principal-coordinates-plots" title="Permalink to this headline">¶</a></h3>
 <p>The jackknifed replicate PCoA plots can be compared to assess the degree of variation from one replicate to the next. QIIME displays this variation by displaying confidence ellipsoids around the samples represented in a PCoA plot. The resulting plots are present in <tt class="file docutils literal"><span class="pre">wf_jack/unweighted_unifrac/3d_plots</span></tt>, as well as the corresponding <tt class="file docutils literal"><span class="pre">weighted_unifrac/</span></tt> and <tt class="file docutils literal"><span class="pre">2d_plots/</span></tt> locations. An example is shown below:</p>
-<img alt="../_images/jackpcoa.png" class="align-center" src="../_images/jackpcoa.png" style="width: 700px;" />
+<a class="reference internal image-reference" href="../_images/jackpcoa.png"><img alt="../_images/jackpcoa.png" class="align-center" src="../_images/jackpcoa.png" style="width: 700px;" /></a>
 </div>
 <div class="section" id="generate-bootstrapped-tree">
 <span id="genboottree"></span><h3>Generate Bootstrapped Tree<a class="headerlink" href="#generate-bootstrapped-tree" title="Permalink to this headline">¶</a></h3>
@@ -592,7 +590,7 @@
 <div class="section" id="running-workflow-scripts-in-parallel">
 <h2>Running Workflow Scripts in Parallel<a class="headerlink" href="#running-workflow-scripts-in-parallel" title="Permalink to this headline">¶</a></h2>
 <p>To run the workflow scripts in parallel, pass the &#8220;-a&#8221; option to each of the scripts, and optionally the &#8220;-O&#8221; option to specify the number of parallel jobs to start. If running on a quad-core computer, you can set the number of jobs to start as 4 for one of the workflow scripts as follows:</p>
-<div class="highlight-python"><pre>pick_otus_through_otu_table.py -i split_library_output/seqs.fna -o otus -a -O 4</pre>
+<div class="highlight-python"><pre>pick_de_novo_otus.py -i split_library_output/seqs.fna -o otus -a -O 4</pre>
 </div>
 </div>
 <div class="section" id="running-the-qiime-tutorial-shell-scripts">
@@ -624,7 +622,7 @@ chmod a+x ./qiime_tutorial_commands_parallel.sh</pre>
     
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">QIIME Overview Tutorial: de novo OTU picking and diversity analyses</a><ul>
+<li><a class="reference internal" href="#">454 Overview Tutorial: de novo OTU picking and diversity analyses using 454 data</a><ul>
 <li><a class="reference internal" href="#introduction">Introduction</a></li>
 <li><a class="reference internal" href="#essential-files">Essential Files</a><ul>
 <li><a class="reference internal" href="#sequences-fna">Sequences (.fna)</a></li>
@@ -726,7 +724,7 @@ chmod a+x ./qiime_tutorial_commands_parallel.sh</pre>
 
     <div class="footer">
         &copy; Copyright 2012, QIIME Team.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
     </div>
 <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");

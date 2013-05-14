@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -16,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.6.0',
+        VERSION:     '1.7.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -67,7 +65,7 @@
 <h2>Installing the QIIME Virtual Box<a class="headerlink" href="#installing-the-qiime-virtual-box" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>Download and install the <a class="reference external" href="http://www.virtualbox.org/wiki/Downloads">VirtualBox</a> (VB) version for your machine.</li>
-<li>Download the <a class="reference external" href="ftp://thebeast.colorado.edu/pub/QIIME-v1.6.0-dependencies/QIIME-1.6.0-amd64.vdi.gz">64-bit QIIME Virtual Box</a>. This file is large so it may take between a few minutes and a few hours depending on your Internet connection speed. You will need to unzip this file, which you can typically do by double-clicking on it.</li>
+<li>Download the <a class="reference external" href="ftp://thebeast.colorado.edu/pub/QIIME-v1.7.0-dependencies/QIIME-1.7.0-amd64.vdi.gz">64-bit QIIME Virtual Box</a>. This file is large so it may take between a few minutes and a few hours depending on your Internet connection speed. You will need to unzip this file, which you can typically do by double-clicking on it.</li>
 <li>Create a new virtual machine:</li>
 </ol>
 <blockquote>
@@ -99,7 +97,7 @@
 <p>Due to licensing restrictions, we cannot package Roche&#8217;s <tt class="docutils literal"><span class="pre">sff</span> <span class="pre">tools</span></tt> with the QIIME Virtual Box. These must be obtained from Roche/454. When you run QIIME&#8217;s <tt class="docutils literal"><span class="pre">tests/all_tests.py</span></tt> script, you will therefore get failures associated with the wrapper for <tt class="docutils literal"><span class="pre">sff</span> <span class="pre">tools</span></tt> which look like:</p>
 <div class="highlight-python"><pre>Failed the following unit tests, in part or whole due to missing external applications.
 Depending on the QIIME features you plan to use, this may not be critical.
-/home/qiime/Qiime/tests/test_process_sff.py</pre>
+$HOME/Qiime/tests/test_process_sff.py</pre>
 </div>
 <p>You can safely ignore these as QIIME contains built-in tools for parsing sff files. The QIIME sff tools are about 10x slower than Roche&#8217;s version however, so if you have a copy of Roche&#8217;s sff tools you may want to install those in the VB.</p>
 </div>
@@ -208,7 +206,7 @@ Depending on the QIIME features you plan to use, this may not be critical.
 
     <div class="footer">
         &copy; Copyright 2012, QIIME Team.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
     </div>
 <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");

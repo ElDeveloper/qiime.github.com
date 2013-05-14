@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -16,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.6.0',
+        VERSION:     '1.7.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -74,8 +72,8 @@
 <dd>The path to a FASTA file containing query sequences</dd>
 <dt>-d, <cite>-</cite>-subjectdb</dt>
 <dd>The path to a FASTA file to BLAST against</dd>
-<dt>-o, <cite>-</cite>-outputfilename</dt>
-<dd>The base path/filename to save results. Sequences matching the database, not matching the database, raw BLAST results and the log will be saved to your filename + &#8216;.matching&#8217;, &#8216;.non-matching&#8217;, &#8216;.raw_blast_results&#8217;, and &#8216;.sequence_exclusion_log&#8217; respectively.</dd>
+<dt>-o, <cite>-</cite>-outputdir</dt>
+<dd>The output directory</dd>
 </dl>
 <p><strong>[OPTIONAL]</strong></p>
 <dl class="last docutils">
@@ -88,7 +86,7 @@
 <dt><cite>-</cite>-blastmatroot</dt>
 <dd>Path to a folder containing blast matrices [default: None].</dd>
 <dt><cite>-</cite>-working_dir</dt>
-<dd>Working dir for BLAST [default: /tmp].</dd>
+<dd>Working dir for BLAST [default: /Users/caporaso/temp].</dd>
 <dt>-m, <cite>-</cite>-max_hits</dt>
 <dd>Max hits parameter for BLAST. CAUTION: Because filtering on alignment percentage occurs after BLAST, a max hits value of 1 in combination with an alignment percent filter could miss valid contaminants. [default: 100]</dd>
 <dt>-w, <cite>-</cite>-word_size</dt>
@@ -167,7 +165,7 @@
 
     <div class="footer">
         &copy; Copyright 2012, QIIME Team.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
     </div>
 <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");

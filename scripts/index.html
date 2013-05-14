@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -16,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.6.0',
+        VERSION:     '1.7.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -61,7 +59,7 @@
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="add_alpha_to_mapping_file.html"><em>add_alpha_to_mapping_file.py</em> &#8211; Add alpha diversity data to a metadata mapping file</a></li>
-<li class="toctree-l1"><a class="reference internal" href="add_qiime_labels.html"><em>add_qiime_labels.py</em> &#8211; Takes a directory and a mapping file of SampleIDs to fasta file names, combines all files that have valid fasta extensions into a single fasta file, with valid QIIME fasta labels.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="add_qiime_labels.html"><em>add_qiime_labels.py</em> &#8211; Takes a directory, a metadata mapping file, and a column name that contains the fasta file names that SampleIDs are associated with, combines all files that have valid fasta extensions into a single fasta file, with valid QIIME fasta labels.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="adjust_seq_orientation.html"><em>adjust_seq_orientation.py</em> &#8211; Get the reverse complement of all sequences</a></li>
 <li class="toctree-l1"><a class="reference internal" href="align_seqs.html"><em>align_seqs.py</em> &#8211; Align sequences using a variety of alignment methods</a></li>
 <li class="toctree-l1"><a class="reference internal" href="alpha_diversity.html"><em>alpha_diversity.py</em> &#8211; Calculate alpha diversity on each sample in an otu table, using a variety of alpha diversity metrics</a></li>
@@ -80,7 +78,7 @@
 <li class="toctree-l1"><a class="reference internal" href="cluster_quality.html"><em>cluster_quality.py</em> &#8211; compute the quality of a cluster</a></li>
 <li class="toctree-l1"><a class="reference internal" href="collate_alpha.html"><em>collate_alpha.py</em> &#8211; Collate alpha diversity results</a></li>
 <li class="toctree-l1"><a class="reference internal" href="compare_3d_plots.html"><em>compare_3d_plots.py</em> &#8211; Plot several PCoA files on the same 3D plot</a></li>
-<li class="toctree-l1"><a class="reference internal" href="compare_alpha_diversity.html"><em>compare_alpha_diversity.py</em> &#8211; This script compares alpha diversities based on a two sample t-test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="compare_alpha_diversity.html"><em>compare_alpha_diversity.py</em> &#8211; This script compares alpha diversities based on a two-sample t-test using either parametric or non-parametric (Monte Carlo) methods.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="compare_categories.html"><em>compare_categories.py</em> &#8211; Analyzes statistical significance of sample groupings using distance matrices</a></li>
 <li class="toctree-l1"><a class="reference internal" href="compare_distance_matrices.html"><em>compare_distance_matrices.py</em> &#8211; Computes Mantel correlation tests between sets of distance matrices</a></li>
 <li class="toctree-l1"><a class="reference internal" href="compare_taxa_summaries.html"><em>compare_taxa_summaries.py</em> &#8211; Compares taxa summary files</a></li>
@@ -91,6 +89,7 @@
 <li class="toctree-l1"><a class="reference internal" href="convert_fastaqual_to_fastq.html"><em>convert_fastaqual_to_fastq.py</em> &#8211; From a FASTA file and a matching QUAL file, generates a minimal FASTQ file.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="convert_otu_table_to_unifrac_sample_mapping.html"><em>convert_otu_table_to_unifrac_sample_mapping.py</em> &#8211; Convert a QIIME OTU table to a UniFrac sample mapping file</a></li>
 <li class="toctree-l1"><a class="reference internal" href="convert_unifrac_sample_mapping_to_otu_table.html"><em>convert_unifrac_sample_mapping_to_otu_table.py</em> &#8211; Convert a UniFrac sample mapping file to an OTU table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core_diversity_analyses.html"><em>core_diversity_analyses.py</em> &#8211; A workflow for running a core set of QIIME diversity analyses.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="core_qiime_analyses.html"><em>core_qiime_analyses.py</em> &#8211; A workflow for running a core set of QIIME analyses.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="count_seqs.html"><em>count_seqs.py</em> &#8211;</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cytoscape_usage.html"><em>cytoscape_usage</em> &#8211; Visualizing Results with Cytoscape</a></li>
@@ -121,6 +120,7 @@
 <li class="toctree-l1"><a class="reference internal" href="load_remote_mapping_file.html"><em>load_remote_mapping_file.py</em> &#8211; Downloads and saves a remote mapping file</a></li>
 <li class="toctree-l1"><a class="reference internal" href="make_2d_plots.html"><em>make_2d_plots.py</em> &#8211; Make 2D PCoA Plots</a></li>
 <li class="toctree-l1"><a class="reference internal" href="make_3d_plots.html"><em>make_3d_plots.py</em> &#8211; Make 3D PCoA plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="make_bipartite_network.html"><em>make_bipartite_network.py</em> &#8211; This script makes a bipartite network connecting samples to observations. It is most suitable for visualization with cytoscape.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="make_bootstrapped_tree.html"><em>make_bootstrapped_tree.py</em> &#8211; Make bootstrapped tree</a></li>
 <li class="toctree-l1"><a class="reference internal" href="make_distance_boxplots.html"><em>make_distance_boxplots.py</em> &#8211; Creates boxplots to compare distances between categories</a></li>
 <li class="toctree-l1"><a class="reference internal" href="make_distance_comparison_plots.html"><em>make_distance_comparison_plots.py</em> &#8211; Creates plots comparing distances between sample groupings</a></li>
@@ -159,7 +159,10 @@
 <li class="toctree-l1"><a class="reference internal" href="parallel_pick_otus_blast.html"><em>parallel_pick_otus_blast.py</em> &#8211; Parallel pick otus using BLAST</a></li>
 <li class="toctree-l1"><a class="reference internal" href="parallel_pick_otus_trie.html"><em>parallel_pick_otus_trie.py</em> &#8211; Parallel pick otus using a trie</a></li>
 <li class="toctree-l1"><a class="reference internal" href="parallel_pick_otus_uclust_ref.html"><em>parallel_pick_otus_uclust_ref.py</em> &#8211; Parallel pick otus using uclust_ref</a></li>
-<li class="toctree-l1"><a class="reference internal" href="per_library_stats.html"><em>per_library_stats.py</em> &#8211; Calculate statistics on data in a BIOM-formatted OTU table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parallel_pick_otus_usearch61_ref.html"><em>parallel_pick_otus_usearch61_ref.py</em> &#8211; Parallel pick otus using usearch_ref</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pick_closed_reference_otus.html"><em>pick_closed_reference_otus.py</em> &#8211; Closed-reference OTU picking/Shotgun UniFrac workflow.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pick_de_novo_otus.html"><em>pick_de_novo_otus.py</em> &#8211; A workflow for de novo OTU picking, taxonomy assignment, phylogenetic tree construction, and OTU table construction.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pick_open_reference_otus.html"><em>pick_open_reference_otus.py</em> &#8211;</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pick_otus.html"><em>pick_otus.py</em> &#8211; OTU picking</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pick_otus_through_otu_table.html"><em>pick_otus_through_otu_table.py</em> &#8211; A workflow script for picking OTUs through building OTU tables</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pick_reference_otus_through_otu_table.html"><em>pick_reference_otus_through_otu_table.py</em> &#8211; Reference OTU picking/Shotgun UniFrac workflow.</a></li>
@@ -173,12 +176,13 @@
 <li class="toctree-l1"><a class="reference internal" href="pool_by_metadata.html"><em>pool_by_metadata.py</em> &#8211; pool samples in OTU table and mapping file based on sample metadata from mapping file</a></li>
 <li class="toctree-l1"><a class="reference internal" href="preferences_file.html"><em>preferences_file</em> &#8211; Example of a prefs file</a></li>
 <li class="toctree-l1"><a class="reference internal" href="principal_coordinates.html"><em>principal_coordinates.py</em> &#8211; Principal Coordinates Analysis (PCoA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="print_metadata_stats.html"><em>print_metadata_stats.py</em> &#8211; Count the number of samples associated to a category value</a></li>
 <li class="toctree-l1"><a class="reference internal" href="print_qiime_config.html"><em>print_qiime_config.py</em> &#8211; Print out the qiime config settings.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="process_iseq.html"><em>process_iseq.py</em> &#8211; Given a directory of per-swath qseq files, this script generates a single fastq per lane.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="process_qseq.html"><em>process_qseq.py</em> &#8211; Given a directory of per-swath qseq files, this script generates a single fastq per lane.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="process_sff.html"><em>process_sff.py</em> &#8211; Convert sff to FASTA and QUAL files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quality_scores_plot.html"><em>quality_scores_plot.py</em> &#8211; Generates histograms of sequence quality scores and number of nucleotides recorded at a particular index</a></li>
-<li class="toctree-l1"><a class="reference internal" href="relatedness.html"><em>relatedness.py</em> &#8211; Calculate NRI and NTI using formulas from Phylocom 4.2/3.41</a></li>
+<li class="toctree-l1"><a class="reference internal" href="relatedness.html"><em>relatedness.py</em> &#8211; Calculate NRI (net relatedness index) and NTI (nearest taxon index) using the formulas from Phylocom 4.2/3.41 and Webb 2002.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="shared_phylotypes.html"><em>shared_phylotypes.py</em> &#8211; Compute shared OTUs between all pairs of samples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="simsam.html"><em>simsam.py</em> &#8211; Simulate samples for each sample in an OTU table, using a phylogenetic tree.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="single_rarefaction.html"><em>single_rarefaction.py</em> &#8211; Perform rarefaction on an otu table</a></li>
@@ -262,7 +266,7 @@
 
     <div class="footer">
         &copy; Copyright 2012, QIIME Team.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
     </div>
 <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
