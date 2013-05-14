@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -16,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.6.0',
+        VERSION:     '1.7.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -73,7 +71,7 @@
 <li>Python 2.7.3 (<a class="reference external" href="http://www.python.org/ftp/python/2.7.3/Python-2.7.3.tgz">src_python</a>) (license: PSF)</li>
 <li>PyCogent 1.5.3 (<a class="reference external" href="http://sourceforge.net/projects/pycogent/files/PyCogent/1.5.3/PyCogent-1.5.3.tgz/download">src_pycogent</a>) (license: GPL)</li>
 <li>Numpy 1.5.1 (<a class="reference external" href="http://sourceforge.net/projects/numpy/files/NumPy/1.5.1/numpy-1.5.1.tar.gz/download">src_numpy</a>) (license: BSD)</li>
-<li>biom-format 1.1.1 (<a class="reference external" href="ftp://thebeast.colorado.edu/pub/biom-format-releases/biom-format-1.1.1.tar.gz">src_biom</a>) (license: GPL)</li>
+<li>biom-format 1.1.2 (<a class="reference external" href="ftp://thebeast.colorado.edu/pub/biom-format-releases/biom-format-1.1.2.tar.gz">src_biom</a>) (license: GPL)</li>
 </ul>
 </div>
 <div class="section" id="dependencies-required-for-a-subset-of-qiime-s-features">
@@ -87,7 +85,6 @@
 <li>fasttree 2.1.3 (<a class="reference external" href="http://www.microbesonline.org/fasttree/FastTree-2.1.3.c">src_fasttree</a>) (license: GPL)</li>
 <li>jre1.6.0_05 (<a class="reference external" href="http://java.sun.com/javase/downloads/index.jsp">src_jre</a>) (license: GPL2)</li>
 <li>rdp_classifier-2.2 (<a class="reference external" href="http://sourceforge.net/projects/rdp-classifier/files/rdp-classifier/rdp_classifier_2.2.zip/download">src_rdp</a>) See <a class="reference internal" href="#rdp-install"><em>RDP install notes</em></a>. (license: GPL)</li>
-<li>usearch v5.2.236 (<a class="reference external" href="http://www.drive5.com/usearch/">src_usearch</a>) (license: see <a class="reference external" href="http://www.drive5.com/usearch/nonprofit_form.html">http://www.drive5.com/usearch/nonprofit_form.html</a>)</li>
 <li>tax2tree 1.0.0 (<a class="reference external" href="https://downloads.sourceforge.net/project/tax2tree/tax2tree-v1.0.tar.gz">src_tax2tree</a>)</li>
 </ul>
 <p>Alignment, tree-building, taxonomy assignment, OTU picking, and other data generation steps (required for alternative pipelines):</p>
@@ -104,6 +101,7 @@
 <li>rtax 0.983 (<a class="reference external" href="http://static.davidsoergel.com/rtax-0.983.tgz">src_rtax</a>) (license: GPL)</li>
 <li>pplacer 1.1 (<a class="reference external" href="http://matsen.fhcrc.org/pplacer/builds/pplacer-v1.1-Linux.tar.gz">src_pplacer</a>) (license: GPL)</li>
 <li>ParsInsert 1.04 (<a class="reference external" href="http://downloads.sourceforge.net/project/parsinsert/ParsInsert.1.04.tgz">src_parsinsert</a>) (license: GPL)</li>
+<li>usearch v5.2.236 and/or usearch v6.1 (<a class="reference external" href="http://www.drive5.com/usearch/">src_usearch</a>) (license: see <a class="reference external" href="http://www.drive5.com/usearch/nonprofit_form.html">http://www.drive5.com/usearch/nonprofit_form.html</a>) <strong>At this stage two different versions of usearch are supported.</strong> usearch v5.2.236 is referred to as <tt class="docutils literal"><span class="pre">usearch</span></tt> in QIIME, and usearch v6.1 is referred to as <tt class="docutils literal"><span class="pre">usearch61</span></tt>.</li>
 </ul>
 <p>Processing sff files:</p>
 <ul class="simple">
@@ -136,6 +134,10 @@
 <ul class="simple">
 <li>gdata 2.0.17 (<a class="reference external" href="http://gdata-python-client.googlecode.com/files/gdata-2.0.17.tar.gz">src</a>) (license: Apache 2.0)</li>
 </ul>
+<p>If you plan to use SourceTracker with QIIME:</p>
+<ul class="simple">
+<li>SourceTracker 0.9.5 (<a class="reference external" href="http://downloads.sourceforge.net/project/sourcetracker/sourcetracker-0.9.5.tar.gz">src</a>) (license: GPL)</li>
+</ul>
 </div>
 <div class="section" id="license-information-for-external-dependencies">
 <h2>License information for external dependencies<a class="headerlink" href="#license-information-for-external-dependencies" title="Permalink to this headline">¶</a></h2>
@@ -143,17 +145,16 @@
 </div>
 <div class="section" id="shortcuts-in-this-document">
 <h2>Shortcuts in this document<a class="headerlink" href="#shortcuts-in-this-document" title="Permalink to this headline">¶</a></h2>
-<p>For simplicity throughout this document, we assume that you have downloaded QIIME in <tt class="docutils literal"><span class="pre">/home/qiime/</span></tt>. You should consider all occurrences of <tt class="docutils literal"><span class="pre">/home/qiime/</span></tt> in the remainder of this document as references to the directory which contains the QIIME directory which you&#8217;ll have after downloading and unpacking QIIME.</p>
+<p>For simplicity throughout this document, we assume that you have downloaded QIIME in <tt class="docutils literal"><span class="pre">$HOME/</span></tt>. You should consider all occurrences of <tt class="docutils literal"><span class="pre">$HOME/</span></tt> in the remainder of this document as references to the directory which contains the QIIME directory which you&#8217;ll have after downloading and unpacking QIIME.</p>
 </div>
 <div class="section" id="getting-qiime">
 <h2>Getting QIIME<a class="headerlink" href="#getting-qiime" title="Permalink to this headline">¶</a></h2>
 <p>First, change to the directory where you would like to download QIIME:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">cd</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">qiime_user</span>
-</pre></div>
+<div class="highlight-python"><pre>cd $HOME</pre>
 </div>
 <div class="section" id="stable-release">
 <h3>Stable Release<a class="headerlink" href="#stable-release" title="Permalink to this headline">¶</a></h3>
-<p>Currently the most stable version of QIIME is our 1.6.0 release, which you can download from <a class="reference external" href="ftp://thebeast.colorado.edu/pub/qiime-releases/qiime-1.6.0.tar.gz">here</a>.</p>
+<p>Currently the most stable version of QIIME is our 1.7.0 release, which you can download from <a class="reference external" href="ftp://thebeast.colorado.edu/pub/qiime-releases/qiime-1.7.0.tar.gz">here</a>.</p>
 </div>
 <div class="section" id="latest-development-version">
 <h3>Latest Development Version<a class="headerlink" href="#latest-development-version" title="Permalink to this headline">¶</a></h3>
@@ -167,11 +168,11 @@
 </div>
 <div class="section" id="unpacking-qiime-release-only">
 <h2>Unpacking QIIME (release only)<a class="headerlink" href="#unpacking-qiime-release-only" title="Permalink to this headline">¶</a></h2>
-<p>After downloading the QIIME release tar file you&#8217;ll need to unpack the code. For simplicity in this document, we will assume that you have downloaded QIIME to the directory <tt class="docutils literal"><span class="pre">/home/qiime/</span></tt>.</p>
+<p>After downloading the QIIME release tar file you&#8217;ll need to unpack the code. For simplicity in this document, we will assume that you have downloaded QIIME to the directory <tt class="docutils literal"><span class="pre">$HOME/</span></tt>.</p>
 <p>Unpack the release .tar.gz file with the commands:</p>
-<div class="highlight-python"><pre>cd /home/qiime
-tar -xvzf qiime-1.6.0.tar.gz
-ln -s /home/qiime/qiime-1.6.0 /home/qiime/Qiime</pre>
+<div class="highlight-python"><pre>cd $HOME
+tar -xvzf qiime-1.7.0.tar.gz
+ln -s $HOME/qiime-1.7.0 $HOME/Qiime</pre>
 </div>
 <p>If you have downloaded the development version from GitHub, QIIME is already unpacked.</p>
 </div>
@@ -182,27 +183,26 @@ ln -s /home/qiime/qiime-1.6.0 /home/qiime/Qiime</pre>
 <h3>Installing the library code and scripts with setup.py<a class="headerlink" href="#installing-the-library-code-and-scripts-with-setup-py" title="Permalink to this headline">¶</a></h3>
 <p>Using <tt class="docutils literal"><span class="pre">Qiime/setup.py</span></tt> (and thereby python&#8217;s <tt class="docutils literal"><span class="pre">distutils</span></tt> package) is the recommended way of installing the Qiime library code and scripts. You can optionally specify where the library code and scripts should be installed &#8211; depending on your setup, you may want to do this. By default, the QIIME library code will be placed under python&#8217;s <tt class="docutils literal"><span class="pre">site-packages</span></tt>, and the QIIME scripts will be place in <tt class="docutils literal"><span class="pre">/usr/local/bin/</span></tt>. You may need to run <tt class="docutils literal"><span class="pre">setup.py</span></tt> using <tt class="docutils literal"><span class="pre">sudo</span></tt> if you do not have permission to place files in the default locations.</p>
 <p>First, ensure that you are in the top-level QIIME directory:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">cd</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">qiime</span><span class="o">/</span><span class="n">Qiime</span>
-</pre></div>
+<div class="highlight-python"><pre>cd $HOME/Qiime</pre>
 </div>
 <p>By default the QIIME scripts will be installed in <tt class="docutils literal"><span class="pre">/usr/local/bin</span></tt>. As there are a lot of QIIME scripts, we highly recommend customizing the script directory to keep your system organized. This can be customized with the <tt class="docutils literal"><span class="pre">--install_scripts</span></tt> option. You also can specify an alternate directory for the library files with <tt class="docutils literal"><span class="pre">--install-purelib</span></tt>. An example command is:</p>
-<div class="highlight-python"><pre>python setup.py install --install-scripts=/home/qiime/bin/ --install-purelib=/home/qiime/lib/</pre>
+<div class="highlight-python"><pre>python setup.py install --install-scripts=$HOME/bin/ --install-purelib=$HOME/lib/</pre>
 </div>
 <p>For a complete discussion of customizations related to the setup.py script, <a class="reference external" href="http://docs.python.org/release/2.7.1/install/index.html#alternate-installation">see this page</a>.</p>
 <p>If you used default values for <tt class="docutils literal"><span class="pre">--install-scripts</span></tt> and <tt class="docutils literal"><span class="pre">--install-purelib</span></tt> (by not specifying them), your installation should be complete. If you specified an alternate value for <tt class="docutils literal"><span class="pre">--install-scripts</span></tt>, you&#8217;ll need to ensure that the shell knows where to look for the scripts. If you are using the bash shell and the locations specified in the examples above, you can do this with the following command:</p>
-<div class="highlight-python"><pre>echo "export PATH=/home/qiime/bin/:$PATH" &gt;&gt; /home/qiime/.bashrc</pre>
+<div class="highlight-python"><pre>echo "export PATH=$HOME/bin/:$PATH" &gt;&gt; $HOME/.bashrc</pre>
 </div>
 <p>If you specified an alternate value for <tt class="docutils literal"><span class="pre">--install-purelib</span></tt>, you&#8217;ll need to be sure that python knows where to look for Qiime. If you are using the bash shell and the locations specified in the examples above, you can do this with the following command:</p>
-<div class="highlight-python"><pre>echo "export PYTHONPATH=/home/qiime/lib/:$PYTHONPATH" &gt;&gt; /home/qiime/.bashrc</pre>
+<div class="highlight-python"><pre>echo "export PYTHONPATH=$HOME/lib/:$PYTHONPATH" &gt;&gt; $HOME/.bashrc</pre>
 </div>
 <p>The source your <tt class="docutils literal"><span class="pre">.bashrc</span></tt>:</p>
-<div class="highlight-python"><pre>source /home/qiime/.bashrc</pre>
+<div class="highlight-python"><pre>source $HOME/.bashrc</pre>
 </div>
 <p id="set-script-dir">Finally, you&#8217;ll need to create and edit a custom <tt class="docutils literal"><span class="pre">qiime_config</span></tt> file to tell QIIME where to look for the QIIME scripts. Create a custom <tt class="docutils literal"><span class="pre">qiime_config</span></tt> file by copying the default <tt class="docutils literal"><span class="pre">qiime_config</span></tt> packaged with QIIME:</p>
-<div class="highlight-python"><pre>cp /home/qiime/Qiime/qiime/support_files/qiime_config /home/qiime/.qiime_config</pre>
+<div class="highlight-python"><pre>cp $HOME/Qiime/qiime/support_files/qiime_config $HOME/.qiime_config</pre>
 </div>
-<p>Open the new file, <tt class="docutils literal"><span class="pre">/home/qiime/.qiime_config</span></tt>, in a text editor such as TextEdit (on Mac), gedit (on Linux), vim, or emacs (but not Microsoft Word, which is a <a class="reference external" href="http://en.wikipedia.org/wiki/Word_processor">word processor</a>, not a <a class="reference external" href="http://en.wikipedia.org/wiki/Text_editor">text editor</a>!). Find the line beginning <tt class="docutils literal"><span class="pre">qiime_scripts_dir</span></tt> and add a tab, followed by the QIIME scripts directory. If you&#8217;ve used the default value (i.e., you didn&#8217;t specify <tt class="docutils literal"><span class="pre">--install-scripts</span></tt>) the value you add will be <tt class="docutils literal"><span class="pre">/usr/local/bin/</span></tt>. Otherwise, specify the value that you provided for <tt class="docutils literal"><span class="pre">--install-scripts</span></tt>. In the example above, this would look like:</p>
-<div class="highlight-python"><pre>qiime_scripts_dir       /home/qiime/bin/</pre>
+<p>Open the new file, <tt class="docutils literal"><span class="pre">$HOME/.qiime_config</span></tt>, in a text editor such as TextEdit (on Mac), gedit (on Linux), vim, or emacs (but not Microsoft Word, which is a <a class="reference external" href="http://en.wikipedia.org/wiki/Word_processor">word processor</a>, not a <a class="reference external" href="http://en.wikipedia.org/wiki/Text_editor">text editor</a>!). Find the line beginning <tt class="docutils literal"><span class="pre">qiime_scripts_dir</span></tt> and add a tab, followed by the QIIME scripts directory. If you&#8217;ve used the default value (i.e., you didn&#8217;t specify <tt class="docutils literal"><span class="pre">--install-scripts</span></tt>) the value you add will be <tt class="docutils literal"><span class="pre">/usr/local/bin/</span></tt>. Otherwise, specify the value that you provided for <tt class="docutils literal"><span class="pre">--install-scripts</span></tt>. In the example above, this would look like:</p>
+<div class="highlight-python"><pre>qiime_scripts_dir       $HOME/bin/</pre>
 </div>
 <p>Note that the delimiter between the key and the value here is a tab, not a space! For additional information on the qiime_config file, <a class="reference external" href="./qiime_config.html">see this document</a>.</p>
 </div>
@@ -210,7 +210,7 @@ ln -s /home/qiime/qiime-1.6.0 /home/qiime/Qiime</pre>
 <div class="section" id="running-the-test-suite">
 <h2>Running the test suite<a class="headerlink" href="#running-the-test-suite" title="Permalink to this headline">¶</a></h2>
 <p>Next you should run the test suite. Execute the following commands:</p>
-<div class="highlight-python"><pre>cd /home/qiime/Qiime/tests/
+<div class="highlight-python"><pre>cd $HOME/Qiime/tests/
 python all_tests.py</pre>
 </div>
 <p>You will see test output on the terminal indicating test successes and failures. Some failures are OK. The <tt class="docutils literal"><span class="pre">all_tests.py</span></tt> command will complete with a summary of test failures. Some tests may fail due to missing external applications &#8211; these will be noted separately from other test failures. If these are related to features of QIIME that you are not using, this is acceptable. Otherwise, you&#8217;ll need to ensure that you have the external applications installed correctly (and the correct versions), and re-run the tests.</p>
@@ -222,50 +222,50 @@ python all_tests.py</pre>
 <span class="n">align_seqs</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">h</span>
 </pre></div>
 </div>
-<p>This should give you help text describing the interface to the align_seqs.py script. (Note that if you do not have a /home/qiime/.bashrc you may get an error at the <tt class="docutils literal"><span class="pre">source</span></tt> step. If you did not specify alternate values for <tt class="docutils literal"><span class="pre">--install-purelib</span></tt> or <tt class="docutils literal"><span class="pre">--install-scripts</span></tt> this shouldn&#8217;t be a problem.)</p>
+<p>This should give you help text describing the interface to the align_seqs.py script. (Note that if you do not have a $HOME/.bashrc you may get an error at the <tt class="docutils literal"><span class="pre">source</span></tt> step. If you did not specify alternate values for <tt class="docutils literal"><span class="pre">--install-purelib</span></tt> or <tt class="docutils literal"><span class="pre">--install-scripts</span></tt> this shouldn&#8217;t be a problem.)</p>
 </div>
 <div class="section" id="external-application-install-notes">
 <h2>External application install notes<a class="headerlink" href="#external-application-install-notes" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="path-environment-variable">
 <h3>PATH Environment Variable<a class="headerlink" href="#path-environment-variable" title="Permalink to this headline">¶</a></h3>
-<p>External applications used by QIIME need to be visible to the shell by existing in executable search path (i.e., listed in the <tt class="docutils literal"><span class="pre">$PATH</span></tt> environment variable). For example, if you plan to use cd-hit, and have the cd-hit executables installed in <tt class="docutils literal"><span class="pre">/home/qiime/bin</span></tt> you can add this directory to your system path with the commands:</p>
-<div class="highlight-python"><pre>echo "export PATH=/home/qiime/bin/:$PATH" &gt;&gt; /home/qiime/.bashrc
-source /home/qiime/.bashrc</pre>
+<p>External applications used by QIIME need to be visible to the shell by existing in executable search path (i.e., listed in the <tt class="docutils literal"><span class="pre">$PATH</span></tt> environment variable). For example, if you plan to use cd-hit, and have the cd-hit executables installed in <tt class="docutils literal"><span class="pre">$HOME/bin</span></tt> you can add this directory to your system path with the commands:</p>
+<div class="highlight-python"><pre>echo "export PATH=$HOME/bin/:$PATH" &gt;&gt; $HOME/.bashrc
+source $HOME/.bashrc</pre>
 </div>
 </div>
 <div class="section" id="pythonpath-environment-variable">
 <h3>PYTHONPATH Environment Variable<a class="headerlink" href="#pythonpath-environment-variable" title="Permalink to this headline">¶</a></h3>
 <p>Qiime, PyCogent, and NumPy must be visible to python for all features of QIIME. matplotlib must be visible to python if you plan to use graphics features of QIIME; PyNAST must be visible to python if you plan to use PyNAST for multiple sequence alignment; and Denoiser must be visible to python if you plan to denoise 454 data. With the exception of Denoiser, all of these packages come with setup.py scripts. If you have used these, you should not need to modify your PYTHONPATH to make the library code visible. If you haven&#8217;t used the respective setup.py scripts, or if you specified an alternate value for <tt class="docutils literal"><span class="pre">--install-purelib</span></tt>, you may need to add the locations of these libraries to your PYTHONPATH environment variable.</p>
-<p>For example, if you&#8217;ve installed PyNAST in <tt class="docutils literal"><span class="pre">/home/qiime/PyNAST</span></tt> you can add this to your PYTHONPATH with the commands:</p>
-<div class="highlight-python"><pre>echo "export PYTHONPATH=/home/qiime/PyNAST/:$PYTHONPATH" &gt;&gt; /home/qiime/.bashrc
-source /home/qiime/.bashrc</pre>
+<p>For example, if you&#8217;ve installed PyNAST in <tt class="docutils literal"><span class="pre">$HOME/PyNAST</span></tt> you can add this to your PYTHONPATH with the commands:</p>
+<div class="highlight-python"><pre>echo "export PYTHONPATH=$HOME/PyNAST/:$PYTHONPATH" &gt;&gt; $HOME/.bashrc
+source $HOME/.bashrc</pre>
 </div>
 </div>
 <div class="section" id="rdp-jar-path-environment-variable">
 <h3>RDP_JAR_PATH Environment Variable<a class="headerlink" href="#rdp-jar-path-environment-variable" title="Permalink to this headline">¶</a></h3>
-<p id="rdp-install">If you plan to use the RDP classifier for taxonomy assignment you must define an <tt class="docutils literal"><span class="pre">RDP_JAR_PATH</span></tt> environment variable. If you downloaded and unzipped the RDP classifier folder in <tt class="docutils literal"><span class="pre">/home/qiime/app/</span></tt>, you can do this with the following commands:</p>
-<div class="highlight-python"><pre>echo "export RDP_JAR_PATH=/home/qiime/app/rdp_classifier_2.2/rdp_classifier-2.2.jar" &gt;&gt; /home/qiime/.bashrc
-source /home/qiime/.bashrc</pre>
+<p id="rdp-install">If you plan to use the RDP classifier for taxonomy assignment you must define an <tt class="docutils literal"><span class="pre">RDP_JAR_PATH</span></tt> environment variable. If you downloaded and unzipped the RDP classifier folder in <tt class="docutils literal"><span class="pre">$HOME/app/</span></tt>, you can do this with the following commands:</p>
+<div class="highlight-python"><pre>echo "export RDP_JAR_PATH=$HOME/app/rdp_classifier_2.2/rdp_classifier-2.2.jar" &gt;&gt; $HOME/.bashrc
+source $HOME/.bashrc</pre>
 </div>
 <p>Note that you will need the contents inside <tt class="docutils literal"><span class="pre">rdp_classifier_2.2</span></tt> for the program to function properly.</p>
 </div>
 <div class="section" id="uclust-install-notes">
 <h3>uclust Install Notes<a class="headerlink" href="#uclust-install-notes" title="Permalink to this headline">¶</a></h3>
-<p id="uclust-install">The uclust binary must be called <tt class="docutils literal"><span class="pre">uclust</span></tt>, which differs from the names of the posted binaries, but is the name of the binary if you build from source. If you&#8217;ve installed the binary <tt class="docutils literal"><span class="pre">uclust1.2.21q_i86linux64</span></tt> as <tt class="docutils literal"><span class="pre">/home/qiime/bin/uclust1.2.21q_i86linux64</span></tt>, we recommend creating a symbolic link to this file:</p>
-<div class="highlight-python"><pre>ln -s /home/qiime/bin/uclust1.2.21q_i86linux64 /home/qiime/bin/uclust</pre>
+<p id="uclust-install">The uclust binary must be called <tt class="docutils literal"><span class="pre">uclust</span></tt>, which differs from the names of the posted binaries, but is the name of the binary if you build from source. If you&#8217;ve installed the binary <tt class="docutils literal"><span class="pre">uclust1.2.21q_i86linux64</span></tt> as <tt class="docutils literal"><span class="pre">$HOME/bin/uclust1.2.21q_i86linux64</span></tt>, we recommend creating a symbolic link to this file:</p>
+<div class="highlight-python"><pre>ln -s $HOME/bin/uclust1.2.21q_i86linux64 $HOME/bin/uclust</pre>
 </div>
 </div>
 <div class="section" id="usearch-install-notes">
 <h3>usearch Install Notes<a class="headerlink" href="#usearch-install-notes" title="Permalink to this headline">¶</a></h3>
-<p id="usearch-install">The usearch binary must be called <tt class="docutils literal"><span class="pre">usearch</span></tt>, which differs from the names of the posted binaries, but is the name of the binary if you build from source. If you&#8217;ve installed the binary <tt class="docutils literal"><span class="pre">usearch5.2.236_i86linux32</span></tt> as <tt class="docutils literal"><span class="pre">/home/qiime/bin/usearch5.2.236_i86linux32</span></tt>, we recommend creating a symbolic link to this file:</p>
-<div class="highlight-python"><pre>ln -s /home/qiime/bin/usearch5.2.236_i86linux32 /home/qiime/bin/usearch</pre>
+<p id="usearch-install">The usearch binary must be called <tt class="docutils literal"><span class="pre">usearch</span></tt>, which differs from the names of the posted binaries, but is the name of the binary if you build from source. If you&#8217;ve installed the binary <tt class="docutils literal"><span class="pre">usearch5.2.236_i86linux32</span></tt> as <tt class="docutils literal"><span class="pre">$HOME/bin/usearch5.2.236_i86linux32</span></tt>, we recommend creating a symbolic link to this file:</p>
+<div class="highlight-python"><pre>ln -s $HOME/bin/usearch5.2.236_i86linux32 $HOME/bin/usearch</pre>
 </div>
 </div>
 <div class="section" id="chimeraslayer-install-notes">
 <h3>ChimeraSlayer Install Notes<a class="headerlink" href="#chimeraslayer-install-notes" title="Permalink to this headline">¶</a></h3>
-<p id="chimeraslayer-install">ChimeraSlayer can only be run from the directory where it was unpacked and built as it depends on several of its dependencies being in specific places relative to the executable (<tt class="docutils literal"><span class="pre">ChimeraSlayer/ChimeraSlayer.pl</span></tt>). Carefully follow the ChimeraSlayer install instructions. Then add the directory containing <tt class="docutils literal"><span class="pre">ChimeraSlayer.pl</span></tt> to your <tt class="docutils literal"><span class="pre">$PATH</span></tt> environment variable. If your <tt class="docutils literal"><span class="pre">ChimeraSlayer</span></tt> folder is in <tt class="docutils literal"><span class="pre">/home/qiime/app/</span></tt> you can set the <tt class="docutils literal"><span class="pre">$PATH</span></tt> environment variable as follows:</p>
-<div class="highlight-python"><pre>echo "export PATH=/home/qiime/app/ChimeraSlayer:$PATH" &gt;&gt; /home/qiime/.bashrc
-source /home/qiime/.bashrc</pre>
+<p id="chimeraslayer-install">ChimeraSlayer can only be run from the directory where it was unpacked and built as it depends on several of its dependencies being in specific places relative to the executable (<tt class="docutils literal"><span class="pre">ChimeraSlayer/ChimeraSlayer.pl</span></tt>). Carefully follow the ChimeraSlayer install instructions. Then add the directory containing <tt class="docutils literal"><span class="pre">ChimeraSlayer.pl</span></tt> to your <tt class="docutils literal"><span class="pre">$PATH</span></tt> environment variable. If your <tt class="docutils literal"><span class="pre">ChimeraSlayer</span></tt> folder is in <tt class="docutils literal"><span class="pre">$HOME/app/</span></tt> you can set the <tt class="docutils literal"><span class="pre">$PATH</span></tt> environment variable as follows:</p>
+<div class="highlight-python"><pre>echo "export PATH=$HOME/app/ChimeraSlayer:$PATH" &gt;&gt; $HOME/.bashrc
+source $HOME/.bashrc</pre>
 </div>
 <p>If you&#8217;re having trouble getting ChimeraSlayer to work via QIIME, you should first check to see if you can run it directly from a directory other than its install directory. For example, try running <tt class="docutils literal"><span class="pre">ChimeraSlayer.pl</span></tt> from your home directory.</p>
 <p>Once you have configured Qiime, you can test your ChimeraSlayer install by running:</p>
@@ -291,11 +291,11 @@ source /home/qiime/.bashrc</pre>
 </div>
 <div class="section" id="ampliconnoise-install-notes">
 <h3>AmpliconNoise Install Notes<a class="headerlink" href="#ampliconnoise-install-notes" title="Permalink to this headline">¶</a></h3>
-<p id="ampliconnoise-install">AmpliconNoise requires that several environment variables are set. After you&#8217;ve installed AmpliconNoise, you can set these with the following commands (assuming your AmpliconNoise install directory is <tt class="docutils literal"><span class="pre">/home/qiime/AmpliconNoiseV1.27/</span></tt>):</p>
-<div class="highlight-python"><pre>echo "export PATH=/home/qiime/AmpliconNoiseV1.27/Scripts:/home/qiime/AmpliconNoiseV1.27/bin:$PATH" &gt;&gt; /home/qiime/.bashrc
+<p id="ampliconnoise-install">AmpliconNoise requires that several environment variables are set. After you&#8217;ve installed AmpliconNoise, you can set these with the following commands (assuming your AmpliconNoise install directory is <tt class="docutils literal"><span class="pre">$HOME/AmpliconNoiseV1.27/</span></tt>):</p>
+<div class="highlight-python"><pre>echo "export PATH=$HOME/AmpliconNoiseV1.27/Scripts:$HOME/AmpliconNoiseV1.27/bin:$PATH" &gt;&gt; $HOME/.bashrc
 
-echo "export PYRO_LOOKUP_FILE=/home/qiime/AmpliconNoiseV1.27/Data/LookUp_E123.dat" &gt;&gt; /home/qiime/.bashrc
-echo "export SEQ_LOOKUP_FILE=/home/qiime/AmpliconNoiseV1.27/Data/Tran.dat" &gt;&gt; /home/qiime/.bashrc</pre>
+echo "export PYRO_LOOKUP_FILE=$HOME/AmpliconNoiseV1.27/Data/LookUp_E123.dat" &gt;&gt; $HOME/.bashrc
+echo "export SEQ_LOOKUP_FILE=$HOME/AmpliconNoiseV1.27/Data/Tran.dat" &gt;&gt; $HOME/.bashrc</pre>
 </div>
 </div>
 <div class="section" id="qiime-denoiser-install-notes">
@@ -402,7 +402,7 @@ echo "export SEQ_LOOKUP_FILE=/home/qiime/AmpliconNoiseV1.27/Data/Tran.dat" &gt;&
 
     <div class="footer">
         &copy; Copyright 2012, QIIME Team.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
     </div>
 <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");

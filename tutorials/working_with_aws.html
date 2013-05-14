@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -16,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.6.0',
+        VERSION:     '1.7.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -66,12 +64,12 @@
 </div>
 <div class="section" id="connecting-to-your-ec2-instance-using-ssh">
 <h2>Connecting to your EC2 instance using ssh<a class="headerlink" href="#connecting-to-your-ec2-instance-using-ssh" title="Permalink to this headline">¶</a></h2>
-<p>To connect to your EC2 instance with ssh you&#8217;ll need your key file, the Public DNS entry for your running EC2 instance, and an ssh client. You should have created and downloaded a key file when creating your first EC2 instance. On OS X and Linux, be sure that the permissions are set to <tt class="docutils literal"><span class="pre">400</span></tt> on this file, or you won&#8217;t be able to use it. If your key file is called <tt class="docutils literal"><span class="pre">/home/qiime/my_key.pem</span></tt> you can set the permissions with the command:</p>
-<div class="highlight-python"><pre>chmod 400 /home/qiime/my_key.pem</pre>
+<p>To connect to your EC2 instance with ssh you&#8217;ll need your key file, the Public DNS entry for your running EC2 instance, and an ssh client. You should have created and downloaded a key file when creating your first EC2 instance. On OS X and Linux, be sure that the permissions are set to <tt class="docutils literal"><span class="pre">400</span></tt> on this file, or you won&#8217;t be able to use it. If your key file is called <tt class="docutils literal"><span class="pre">$HOME/my_key.pem</span></tt> you can set the permissions with the command:</p>
+<div class="highlight-python"><pre>chmod 400 $HOME/my_key.pem</pre>
 </div>
 <p>You obtain the Public DNS entry from EC2 on a per instantiation basis - every time you Launch or Start and instance, you&#8217;ll need to get this value again. See Figure 1 for where to find this information.</p>
 <blockquote>
-<div><img alt="../_images/public_dns_entry.png" src="../_images/public_dns_entry.png" style="width: 700px;" />
+<div><a class="reference internal image-reference" href="../_images/public_dns_entry.png"><img alt="../_images/public_dns_entry.png" src="../_images/public_dns_entry.png" style="width: 700px;" /></a>
 <p>Figure 1: Identifying the Public DNS entry.</p>
 </div></blockquote>
 <p>If you&#8217;re working on OS X or Linux, you already have an ssh client installed. If you&#8217;re working on Windows, one free option is <a class="reference external" href="http://www.chiark.greenend.org.uk/~sgtatham/putty/">PuTTY</a>.</p>
@@ -121,7 +119,7 @@ scp -i  ~/my_key.pem ~/code/Qiime/examples/qiime_tutorial/Fasting_Map.txt ubuntu
 <blockquote>
 <div><img alt="../_images/cyberduck_opened_connection.png" src="../_images/cyberduck_opened_connection.png" />
 <p>Figure 3. Remote file browser.</p>
-<img alt="../_images/cyberduck_drag_and_drop_input_file.png" src="../_images/cyberduck_drag_and_drop_input_file.png" style="width: 700px;" />
+<a class="reference internal image-reference" href="../_images/cyberduck_drag_and_drop_input_file.png"><img alt="../_images/cyberduck_drag_and_drop_input_file.png" src="../_images/cyberduck_drag_and_drop_input_file.png" style="width: 700px;" /></a>
 <p>Figure 4. Drag and drop a local file to the EC2 instance.</p>
 <img alt="../_images/cyberduck_view_file.png" src="../_images/cyberduck_view_file.png" />
 <p>Figure 5. Transferred file is visible on the EC2 instance.</p>
@@ -131,7 +129,7 @@ scp -i  ~/my_key.pem ~/code/Qiime/examples/qiime_tutorial/Fasting_Map.txt ubuntu
 <blockquote>
 <div><img alt="../_images/cyberduck_create_output_file.png" src="../_images/cyberduck_create_output_file.png" />
 <p>Figure 6. Create an output file on the EC2 instance.</p>
-<img alt="../_images/cyberduck_drag_and_drop_output_file.png" src="../_images/cyberduck_drag_and_drop_output_file.png" style="width: 700px;" />
+<a class="reference internal image-reference" href="../_images/cyberduck_drag_and_drop_output_file.png"><img alt="../_images/cyberduck_drag_and_drop_output_file.png" src="../_images/cyberduck_drag_and_drop_output_file.png" style="width: 700px;" /></a>
 <p>Figure 7. Transfer file from the EC2 instance to the local system.</p>
 </div></blockquote>
 </li>
@@ -151,7 +149,7 @@ scp -i  ~/my_key.pem ~/code/Qiime/examples/qiime_tutorial/Fasting_Map.txt ubuntu
 <h2>Stopping your EC2 instances<a class="headerlink" href="#stopping-your-ec2-instances" title="Permalink to this headline">¶</a></h2>
 <p>As long as your EC2 instances are running, you&#8217;re paying for them by the hour. When you&#8217;re temporarily done using your EC2 instance, you can stop it from the AWS Management Console by selecting the instance and choosing <tt class="docutils literal"><span class="pre">Instance</span> <span class="pre">Actions</span></tt> &gt; <tt class="docutils literal"><span class="pre">Stop</span></tt> (see Figure 8). Note that you still pay a very small storage fee for stopped instances, so if you&#8217;re permanently done with an instance you probably want to terminate it. You can restart a stopped EC2 instance by selecting that instance and choosing <tt class="docutils literal"><span class="pre">Instance</span> <span class="pre">Actions</span></tt> &gt; <tt class="docutils literal"><span class="pre">Start</span></tt>.</p>
 <blockquote>
-<div><img alt="../_images/stop_instance.png" src="../_images/stop_instance.png" style="width: 700px;" />
+<div><a class="reference internal image-reference" href="../_images/stop_instance.png"><img alt="../_images/stop_instance.png" src="../_images/stop_instance.png" style="width: 700px;" /></a>
 <p>Figure 8. Stopping or pausing an EC2 instance.</p>
 </div></blockquote>
 <p>If you&#8217;re permanently done with an EC2 instance, you can terminate it by selecting the instance and choosing <tt class="docutils literal"><span class="pre">Instance</span> <span class="pre">Actions</span></tt> &gt; <tt class="docutils literal"><span class="pre">Terminate</span></tt>. Once you&#8217;ve terminated an instance you can never get it back: all data in that instance, as well as any configuration changes you&#8217;ve made, etc, is lost forever, so be sure this is what you want to do.</p>
@@ -161,17 +159,17 @@ scp -i  ~/my_key.pem ~/code/Qiime/examples/qiime_tutorial/Fasting_Map.txt ubuntu
 <p>The disk space is fairly limited on the EC2 instances. To get around this you can create a volume (the equivalent of an external hard drive) and mount that on your instance. Data that you store in this volume can be accessed across different launches of an instance, or across different instances, but can only be attached to one instance at a time.</p>
 <p>Use the management console to create a volume. To do this, first click the <tt class="docutils literal"><span class="pre">EC2</span></tt> tab. Next, select <tt class="docutils literal"><span class="pre">Volumes</span></tt> on the left sidebar. Then click <tt class="docutils literal"><span class="pre">Create</span> <span class="pre">Volume</span></tt>. See Figure 9.</p>
 <blockquote>
-<div><img alt="../_images/create_an_ebs_volume.png" src="../_images/create_an_ebs_volume.png" style="width: 800px;" />
+<div><a class="reference internal image-reference" href="../_images/create_an_ebs_volume.png"><img alt="../_images/create_an_ebs_volume.png" src="../_images/create_an_ebs_volume.png" style="width: 800px;" /></a>
 <p>Figure 9: Create an EBS Volume.</p>
 </div></blockquote>
 <p>Next you must configure the volume you want to create. You have three options here. First, define the size of the volume. This will be based on the amount of data that you&#8217;ll need to store. Creating a volume that is around 10x the size of the raw data you want to analyze should leave you plenty of disk space for your analysis. Next, you must define what <tt class="docutils literal"><span class="pre">Availability</span> <span class="pre">Zone</span></tt> you&#8217;d like to launch your instance in. This <strong>must</strong> be the same zone that your instance is running in. This information is available under the &#8216;Description&#8217; tab associated with your running instance (see <tt class="docutils literal"><span class="pre">Zone</span></tt> toward the bottom right of Figure 8). Last, you can define an snapshot that you&#8217;d like to create your volume from. You typically won&#8217;t use that here. See Figure 10.</p>
 <blockquote>
-<div><img alt="../_images/configure_ebs_volume_creation.png" src="../_images/configure_ebs_volume_creation.png" style="width: 700px;" />
+<div><a class="reference internal image-reference" href="../_images/configure_ebs_volume_creation.png"><img alt="../_images/configure_ebs_volume_creation.png" src="../_images/configure_ebs_volume_creation.png" style="width: 700px;" /></a>
 <p>Figure 10: Configure EBS volume creation.</p>
 </div></blockquote>
 <p>Finally, you&#8217;ll attach your volume to your instance: the equivalent of plugging the USB hard drive into the computer. To do this, click the checkbox next to your volume, select <tt class="docutils literal"><span class="pre">More</span></tt> and then <tt class="docutils literal"><span class="pre">Attach</span> <span class="pre">Volume</span></tt>. Select the instance that you&#8217;d like to attach your volume to. If you don&#8217;t see your instance it may not be running, or you may have not selected the correct <tt class="docutils literal"><span class="pre">Availability</span> <span class="pre">Zone</span></tt>. Take note of the value associated with <tt class="docutils literal"><span class="pre">Device</span></tt>. You&#8217;ll need this in the next step (we&#8217;ll call this the attachment point). See Figure 11.</p>
 <blockquote>
-<div><img alt="../_images/configure_ebs_volume_attachment.png" src="../_images/configure_ebs_volume_attachment.png" style="width: 700px;" />
+<div><a class="reference internal image-reference" href="../_images/configure_ebs_volume_attachment.png"><img alt="../_images/configure_ebs_volume_attachment.png" src="../_images/configure_ebs_volume_attachment.png" style="width: 700px;" /></a>
 <p>Figure 11: Configure EBS volume attachment.</p>
 </div></blockquote>
 <p>ssh into your EC2 instance and run the following commands. In this example, I&#8217;m assuming that your attachment point is <tt class="docutils literal"><span class="pre">/dev/sdf/</span></tt>. If it&#8217;s not, replace all occurrences of <tt class="docutils literal"><span class="pre">/dev/sdf/</span></tt> with your actual attachment point.</p>
@@ -179,13 +177,12 @@ scp -i  ~/my_key.pem ~/code/Qiime/examples/qiime_tutorial/Fasting_Map.txt ubuntu
 <div class="highlight-python"><pre>sudo mkfs.ext4 /dev/sdf</pre>
 </div>
 <p>One your first time attaching a volume to a new instance, you&#8217;ll need to run this command:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">mkdir</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span><span class="n">data</span>
-</pre></div>
+<div class="highlight-python"><pre>mkdir $HOME/data</pre>
 </div>
 <p>Anytime you attach or re-attach your volume to an instance (so after starting a new or stopped instance) you&#8217;ll need to run these commands:</p>
-<div class="highlight-python"><pre>sudo mount /dev/sdf /home/ubuntu/data
-sudo chown ubuntu /home/ubuntu/data
-sudo chgrp ubuntu /home/ubuntu/data</pre>
+<div class="highlight-python"><pre>sudo mount /dev/sdf $HOME/data
+sudo chown ubuntu $HOME/data
+sudo chgrp ubuntu $HOME/data</pre>
 </div>
 <p>Once you&#8217;ve created your device, you only need to go through the attachment step to attach to future instances. This is the step illustrated in Figure 11. Note that you&#8217;ll need to create future instances in the same availability zone as this volume if you&#8217;d like to attach this volume.</p>
 </div>
@@ -206,9 +203,9 @@ plugins = ipcluster</pre>
 <div class="highlight-python"><pre>starcluster sshmaster CLUSTER_TAG -u ubuntu</pre>
 </div>
 <p>where <tt class="docutils literal"><span class="pre">CLUSTER_TAG</span></tt> refers to the cluster_tag that was specified when you launched your cluster with <tt class="docutils literal"><span class="pre">starcluster</span> <span class="pre">start</span></tt>.</p>
-<p>To run jobs in parallel on this system, you&#8217;ll next need to edit the <tt class="docutils literal"><span class="pre">qiime_config</span></tt> file on the cluster. This file is <tt class="docutils literal"><span class="pre">/home/ubuntu/.qiime_config_default</span></tt>. Edit the values <tt class="docutils literal"><span class="pre">cluster_jobs_fp</span></tt> and <tt class="docutils literal"><span class="pre">temp_dir</span></tt> so they looks like the following:</p>
+<p>To run jobs in parallel on this system, you&#8217;ll next need to edit the <tt class="docutils literal"><span class="pre">qiime_config</span></tt> file on the cluster. This file is <tt class="docutils literal"><span class="pre">$HOME/.qiime_config_default</span></tt>. Edit the values <tt class="docutils literal"><span class="pre">cluster_jobs_fp</span></tt> and <tt class="docutils literal"><span class="pre">temp_dir</span></tt> so they looks like the following:</p>
 <div class="highlight-python"><pre>cluster_jobs_fp start_parallel_jobs_sc.py
-temp_dir        /home/ubuntu/temp/</pre>
+temp_dir        $HOME/temp/</pre>
 </div>
 </div>
 </div>
@@ -283,7 +280,7 @@ temp_dir        /home/ubuntu/temp/</pre>
 
     <div class="footer">
         &copy; Copyright 2012, QIIME Team.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
     </div>
 <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
