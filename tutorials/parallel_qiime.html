@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -16,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.6.0',
+        VERSION:     '1.7.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -74,8 +72,8 @@
 </div>
 <div class="section" id="enabling-parallel-runs-in-qiime">
 <h2>Enabling parallel runs in QIIME<a class="headerlink" href="#enabling-parallel-runs-in-qiime" title="Permalink to this headline">¶</a></h2>
-<p>By default, QIIME is configured to run parallel jobs on systems without a queueing system (e.g., your laptop, desktop, or single AWS instance), where you tell a parallel QIIME script how many jobs should be submitted. If you&#8217;re working on one of these types of systems, you&#8217;ll call one of  QIIME&#8217;s parallel scripts or pass <tt class="docutils literal"><span class="pre">-a</span></tt> to one of QIIME&#8217;s workflow scripts to run in parallel. You&#8217;ll also pass <tt class="docutils literal"><span class="pre">-O</span></tt> with the number of jobs to run. For example, to run <tt class="docutils literal"><span class="pre">pick_reference_otus_through_otu_table.py</span></tt> via four parallel jobs, you can do the following:</p>
-<div class="highlight-python"><pre>pick_reference_otus_through_otu_table.py -a -O 4 ...</pre>
+<p>By default, QIIME is configured to run parallel jobs on systems without a queueing system (e.g., your laptop, desktop, or single AWS instance), where you tell a parallel QIIME script how many jobs should be submitted. If you&#8217;re working on one of these types of systems, you&#8217;ll call one of  QIIME&#8217;s parallel scripts or pass <tt class="docutils literal"><span class="pre">-a</span></tt> to one of QIIME&#8217;s workflow scripts to run in parallel. You&#8217;ll also pass <tt class="docutils literal"><span class="pre">-O</span></tt> with the number of jobs to run. For example, to run <tt class="docutils literal"><span class="pre">pick_closed_reference_otus.py</span></tt> via four parallel jobs, you can do the following:</p>
+<div class="highlight-python"><pre>pick_closed_reference_otus.py -a -O 4 ...</pre>
 </div>
 <p>where <tt class="docutils literal"><span class="pre">...</span></tt> is replaced with the remaining parameters to the script.</p>
 <p>You can specify a default number of jobs via the <tt class="docutils literal"><span class="pre">jobs_to_start</span></tt> parameter in <tt class="docutils literal"><span class="pre">qiime_config</span></tt> (see <a class="reference internal" href="../install/qiime_config.html"><em>Setting up your qiime_config file</em></a> for help with setting up your <tt class="docutils literal"><span class="pre">qiime_config</span></tt> file) to avoid having to pass <tt class="docutils literal"><span class="pre">-O</span></tt>. The default value for <tt class="docutils literal"><span class="pre">jobs_to_start</span></tt> is <tt class="docutils literal"><span class="pre">1</span></tt>, corresponding to no parallelization (hence your having to pass <tt class="docutils literal"><span class="pre">-O</span></tt> to use parallel QIIME unless you&#8217;ve overridden the default). You should modify the <tt class="docutils literal"><span class="pre">jobs_to_start</span></tt> value to one that makes sense for your environment. For example, if you are running on a dual-core laptop, you probably want to specify <tt class="docutils literal"><span class="pre">2</span></tt>. (Note that this will likely prevent you from doing anything else with your laptop while QIIME is running in parallel.) If you&#8217;re running on an 8 processor machine, you&#8217;d want to set <tt class="docutils literal"><span class="pre">jobs_to_start</span></tt> to a maximum of <tt class="docutils literal"><span class="pre">8</span></tt>, but <tt class="docutils literal"><span class="pre">7</span></tt> might be better if you&#8217;d like to reserve one processor for other work while running parallel QIIME. Note that setting <tt class="docutils literal"><span class="pre">jobs_to_start</span></tt> to a value that is too high (e.g., <tt class="docutils literal"><span class="pre">5</span></tt> on a quad-core system) will cause your job to take longer to complete than if you specify a value that makes sense for your environment. Finally, you can always override your default <tt class="docutils literal"><span class="pre">jobs_to_start</span></tt> value by passing <tt class="docutils literal"><span class="pre">-O</span></tt> to a parallel script: you are just setting that default value in <tt class="docutils literal"><span class="pre">qiime_config</span></tt>.</p>
@@ -180,7 +178,7 @@ pick_otus.py -i inseqs_file3.fasta</pre>
 
     <div class="footer">
         &copy; Copyright 2012, QIIME Team.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
     </div>
 <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");

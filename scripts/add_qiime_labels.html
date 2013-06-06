@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -8,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>add_qiime_labels.py – Takes a directory and a mapping file of SampleIDs to fasta file names, combines all files that have valid fasta extensions into a single fasta file, with valid QIIME fasta labels. &mdash; Homepage</title>
+    <title>add_qiime_labels.py – Takes a directory, a metadata mapping file, and a column name that contains the fasta file names that SampleIDs are associated with, combines all files that have valid fasta extensions into a single fasta file, with valid QIIME fasta labels. &mdash; Homepage</title>
     
     <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -16,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.6.0',
+        VERSION:     '1.7.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -56,26 +54,31 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <span class="target" id="add-qiime-labels"></span><div class="section" id="add-qiime-labels-py-takes-a-directory-and-a-mapping-file-of-sampleids-to-fasta-file-names-combines-all-files-that-have-valid-fasta-extensions-into-a-single-fasta-file-with-valid-qiime-fasta-labels">
-<span id="index-0"></span><h1><em>add_qiime_labels.py</em> &#8211; Takes a directory and a mapping file of SampleIDs to fasta file names, combines all files that have valid fasta extensions into a single fasta file, with valid QIIME fasta labels.<a class="headerlink" href="#add-qiime-labels-py-takes-a-directory-and-a-mapping-file-of-sampleids-to-fasta-file-names-combines-all-files-that-have-valid-fasta-extensions-into-a-single-fasta-file-with-valid-qiime-fasta-labels" title="Permalink to this headline">¶</a></h1>
+  <span class="target" id="add-qiime-labels"></span><div class="section" id="add-qiime-labels-py-takes-a-directory-a-metadata-mapping-file-and-a-column-name-that-contains-the-fasta-file-names-that-sampleids-are-associated-with-combines-all-files-that-have-valid-fasta-extensions-into-a-single-fasta-file-with-valid-qiime-fasta-labels">
+<span id="index-0"></span><h1><em>add_qiime_labels.py</em> &#8211; Takes a directory, a metadata mapping file, and a column name that contains the fasta file names that SampleIDs are associated with, combines all files that have valid fasta extensions into a single fasta file, with valid QIIME fasta labels.<a class="headerlink" href="#add-qiime-labels-py-takes-a-directory-a-metadata-mapping-file-and-a-column-name-that-contains-the-fasta-file-names-that-sampleids-are-associated-with-combines-all-files-that-have-valid-fasta-extensions-into-a-single-fasta-file-with-valid-qiime-fasta-labels" title="Permalink to this headline">¶</a></h1>
 <p><strong>Description:</strong></p>
-<p>A tab separated text file with SampleIDs
+<p>A metadata mapping file with SampleIDs
 and fasta file names (just the file name itself, not the full or relative
 filepath) is used to generate a combined fasta file with valid
 QIIME labels based upon the SampleIDs specified in the mapping file.</p>
+<p>See: <a class="reference external" href="http://qiime.org/documentation/file_formats.html#metadata-mapping-files">http://qiime.org/documentation/file_formats.html#metadata-mapping-files</a>
+for details about the metadata file format.</p>
 <p>Example mapping file:
-Sample.1        fasta_dir/seqs1.fna
-Sample.2        fasta_dir/seqs2.fna</p>
+#SampleID       BarcodeSequence LinkerPrimerSequence    InputFileName   Description
+Sample.1        AAAACCCCGGGG    CTACATAATCGGRATT        seqs1.fna       sample.1
+Sample.2        TTTTGGGGAAAA    CTACATAATCGGRATT        seqs2.fna       sample.2</p>
 <p>This script is to handle situations where fasta data comes already
-demultiplexed into a one fasta file per sample basis.  Apart from altering
-the fasta label to add a QIIME compatible label at the beginning (example:
+demultiplexed into a one fasta file per sample basis.  Only alters
+the fasta label to add a QIIME compatible label at the beginning.</p>
+<p>Example:
+With the metadata mapping file above, and an specified directory containing the
+files seqs1.fna and seqs2.fna, the first line from the seqs1.fna file might
+look like this:
 &gt;FLP3FBN01ELBSX length=250 xy=1766_0111 region=1 run=R_2008_12_09_13_51_01_
-could become
-&gt;control.sample_1 FLP3FBN01ELBSX length=250 xy=1766_0111 region=1 run=R_2008_12_09_13_51_01_</p>
-<p>Note that limited checking is done on the mapping file.  The only tests
-are that every fasta file name is unique, and that SampleIDs are
-MIMARKS compliant (alphanumeric and period characters only).  Duplicate
-SampleIDs are allowed, so care should be taken that there are no typos.</p>
+AACAGATTAGACCAGATTAAGCCGAGATTTACCCGA</p>
+<p>and in the output combined fasta file would be written like this
+&gt;Sample.1_0 FLP3FBN01ELBSX length=250 xy=1766_0111 region=1 run=R_2008_12_09_13_51_01_
+AACAGATTAGACCAGATTAAGCCGAGATTTACCCGA</p>
 <p>No changes are made to the sequences.</p>
 <p><strong>Usage:</strong> <tt class="file docutils literal"><span class="pre">add_qiime_labels.py</span> <span class="pre">[options]</span></tt></p>
 <p><strong>Input Arguments:</strong></p>
@@ -87,20 +90,22 @@ SampleIDs are allowed, so care should be taken that there are no typos.</p>
 <dd>SampleID to fasta file name mapping file filepath</dd>
 <dt>-i, <cite>-</cite>-fasta_dir</dt>
 <dd>Directory of fasta files to combine and label.</dd>
+<dt>-c, <cite>-</cite>-filename_column</dt>
+<dd>Specify column used in metadata mapping file for fasta file names.</dd>
 </dl>
 <p><strong>[OPTIONAL]</strong></p>
 <dl class="last docutils">
 <dt>-o, <cite>-</cite>-output_dir</dt>
-<dd>Required output directory for log file and corrected mapping file, log file, and html file. [default: ./]</dd>
+<dd>Required output directory for log file and corrected mapping file, log file, and html file. [default: .]</dd>
 <dt>-n, <cite>-</cite>-count_start</dt>
 <dd>Specify the number to start enumerating sequence labels with. [default: 0]</dd>
 </dl>
 </div>
 <p><strong>Output:</strong></p>
-<p>A combined_seqs.fasta file will be created in the output directory, with the sequences assigned to Sample.1 and Sample.2.</p>
+<p>A combined_seqs.fasta file will be created in the output directory, with the sequences assigned to the SampleID given in the metadata mapping file.</p>
 <p><strong>Example:</strong></p>
-<p>Specify fasta_dir as the input directory of fasta files, use the SampleID to fasta file mapping file example_mapping.txt, start enumerating with 1000000 following SampleIDs, and output the data to the directory combined_fasta</p>
-<div class="highlight-python"><pre>add_qiime_labels.py -i fasta_dir -m example_mapping.txt -n 1000000 -o combined_fasta</pre>
+<p>Specify fasta_dir as the input directory of fasta files, use the metadata mapping file example_mapping.txt, with the metadata fasta file name column specified as InputFileName, start enumerating with 1000000, and output the data to the directory combined_fasta</p>
+<div class="highlight-python"><pre>add_qiime_labels.py -i fasta_dir -m example_mapping.txt -c InputFileName -n 1000000 -o combined_fasta</pre>
 </div>
 </div>
 
@@ -156,7 +161,7 @@ SampleIDs are allowed, so care should be taken that there are no typos.</p>
 
     <div class="footer">
         &copy; Copyright 2012, QIIME Team.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
     </div>
 <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");

@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -8,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Processing Illumina Data: Preparing raw Illumina data for use with QIIME &mdash; Homepage</title>
+    <title>Preparing raw Illumina data in different formats for use with QIIME &mdash; Homepage</title>
     
     <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -16,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.6.0',
+        VERSION:     '1.7.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -56,8 +54,8 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="processing-illumina-data-preparing-raw-illumina-data-for-use-with-qiime">
-<span id="processing-illumina-data"></span><h1>Processing Illumina Data: Preparing raw Illumina data for use with QIIME<a class="headerlink" href="#processing-illumina-data-preparing-raw-illumina-data-for-use-with-qiime" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="preparing-raw-illumina-data-in-different-formats-for-use-with-qiime">
+<span id="processing-illumina-data"></span><h1>Preparing raw Illumina data in different formats for use with QIIME<a class="headerlink" href="#preparing-raw-illumina-data-in-different-formats-for-use-with-qiime" title="Permalink to this headline">¶</a></h1>
 <p>This document describes how to process Illumina sequencing data with QIIME. It covers a standard workflow beginning with fastq files, and take users through one pipeline for generation of an OTU table. Due to the huge amount of data in Illumina files, it&#8217;s best to run the OTU picking through OTU table steps on a cluster. For a full HiSeq2000 run, this process can take up to 500 CPU hours.</p>
 <p>This example illustrates how to use <a class="reference external" href="../scripts/split_libraries_fastq.html">split_libraries_fastq.py</a> to parse your Illumina output into a format that can be used by QIIME.</p>
 <div class="section" id="input-file-formats">
@@ -100,8 +98,8 @@
 <h2>Using Illumina data in downstream analysis<a class="headerlink" href="#using-illumina-data-in-downstream-analysis" title="Permalink to this headline">¶</a></h2>
 <p>Once you have processed your Illumina data with <a class="reference external" href="../scripts/split_libraries_fastq.html">split_libraries_fastq.py</a>, you can use the resulting files in all downstream QIIME scripts, including the workflow scripts.</p>
 <p>A common way that we have processed Illumina data is using a closed reference OTU picking protocol, where OTUs are picked against a reference data set, and any reads that do not match a reference sequence at greater than or equal to 97% sequence identity are discarded. This has the benefit of providing a very strict quality filter (while studies to better understand quality filtering of Illumina amplicon data are in progress), but has the draw back of throwing away real sequences that do not match to know sequences.</p>
-<p>To run a closed-reference OTU picking process on your demultiplexed Illumina data, you can use the <a class="reference external" href="../scripts/pick_reference_otus_through_otu_table.html">pick_reference_otus_through_otu_table.py</a> workflow. You can use your own reference database, or our greengenes OTUs reference set. To grab the latest version of these, click the &#8220;Most recent Greengenes OTUs&#8221; on the top-right corner of the <a class="reference external" href="http://blog.qiime.org">QIIME blog homepage</a>. As of this writing the latest version is 4feb2011, but this is subject to change (hence not linking it directly from this page). Download this file and unzip it. Following from the steps above you can then pick reference otus on your demutliplexed data with the following command:</p>
-<div class="highlight-python"><pre>pick_reference_otus_through_otu_table.py -i sl_out/seqs.fna -o ./ucrC/ -r gg_otus_4feb2011/rep_set/gg_97_otus_4feb2011.fasta -t gg_otus_4feb2011/taxonomies/greengenes_tax.txt</pre>
+<p>To run a closed-reference OTU picking process on your demultiplexed Illumina data, you can use the <a class="reference external" href="../scripts/pick_closed_reference_otus.html">pick_closed_reference_otus.py</a> workflow. You can use your own reference database, or our greengenes OTUs reference set. To grab the latest version of these, click the &#8220;Most recent Greengenes OTUs&#8221; on the top-right corner of the <a class="reference external" href="http://blog.qiime.org">QIIME blog homepage</a>. As of this writing the latest version is 4feb2011, but this is subject to change (hence not linking it directly from this page). Download this file and unzip it. Following from the steps above you can then pick reference otus on your demutliplexed data with the following command:</p>
+<div class="highlight-python"><pre>pick_closed_reference_otus.py -i sl_out/seqs.fna -o ./ucrC/ -r gg_otus_4feb2011/rep_set/gg_97_otus_4feb2011.fasta -t gg_otus_4feb2011/taxonomies/greengenes_tax.txt</pre>
 </div>
 <p>In this example I am picking OTUs on <tt class="docutils literal"><span class="pre">sl_out/seqs.fna</span></tt> against the greengenes 97% reference OTU collection. The output is being written to <tt class="docutils literal"><span class="pre">./ucrC/</span></tt> (which stands for uclust_ref with the -C parameter, meaning &#8216;closed reference&#8217;). Taxonomy strings from the Greengenes taxonomy is associated with each read based on their best match (determined by uclust_ref) in the reference set.</p>
 <p>This step will generate an OTU table, which is the input for a lot of the analyses possible with QIIME. For example, to generate interactive 3D UniFrac PCoA plots, you would run the command:</p>
@@ -231,7 +229,7 @@ AGACGTGCAATT
     
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Processing Illumina Data: Preparing raw Illumina data for use with QIIME</a><ul>
+<li><a class="reference internal" href="#">Preparing raw Illumina data in different formats for use with QIIME</a><ul>
 <li><a class="reference internal" href="#input-file-formats">Input file formats</a></li>
 <li><a class="reference internal" href="#demultiplexing-illumina-fastq-with-qiime">Demultiplexing Illumina fastq with QIIME</a><ul>
 <li><a class="reference internal" href="#demultiplexing-and-quality-filtering-one-lane-of-illumina-fastq-reads-with-qiime">Demultiplexing and quality filtering one lane of Illumina fastq reads with QIIME</a></li>
@@ -299,7 +297,7 @@ AGACGTGCAATT
 
     <div class="footer">
         &copy; Copyright 2012, QIIME Team.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
     </div>
 <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
