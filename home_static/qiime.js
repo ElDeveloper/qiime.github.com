@@ -58,7 +58,7 @@ function load() {
   news_feed.load(newsFeedLoaded);
 
   // container = document.getElementById("forum");
-  var forums_feed = new google.feeds.Feed("http://groups.google.com/group/qiime-forum/feed/rss_v2_0_msgs.xml");
+  var forums_feed = new google.feeds.Feed("https://groups.google.com/forum/feed/qiime-forum/topics/atom.xml?num=3");
 
   // Calling load sends the request off.  It requires a callback function.
   forums_feed.load(forumFeedLoaded);
