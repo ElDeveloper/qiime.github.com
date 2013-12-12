@@ -128,10 +128,6 @@ KPPPQWWWWWQQ________BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB</
 </div>
 <p>A second fastq file could be passed (<tt class="docutils literal"><span class="pre">-r</span></tt>) if one had paired files with barcodes in the labels, and the parameters for changing barcode lengths or reverse complementing barcodes all apply.</p>
 </div>
-<div class="section" id="notes-for-post-demultiplexing">
-<h2>Notes for post-demultiplexing<a class="headerlink" href="#notes-for-post-demultiplexing" title="Permalink to this headline">¶</a></h2>
-<p>In many of these cases, the primer sequences (forward and potentially reverse) will remain in the sequences. It is standard practice to remove these from the sequences before clustering or other analyses. The <cite>quality_filter_fastq.py</cite> script can remove forward and optionally, reverse primers, but one should disable the other quality filtering settings (e.g. homopolymer checks, which are issues with the 454 platform).</p>
-</div>
 </div>
 
 
@@ -151,7 +147,6 @@ KPPPQWWWWWQQ________BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB</
 <li><a class="reference internal" href="#two-index-barcode-reads-and-two-fastq-reads">Two index/barcode reads and two fastq reads</a></li>
 <li><a class="reference internal" href="#processing-a-single-stitched-read-that-contains-barcodes-on-each-end">Processing a single stitched read that contains barcodes on each end</a></li>
 <li><a class="reference internal" href="#barcodes-in-fastq-labels">Barcodes in fastq labels</a></li>
-<li><a class="reference internal" href="#notes-for-post-demultiplexing">Notes for post-demultiplexing</a></li>
 </ul>
 </li>
 </ul>
