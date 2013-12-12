@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.7.0',
+        VERSION:     '1.8.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -86,7 +86,7 @@
 <div class="highlight-python"><pre>split_otu_table.py -i otu_table.biom -m map.txt -f Run_Number -o split_otu_tables/</pre>
 </div>
 <p>One can observe the initial sequences/sample in the run 1 OTU table:</p>
-<div class="highlight-python"><pre>print_biom_table_summary.py -i split_otu_tables/otu_table_1.biom</pre>
+<div class="highlight-python"><pre>biom summarize-table -i split_otu_tables/otu_table_1.biom -o split_otu_tables/otu_table_1_summary.txt</pre>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -123,7 +123,7 @@
 <div class="highlight-python"><pre>filter_otus_from_otu_table.py -i otu_table_run1_blank_samples.biom -o filtered_otu_table_blank_samples.biom -n 1</pre>
 </div>
 <p>Then create a tab separated version of this OTU table:</p>
-<div class="highlight-python"><pre>convert_biom.py -b -i filtered_otu_table_blank_samples.biom -o otus_to_remove.txt</pre>
+<div class="highlight-python"><pre>biom convert -b -i filtered_otu_table_blank_samples.biom -o otus_to_remove.txt</pre>
 </div>
 <p>Filter out OTU ids from the run 1 OTU table that were determined to be present in the Control_Blank samples:</p>
 <div class="highlight-python"><pre>filter_otus_from_otu_table.py -i split_otu_tables/otu_table_1.biom -o otu_table_1_minus_contaminants.biom -e otus_to_remove.txt</pre>
@@ -132,7 +132,7 @@
 <div class="highlight-python"><pre>filter_samples_from_otu_table.py -i otu_table_1_minus_contaminants.biom -o final_otu_table_1_minus_contaminants.biom -n 1</pre>
 </div>
 <p>The final OTU table sequences/sample summary can be displayed now, sans OTUs from the Control_Blank samples:</p>
-<div class="highlight-python"><pre>print_biom_table_summary.py -i final_otu_table_1_minus_contaminants.biom</pre>
+<div class="highlight-python"><pre>biom summarize-table -i final_otu_table_1_minus_contaminants.biom -o final_otu_table_1_minus_contaminants_summary.txt</pre>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -224,8 +224,8 @@
 <br /></div>
 
     <div class="footer">
-        &copy; Copyright 2012, QIIME Team.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+        &copy; Copyright 2010-2014, QIIME Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.
     </div>
 <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");

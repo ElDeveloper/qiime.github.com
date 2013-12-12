@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.7.0',
+        VERSION:     '1.8.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -83,8 +83,8 @@
 <p>After obtaining the <tt class="docutils literal"><span class="pre">qiime</span></tt> repository, you can <tt class="docutils literal"><span class="pre">cd</span></tt> to <tt class="docutils literal"><span class="pre">qiime/tests</span></tt> directory. You&#8217;ll see a script called <tt class="docutils literal"><span class="pre">all_tests.py</span></tt>. You can run this from the <tt class="docutils literal"><span class="pre">qiime_test_data</span></tt> directory by calling:</p>
 <div class="highlight-python"><pre>./all_tests.py --suppress_unit_tests</pre>
 </div>
-<p>This will run all of the tests which are currently defined in verbose mode. You can run specific tests by passing the names of those tests via the <tt class="docutils literal"><span class="pre">--script_tests</span></tt> parameter. For example, to run only the tests for <tt class="docutils literal"><span class="pre">add_qiime_labels.py</span></tt> and <tt class="docutils literal"><span class="pre">make_otu_table.py</span></tt> you can run the following:</p>
-<div class="highlight-python"><pre>./all_tests.py --suppress_unit_tests --script_tests add_qiime_labels,make_otu_table</pre>
+<p>This will run all of the tests which are currently defined in verbose mode. You can run specific tests by passing the names of those tests via the <tt class="docutils literal"><span class="pre">--script_usage_tests</span></tt> parameter. For example, to run only the tests for <tt class="docutils literal"><span class="pre">add_qiime_labels.py</span></tt> and <tt class="docutils literal"><span class="pre">make_otu_table.py</span></tt> you can run the following:</p>
+<div class="highlight-python"><pre>./all_tests.py --suppress_unit_tests --script_usage_tests add_qiime_labels,make_otu_table</pre>
 </div>
 <p>These tests will print output to the screen.</p>
 <p>The recommended way of testing QIIME is to run QIIME&#8217;s unit tests and script usage tests. You can do this simply by running:</p>
@@ -132,7 +132,7 @@ post-split_libraries fasta file. The sequence identifiers in this file should be
 &lt;sample_id&gt;_&lt;unique_seq_id&gt;. The following steps, corresponding to the preliminary data
 preparation, are applied: Pick de novo OTUs at 97%; pick a representative sequence for each
 OTU (the OTU centroid sequence); align the representative set with PyNAST; assign taxonomy
-with RDP classifier; filter the alignment prior to tree building - remove positions which
+with the uclust consensus taxonomy assigner; filter the alignment prior to tree building - remove positions which
 are all gaps, and specified as 0 in the lanemask; build a phylogenetic tree with FastTree;
 build an OTU table. All output files will be written to the directory specified by -o, and
 subdirectories as appropriate. ALWAYS SPECIFY ABSOLUTE FILE PATHS (absolute path represented
@@ -215,8 +215,8 @@ here as $PWD, but will generally look something like /home/ubuntu/my_analysis/).
 <br /></div>
 
     <div class="footer">
-        &copy; Copyright 2012, QIIME Team.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+        &copy; Copyright 2010-2014, QIIME Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.
     </div>
 <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");

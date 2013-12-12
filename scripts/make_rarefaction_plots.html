@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.7.0',
+        VERSION:     '1.8.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -94,6 +94,10 @@
 <dd>Path to the output directory</dd>
 <dt><cite>-</cite>-output_type</dt>
 <dd>Write the HTML output as one file, images embedded, or several. Options are file_creation, multiple files, and memory. [default: file_creation]</dd>
+<dt><cite>-</cite>-generate_per_sample_plots</dt>
+<dd>Generate per sample plots for each of the metadata categories. This will allow you to show/hide samples from the plots but will required a larger processing time. In general, this practice is useful only for small datasets. [default: False]</dd>
+<dt><cite>-</cite>-generate_average_tables</dt>
+<dd>Generate average tables of results. A summary of the metrics and alpha diversity measurements. [default: False]</dd>
 </dl>
 </div>
 <p><strong>Output:</strong></p>
@@ -171,8 +175,8 @@
 <br /></div>
 
     <div class="footer">
-        &copy; Copyright 2012, QIIME Team.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+        &copy; Copyright 2010-2014, QIIME Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.
     </div>
 <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");

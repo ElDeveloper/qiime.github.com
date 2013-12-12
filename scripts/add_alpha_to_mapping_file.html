@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.7.0',
+        VERSION:     '1.8.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -57,7 +57,7 @@
   <span class="target" id="add-alpha-to-mapping-file"></span><div class="section" id="add-alpha-to-mapping-file-py-add-alpha-diversity-data-to-a-metadata-mapping-file">
 <span id="index-0"></span><h1><em>add_alpha_to_mapping_file.py</em> &#8211; Add alpha diversity data to a metadata mapping file<a class="headerlink" href="#add-alpha-to-mapping-file-py-add-alpha-diversity-data-to-a-metadata-mapping-file" title="Permalink to this headline">¶</a></h1>
 <p><strong>Description:</strong></p>
-<p>Add alpha diversity data to a mapping file for use with other QIIME scripts, i. e. <a class="reference external" href="./make_3d_plots.html">make_3d_plots.py</a>. The resulting mapping file will contain three new columns per metric in the alpha diversity data; the first column being the raw value, the second being a normalized raw value and the third one a label classifying the bin where this value fits based on the normalized value.</p>
+<p>Add alpha diversity data to a mapping file for use with other QIIME scripts, i. e. <a class="reference external" href="./make_emperor.html">make_emperor.py</a>. The resulting mapping file will contain three new columns per metric in the alpha diversity data; the first column being the raw value, the second being a normalized raw value and the third one a label classifying the bin where this value fits based on the normalized value.</p>
 <p><strong>Usage:</strong> <tt class="file docutils literal"><span class="pre">add_alpha_to_mapping_file.py</span> <span class="pre">[options]</span></tt></p>
 <p><strong>Input Arguments:</strong></p>
 <div class="admonition note">
@@ -96,7 +96,7 @@
 <div class="highlight-python"><pre>add_alpha_to_mapping_file.py -i adiv_pd.txt -m mapping.txt -b 4 -o alpha_mapping_quantile.txt --binning_method=quantile</pre>
 </div>
 <p><strong>Adding collated alpha diversity data:</strong></p>
-<p>Add the mean of the alpha diversity values at a specified rarefaction depth, this case is for use with the output of <a class="reference external" href="./collated_alpha.html">collated_alpha.py</a>. It is recommended that the filenames are the name of the metric used in each file.</p>
+<p>Add the mean of the alpha diversity values at a specified rarefaction depth, this case is for use with the output of <a class="reference external" href="./collate_alpha.html">collate_alpha.py</a>. It is recommended that the filenames are the name of the metric used in each file.</p>
 <div class="highlight-python"><pre>add_alpha_to_mapping_file.py -i 'shannon.txt,chao1.txt' -m mapping.txt -b 4 -o collated_alpha_mapping.txt --depth=49 --collated_input</pre>
 </div>
 </div>
@@ -152,8 +152,8 @@
 <br /></div>
 
     <div class="footer">
-        &copy; Copyright 2012, QIIME Team.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+        &copy; Copyright 2010-2014, QIIME Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.
     </div>
 <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");

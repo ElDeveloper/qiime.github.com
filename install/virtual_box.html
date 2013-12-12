@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.7.0',
+        VERSION:     '1.8.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -60,12 +60,13 @@
 <h2>What is the QIIME Virtual Box?<a class="headerlink" href="#what-is-the-qiime-virtual-box" title="Permalink to this headline">¶</a></h2>
 <p>Because of the &#8216;pipeline&#8217; nature of QIIME, there are many external dependencies and installation can therefore be a challenge. The QIIME Virtual Box should get around that problem, and is a fully functional environment for analyzing microbial community surveys and visualizing results.</p>
 <p>The QIIME Virtual Box is a virtual machine based on Ubuntu Linux which comes pre-packaged with QIIME&#8217;s dependencies. This is the fastest way to get up-and-running with QIIME, and is useful for small analyses (approximately up to a full 454 run); and testing QIIME to determine if it meets your needs before investing time in installing it, for example, in your cluster environment.</p>
+<p>It is strongly recommended that your system have 8 or more gigabytes of memory to use the virtual box with the newest releases of reference databases (e.g. Greengenes, UNITE).</p>
 </div>
 <div class="section" id="installing-the-qiime-virtual-box">
 <h2>Installing the QIIME Virtual Box<a class="headerlink" href="#installing-the-qiime-virtual-box" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>Download and install the <a class="reference external" href="http://www.virtualbox.org/wiki/Downloads">VirtualBox</a> (VB) version for your machine.</li>
-<li>Download the <a class="reference external" href="ftp://thebeast.colorado.edu/pub/QIIME-v1.7.0-dependencies/QIIME-1.7.0-amd64.vdi.gz">64-bit QIIME Virtual Box</a>. This file is large so it may take between a few minutes and a few hours depending on your Internet connection speed. You will need to unzip this file, which you can typically do by double-clicking on it.</li>
+<li>Download the <a class="reference external" href="ftp://thebeast.colorado.edu/pub/qiime-release-VMs/QIIME-1.8.0-amd64.vdi.gz">64-bit QIIME Virtual Box</a>. This file is large so it may take between a few minutes and a few hours depending on your Internet connection speed. You will need to unzip this file, which you can typically do by double-clicking on it.</li>
 <li>Create a new virtual machine:</li>
 </ol>
 <blockquote>
@@ -87,10 +88,6 @@
 <div class="section" id="virtualbox-help-video">
 <h2>VirtualBox help video<a class="headerlink" href="#virtualbox-help-video" title="Permalink to this headline">¶</a></h2>
 <p>A video illustrating these steps can be found <a class="reference external" href="http://www.youtube.com/watch?v=1jYupkquaME">here</a>.</p>
-</div>
-<div class="section" id="qiime-vb-and-clovr">
-<h2>QIIME VB and CloVR<a class="headerlink" href="#qiime-vb-and-clovr" title="Permalink to this headline">¶</a></h2>
-<p>As of the QIIME 1.2.0 release, the QIIME VB and EC2 images are built using <a class="reference external" href="http://clovr.org">CloVR</a>.  CloVR provides a platform for building portable virtual machines. The platform automates builds in formats compatible with VirtualBox, VMware, and Clouds, including Amazon EC2.  The <a class="reference external" href="http://clovr.org/developers">CloVR developer</a> pages have more information on the platform and build process.</p>
 </div>
 <div class="section" id="limitations-of-the-qiime-virtual-box">
 <h2>Limitations of the QIIME Virtual Box<a class="headerlink" href="#limitations-of-the-qiime-virtual-box" title="Permalink to this headline">¶</a></h2>
@@ -131,7 +128,7 @@ $HOME/Qiime/tests/test_process_sff.py</pre>
 </ol>
 <p>The computer automatically restarts. If you cannot enable Virtualization Technology on in your BIOS, check if your BIOS needs to be updated.</p>
 <p>These instructions were extracted directly from HPs website: <a class="reference external" href="http://h10025.www1.hp.com/ewfrf/wc/document?docname=c01959244&amp;cc=us&amp;lc=en&amp;dlc=en&amp;product=3744198">link</a>.</p>
-<p>If this doesn&#8217;t work, you might need to instead hit F9 to enter the BIOS. See this <a class="reference external" href="http://forums11.itrc.hp.com/service/forums/questionanswer.do?admit=109447626+1279028363362+28353475&amp;threadId=1120296">forum discussion</a>.</p>
+<p>If this doesn&#8217;t work, you might need to instead hit F9 to enter the BIOS.</p>
 <p>Briefly, on booting the system, hit F9. Enter Advanced Options -&gt; Processor Options -&gt; Intel(R) Virtualization Technology and then hit Enable.</p>
 </div>
 </div>
@@ -151,7 +148,6 @@ $HOME/Qiime/tests/test_process_sff.py</pre>
 <li><a class="reference internal" href="#what-is-the-qiime-virtual-box">What is the QIIME Virtual Box?</a></li>
 <li><a class="reference internal" href="#installing-the-qiime-virtual-box">Installing the QIIME Virtual Box</a></li>
 <li><a class="reference internal" href="#virtualbox-help-video">VirtualBox help video</a></li>
-<li><a class="reference internal" href="#qiime-vb-and-clovr">QIIME VB and CloVR</a></li>
 <li><a class="reference internal" href="#limitations-of-the-qiime-virtual-box">Limitations of the QIIME Virtual Box</a></li>
 <li><a class="reference internal" href="#support-for-the-32-bit-qiime-virtual-box-is-discontinued">Support for the 32-bit QIIME Virtual Box is discontinued</a></li>
 <li><a class="reference internal" href="#troubleshooting">Troubleshooting</a><ul>
@@ -205,8 +201,8 @@ $HOME/Qiime/tests/test_process_sff.py</pre>
 <br /></div>
 
     <div class="footer">
-        &copy; Copyright 2012, QIIME Team.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+        &copy; Copyright 2010-2014, QIIME Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.
     </div>
 <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");

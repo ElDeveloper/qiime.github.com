@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>transform_coordinate_matrices.py – Transform 2 coordinate matrices &mdash; Homepage</title>
+    <title>transform_coordinate_matrices.py – Transform two or more coordinate matrices &mdash; Homepage</title>
     
     <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.7.0',
+        VERSION:     '1.8.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -54,10 +54,10 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <span class="target" id="transform-coordinate-matrices"></span><div class="section" id="transform-coordinate-matrices-py-transform-2-coordinate-matrices">
-<span id="index-0"></span><h1><em>transform_coordinate_matrices.py</em> &#8211; Transform 2 coordinate matrices<a class="headerlink" href="#transform-coordinate-matrices-py-transform-2-coordinate-matrices" title="Permalink to this headline">¶</a></h1>
+  <span class="target" id="transform-coordinate-matrices"></span><div class="section" id="transform-coordinate-matrices-py-transform-two-or-more-coordinate-matrices">
+<span id="index-0"></span><h1><em>transform_coordinate_matrices.py</em> &#8211; Transform two or more coordinate matrices<a class="headerlink" href="#transform-coordinate-matrices-py-transform-two-or-more-coordinate-matrices" title="Permalink to this headline">¶</a></h1>
 <p><strong>Description:</strong></p>
-<p>This script transforms 2 coordinate matrices (e.g., the output of <a class="reference external" href="./principal_coordinates.html">principal_coordinates.py</a>) using procrustes analysis to minimize the distances between corresponding points. Monte Carlo simulations can additionally be performed (-r random trials are run) to estimate the probability of seeing an M^2 value as extreme as the actual M^2.</p>
+<p>This script transforms two or more coordinate matrices (e.g., the output of <a class="reference external" href="./principal_coordinates.html">principal_coordinates.py</a>) using procrustes analysis to minimize the distances between corresponding points. The first coordinate matrix provided is treated as the reference, and all other coordinate matrices are transformed to minimize distances to the reference points. Monte Carlo simulations can additionally be performed (-r random trials are run) to estimate the probability of seeing an M^2 value as extreme as the actual M^2.</p>
 <p><strong>Usage:</strong> <tt class="file docutils literal"><span class="pre">transform_coordinate_matrices.py</span> <span class="pre">[options]</span></tt></p>
 <p><strong>Input Arguments:</strong></p>
 <div class="admonition note">
@@ -65,7 +65,7 @@
 <p><strong>[REQUIRED]</strong></p>
 <dl class="docutils">
 <dt>-i, <cite>-</cite>-input_fps</dt>
-<dd>Comma-separated input files</dd>
+<dd>Comma-separated list of input coordinate matrices</dd>
 <dt>-o, <cite>-</cite>-output_dir</dt>
 <dd>The output directory</dd>
 </dl>
@@ -75,8 +75,8 @@
 <dd>Number of random permutations of matrix2 to perform.  [default: (no Monte Carlo analysis performed)]</dd>
 <dt>-d, <cite>-</cite>-num_dimensions</dt>
 <dd>Number of dimensions to include in output matrices [default: 3]</dd>
-<dt>-s, <cite>-</cite>-sample_id_map_fp</dt>
-<dd>Map of original sample ids to new sample ids [default: None]</dd>
+<dt>-s, <cite>-</cite>-sample_id_map_fps</dt>
+<dd>If sample id maps are provided, there must be exactly one fewer files here than there are coordinate matrices (as each nth sample id map will provide the mapping from the first input coordinate matrix to the n+1th coordinate matrix) [default: None]</dd>
 <dt><cite>-</cite>-store_trial_details</dt>
 <dd>Store PC matrices for individual trials [default: False]</dd>
 </dl>
@@ -86,8 +86,14 @@
 <p><strong>Write the transformed procrustes matrices to file:</strong></p>
 <div class="highlight-python"><pre>transform_coordinate_matrices.py -i unweighted_unifrac_pc.txt,weighted_unifrac_pc.txt -o procrustes_output</pre>
 </div>
-<p><strong>Generate transformed procrustes matrices and monte carlo p-values:</strong></p>
-<div class="highlight-python"><pre>transform_coordinate_matrices.py -i unweighted_unifrac_pc.txt,weighted_unifrac_pc.txt -o mc_procrustes_output -r 1000</pre>
+<p><strong>Generate transformed procrustes matrices and monte carlo p-values for two principal coordinate matrices:</strong></p>
+<div class="highlight-python"><pre>transform_coordinate_matrices.py -i unweighted_unifrac_pc.txt,weighted_unifrac_pc.txt -o mc_procrustes_output_2 -r 1000</pre>
+</div>
+<p><strong>Generate transformed procrustes matrices and monte carlo p-values for four principal coordinate matrices:</strong></p>
+<div class="highlight-python"><pre>transform_coordinate_matrices.py -i unweighted_unifrac_pc.txt,weighted_unifrac_pc.txt,euclidean_pc.txt,bray_curtis_pc.txt -o mc_procrustes_output_4 -r 1000</pre>
+</div>
+<p><strong>Generate transformed procrustes matrices and monte carlo p-values for three principal coordinate matrices where the sample ids must be mapped between matrices:</strong></p>
+<div class="highlight-python"><pre>transform_coordinate_matrices.py -i s1_pc.txt,s2_pc.txt,s3_pc.txt -s s1_s2_map.txt,s1_s3_map.txt -o mc_procrustes_output_3 -r 1000</pre>
 </div>
 </div>
 
@@ -142,8 +148,8 @@
 <br /></div>
 
     <div class="footer">
-        &copy; Copyright 2012, QIIME Team.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+        &copy; Copyright 2010-2014, QIIME Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.
     </div>
 <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");

@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.7.0',
+        VERSION:     '1.8.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -80,7 +80,7 @@
 <dt>-s, <cite>-</cite>-stats_fp</dt>
 <dd>Stats file produced by tree-building software. REQUIRED if -m pplacer [default: None]</dd>
 <dt>-p, <cite>-</cite>-method_params_fp</dt>
-<dd>Parameters file containing method-specific parameters to use. [default: None]</dd>
+<dd>Parameters file containing method-specific parameters to use. Lines should be formatted as &#8216;raxml:-m GTRCAT&#8217; (note this is not a standard QIIME parameters file, but a RAxML parameters file). [default: None]</dd>
 </dl>
 </div>
 <p><strong>Output:</strong></p>
@@ -154,8 +154,8 @@
 <br /></div>
 
     <div class="footer">
-        &copy; Copyright 2012, QIIME Team.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+        &copy; Copyright 2010-2014, QIIME Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.
     </div>
 <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");

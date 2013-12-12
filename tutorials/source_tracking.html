@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.7.0',
+        VERSION:     '1.8.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -82,16 +82,16 @@
 </div>
 <div class="section" id="filter-otus-present-in-less-than-1-of-the-samples-from-the-otu-table">
 <h2>Filter OTUs present in less than 1% of the samples from the OTU table<a class="headerlink" href="#filter-otus-present-in-less-than-1-of-the-samples-from-the-otu-table" title="Permalink to this headline">¶</a></h2>
-<p>First we filter OTUs that are present in very few samples, as we consider these unlikely to provide useful source tracking information. We define <em>very few samples</em> here as less than 1% of the samples, which in our case is roughly 7 samples. This value should be determined on a per-study basis (so you shouldn&#8217;t just use 7 on your own data). You can find the total number of samples in your OTU table by running <tt class="docutils literal"><span class="pre">print_biom_table_summary.py</span></tt> on it.</p>
+<p>First we filter OTUs that are present in very few samples, as we consider these unlikely to provide useful source tracking information. We define <em>very few samples</em> here as less than 1% of the samples, which in our case is roughly 7 samples. This value should be determined on a per-study basis (so you shouldn&#8217;t just use 7 on your own data). You can find the total number of samples in your OTU table by running the <tt class="docutils literal"><span class="pre">biom</span> <span class="pre">summarize-table</span></tt> command on it.</p>
 <p>To filter the OTU table, run the following command:</p>
 <div class="highlight-python"><pre>filter_otus_from_otu_table.py -i otu_table.biom -o filtered_otu_table.biom -s 7</pre>
 </div>
-<p>This command will create an output file named <tt class="docutils literal"><span class="pre">filtered_otu_table.biom</span></tt>, which only contains OTUs that appear in at least 7 samples. To see how many OTUs were filtered in this process, you can run <tt class="docutils literal"><span class="pre">print_biom_table_summary.py</span></tt> and compare <em>Num observations</em> for <tt class="docutils literal"><span class="pre">otu_table.biom</span></tt> and <tt class="docutils literal"><span class="pre">filtered_otu_table.biom</span></tt>. It&#8217;s not uncommon to filter a large percentage (e.g., greater than 50%) of your OTUs using this process.</p>
+<p>This command will create an output file named <tt class="docutils literal"><span class="pre">filtered_otu_table.biom</span></tt>, which only contains OTUs that appear in at least 7 samples. To see how many OTUs were filtered in this process, you can run the <tt class="docutils literal"><span class="pre">biom</span> <span class="pre">summarize-table</span></tt> command and compare <em>Num observations</em> for <tt class="docutils literal"><span class="pre">otu_table.biom</span></tt> and <tt class="docutils literal"><span class="pre">filtered_otu_table.biom</span></tt>. It&#8217;s not uncommon to filter a large percentage (e.g., greater than 50%) of your OTUs using this process.</p>
 </div>
 <div class="section" id="convert-table-from-biom-to-tab-separated-text-format">
 <h2>Convert table from BIOM to tab-separated text format<a class="headerlink" href="#convert-table-from-biom-to-tab-separated-text-format" title="Permalink to this headline">¶</a></h2>
 <p>SourceTracker does not work with the <a class="reference external" href="http://www.biom-format.org">BIOM format</a>, so the OTU table needs to be converted to tab-separated text format. You can do that with the following command:</p>
-<div class="highlight-python"><pre>convert_biom.py -i filtered_otu_table.biom -o filtered_otu_table.txt -b</pre>
+<div class="highlight-python"><pre>biom convert -i filtered_otu_table.biom -o filtered_otu_table.txt -b</pre>
 </div>
 <p>This creates a file named <tt class="docutils literal"><span class="pre">filtered_otu_table.txt</span></tt>.</p>
 </div>
@@ -178,8 +178,8 @@
 <br /></div>
 
     <div class="footer">
-        &copy; Copyright 2012, QIIME Team.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+        &copy; Copyright 2010-2014, QIIME Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.
     </div>
 <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");

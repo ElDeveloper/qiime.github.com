@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.7.0',
+        VERSION:     '1.8.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -72,6 +72,12 @@
 <dd>Name of queue to submit to [default: friendlyq]</dd>
 <dt>-j, <cite>-</cite>-job_dir</dt>
 <dd>Directory to store the jobs [default: jobs/]</dd>
+<dt>-w, <cite>-</cite>-max_walltime</dt>
+<dd>Maximum time in hours the job will run for [default: 72]</dd>
+<dt>-c, <cite>-</cite>-cpus</dt>
+<dd>Number of CPUs to use [default:1]</dd>
+<dt>-n, <cite>-</cite>-nodes</dt>
+<dd>Number of nodes to use [default:1]</dd>
 </dl>
 </div>
 <p><strong>Output:</strong></p>
@@ -141,8 +147,8 @@
 <br /></div>
 
     <div class="footer">
-        &copy; Copyright 2012, QIIME Team.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+        &copy; Copyright 2010-2014, QIIME Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.
     </div>
 <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");

@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.7.0',
+        VERSION:     '1.8.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -75,11 +75,8 @@
 </div>
 <div class="section" id="visualizing-mislabeled-samples">
 <h2>Visualizing mislabeled samples<a class="headerlink" href="#visualizing-mislabeled-samples" title="Permalink to this headline">¶</a></h2>
-<p>You can also visualize the predicted mislabels using <tt class="file docutils literal"><span class="pre">make_3d_plots.py</span></tt>. Assuming that you have run <tt class="file docutils literal"><span class="pre">beta_diversity.py</span></tt> and <tt class="file docutils literal"><span class="pre">principal_coordinates.py</span></tt> to obtain a principal coordinates table <tt class="file docutils literal"><span class="pre">pcoa.txt</span></tt> for your samples, you can use the following command to obtain a plot where samples are colored by their mislabeling status at a 90% threshold (i.e. 90% estimated probability of being mislabeled):</p>
-<div class="highlight-python"><pre>make_3d_plots.py -i pcoa.txt -m ml/mislabeling.txt -o color_by_mislabeling -b mislabeled_probability_above_0.90</pre>
-</div>
-<p>The following command will make separate plots for all mislabeling thresholds:</p>
-<div class="highlight-python"><pre>make_3d_plots.py -i pcoa.txt -m mislabeling.txt -o color_by_mislabeling -b mislabeled_probability_above_0.05,mislabeled_probability_above_0.10,mislabeled_probability_above_0.15,mislabeled_probability_above_0.20,mislabeled_probability_above_0.25,mislabeled_probability_above_0.30,mislabeled_probability_above_0.35,mislabeled_probability_above_0.40,mislabeled_probability_above_0.45,mislabeled_probability_above_0.50,mislabeled_probability_above_0.55,mislabeled_probability_above_0.60,mislabeled_probability_above_0.65,mislabeled_probability_above_0.70,mislabeled_probability_above_0.75,mislabeled_probability_above_0.80,mislabeled_probability_above_0.85,mislabeled_probability_above_0.90,mislabeled_probability_above_0.95,mislabeled_probability_above_0.99</pre>
+<p>You can also visualize the predicted mislabels using <a class="reference external" href="http://qiime.org/emperor/">make_emperor.py</a>. Assuming that you have run <tt class="file docutils literal"><span class="pre">beta_diversity.py</span></tt> and <tt class="file docutils literal"><span class="pre">principal_coordinates.py</span></tt> to obtain a principal coordinates table <tt class="file docutils literal"><span class="pre">pcoa.txt</span></tt> for your samples, you can use the following command to obtain a plot where samples are colored by their mislabeling status:</p>
+<div class="highlight-python"><pre>make_emperor.py -i pcoa.txt -m ml/mislabeling.txt -o color_by_mislabeling</pre>
 </div>
 </div>
 <div class="section" id="cautions">
@@ -168,8 +165,8 @@
 <br /></div>
 
     <div class="footer">
-        &copy; Copyright 2012, QIIME Team.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+        &copy; Copyright 2010-2014, QIIME Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.
     </div>
 <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");

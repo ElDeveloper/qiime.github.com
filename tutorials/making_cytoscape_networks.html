@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.7.0',
+        VERSION:     '1.8.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -204,7 +204,7 @@ Once selected, the “from” column should be highlighted in the Preview window
 <li><dl class="first docutils">
 <dt>If you want to do anything more “custom”, you need to play around with your node and edge tables. For example, how can we color the otus that are shared between the Control and Fasting groups a different color than the otus that belong to just one treatment group? To do this, we can:</dt>
 <dd><ol class="first last loweralpha simple">
-<li>Convert your biom table to a classic otu table using convert_biom.py</li>
+<li>Convert your biom table to a classic otu table using the <tt class="docutils literal"><span class="pre">biom</span> <span class="pre">convert</span></tt> command</li>
 <li>Copy out all the OTU Ids seen in your study</li>
 <li>Open up your real_edge_table.txt in Excel</li>
 <li>Make a new excel sheet that contains where column A represents the OTUs seen in the Control group, column B represents the samples in Fasting group. In column C put your entire list of OTUs taken from the otu_table.txt. You can now use the COUNTIF function in Excel to find if each OTU is present in either the Control group only, the Fasting group only, or in both. With this information, make a new column in your real_node_table.txt where you label each OTU based on it being shared or not_shared, and each sample based on being a Control or Fasting sample. Now you can click on Node Color and color each individually. Here, we can see that the shared OTUs are colored yellow, and the not_shared OTUs are colored pink.</li>
@@ -283,8 +283,8 @@ Once selected, the “from” column should be highlighted in the Preview window
 <br /></div>
 
     <div class="footer">
-        &copy; Copyright 2012, QIIME Team.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+        &copy; Copyright 2010-2014, QIIME Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.
     </div>
 <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");

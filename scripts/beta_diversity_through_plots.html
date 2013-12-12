@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.7.0',
+        VERSION:     '1.8.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -79,8 +79,6 @@
 <dd>Path to the parameter file, which specifies changes to the default behavior. See <a class="reference external" href="http://www.qiime.org/documentation/file_formats.html#qiime-parameters">http://www.qiime.org/documentation/file_formats.html#qiime-parameters</a> . [if omitted, default values will be used]</dd>
 <dt><cite>-</cite>-color_by_all_fields</dt>
 <dd>Plots will have coloring for all mapping fields [default: False; only include fields with greater than one value and fewer values than the number of samples]</dd>
-<dt>-c, <cite>-</cite>-histogram_categories</dt>
-<dd>Mapping fields to use when plotting distance histograms [default: None]</dd>
 <dt>-f, <cite>-</cite>-force</dt>
 <dd>Force overwrite of existing output directory (note: existing files in output_dir will not be removed) [default: None]</dd>
 <dt>-w, <cite>-</cite>-print_only</dt>
@@ -89,10 +87,8 @@
 <dd>Run in parallel where available [default: False]</dd>
 <dt>-e, <cite>-</cite>-seqs_per_sample</dt>
 <dd>Depth of coverage for even sampling [default: None]</dd>
-<dt><cite>-</cite>-suppress_2d_plots</dt>
-<dd>Do not generate 2D plots [default: False]</dd>
-<dt><cite>-</cite>-suppress_3d_plots</dt>
-<dd>Do not generate 3D plots [default: False]</dd>
+<dt><cite>-</cite>-suppress_emperor_plots</dt>
+<dd>Do not generate emperor plots [default: False]</dd>
 <dt>-O, <cite>-</cite>-jobs_to_start</dt>
 <dd>Number of jobs to start. NOTE: you must also pass -a to run in parallel, this defines the number of jobs to be started if and only if -a is passed [default: 2]</dd>
 </dl>
@@ -156,8 +152,8 @@
 <br /></div>
 
     <div class="footer">
-        &copy; Copyright 2012, QIIME Team.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+        &copy; Copyright 2010-2014, QIIME Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.
     </div>
 <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");

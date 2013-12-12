@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.7.0',
+        VERSION:     '1.8.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -63,14 +63,14 @@
 </div>
 <div class="section" id="format">
 <h2>Format<a class="headerlink" href="#format" title="Permalink to this headline">¶</a></h2>
-<p>The parameters file is a text file with one parameter setting per line. Blank lines or lines beginning with a <tt class="docutils literal"><span class="pre">#</span></tt> are ignored. A parameter setting is defined as <tt class="docutils literal"><span class="pre">script_name:parameter_name</span></tt>, followed by a tab, and then the value. For example:</p>
+<p>The parameters file is a text file with one parameter setting per line. Blank lines or lines beginning with a <tt class="docutils literal"><span class="pre">#</span></tt> are ignored. A parameter setting is defined as <tt class="docutils literal"><span class="pre">script_name:parameter_name</span></tt>, followed by whitespace (space or tab), and then the value. For example:</p>
 <div class="highlight-python"><pre>pick_otus:otu_picking_method    uclust</pre>
 </div>
 <p>This indicates that the <tt class="docutils literal"><span class="pre">--otu_picking_method</span></tt> will be set to <tt class="docutils literal"><span class="pre">uclust</span></tt> when calling <tt class="docutils literal"><span class="pre">pick_otus.py</span></tt>. To get information on what a parameter in the <tt class="docutils literal"><span class="pre">qiime_parameters.txt</span></tt> file is, you should call the script name followed by <tt class="docutils literal"><span class="pre">-h</span></tt> to access the usage information for that script. In the above example, you could call:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">pick_otus</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">h</span>
 </pre></div>
 </div>
-<p>Flag options (i.e., those that don&#8217;t take a value, like the <tt class="docutils literal"><span class="pre">--enable_rev_strand_match</span></tt> option to <tt class="docutils literal"><span class="pre">pick_otus.py</span></tt>) are specified by passing <tt class="docutils literal"><span class="pre">True</span></tt> or <tt class="docutils literal"><span class="pre">False</span></tt> after the tab. For example:</p>
+<p>Flag options (i.e., those that don&#8217;t take a value, like the <tt class="docutils literal"><span class="pre">--enable_rev_strand_match</span></tt> option to <tt class="docutils literal"><span class="pre">pick_otus.py</span></tt>) are specified by passing <tt class="docutils literal"><span class="pre">True</span></tt> or <tt class="docutils literal"><span class="pre">False</span></tt> after the whitespace. For example:</p>
 <div class="highlight-python"><pre>pick_otus:enable_rev_strand_match       True</pre>
 </div>
 <p>If a parameter is not followed by an option, it will not be passed to the script resulting in the default value being used instead. For example:</p>
@@ -83,6 +83,9 @@
                       uclust, uclust_ref, or usearch) [default: 0.97]</pre>
 </div>
 <p>You would pass this as <tt class="docutils literal"><span class="pre">pick_otus:similarity</span></tt>, NOT as <tt class="docutils literal"><span class="pre">pick_otus:s</span></tt>. The latter will not work!</p>
+<p>Some workflow scripts, such as <a class="reference external" href="../scripts/core_diversity_analyses.html">core_diversity_analyses.py</a>, run commands found in the <a class="reference external" href="http://biom-format.org">biom-format</a> package as part of their workflow. These commands are a bit different than QIIME scripts because they are of the form <tt class="docutils literal"><span class="pre">biom</span> <span class="pre">&lt;subcommand&gt;</span></tt> (e.g., <tt class="docutils literal"><span class="pre">biom</span> <span class="pre">summarize-table</span></tt>). In order to control these biom-format commands using a QIIME parameters file, you must reference the command name and the subcommand name, <strong>separated by a dash</strong>. For example, to control the behavior of <tt class="docutils literal"><span class="pre">biom</span> <span class="pre">summarize-table</span></tt>, your QIIME parameters file might look like:</p>
+<div class="highlight-python"><pre>biom-summarize-table:qualitative        True</pre>
+</div>
 </div>
 <div class="section" id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
@@ -184,8 +187,8 @@ pick_otus:word_length 8</pre>
 <br /></div>
 
     <div class="footer">
-        &copy; Copyright 2012, QIIME Team.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+        &copy; Copyright 2010-2014, QIIME Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.
     </div>
 <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");

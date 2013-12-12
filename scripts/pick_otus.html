@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.7.0',
+        VERSION:     '1.8.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -186,6 +186,8 @@
 <dd>Sorting method for usearch61 and usearch61_ref.  Valid options are abundance, length, or None.  If the &#8211;usearch_fast_cluster option is enabled, the only sorting method allowed in length. [default: abundance]</dd>
 <dt><cite>-</cite>-sizeorder</dt>
 <dd>Enable size based preference in clustering with usearch61. Requires that &#8211;usearch61_sort_method be abundance. [default: False]</dd>
+<dt><cite>-</cite>-threads</dt>
+<dd>Specify number of threads per core to be used for  usearch61 commands that utilize multithreading. By default, will calculate the number of cores to utilize so a single thread will be used per CPU. Specify a fractional number, e.g. 1.0 for 1 thread per core, or 0.5 for a single thread on a two core CPU. Only applies to usearch61. [default: one_per_cpu]</dd>
 </dl>
 </div>
 <p><strong>Output:</strong></p>
@@ -331,8 +333,8 @@
 <br /></div>
 
     <div class="footer">
-        &copy; Copyright 2012, QIIME Team.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+        &copy; Copyright 2010-2014, QIIME Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.
     </div>
 <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");

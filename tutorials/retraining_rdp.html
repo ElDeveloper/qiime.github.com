@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.7.0',
+        VERSION:     '1.8.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -63,7 +63,7 @@
 <p>This tutorial assumes that you&#8217;ve already run the <a class="reference external" href="../tutorials/tutorial.html">QIIME Overview Tutorial</a>, and that you&#8217;re working in the directory where you ran the tutorial commands.</p>
 <div class="section" id="getting-the-greengenes-reference-otus">
 <h3>Getting the greengenes reference OTUs<a class="headerlink" href="#getting-the-greengenes-reference-otus" title="Permalink to this headline">¶</a></h3>
-<p>The most recent version of the greengenes OTUs is always listed on the top right corner of the <a class="reference external" href="http://blog.qiime.org">QIIME Blog homepage</a> (click the &#8220;Most recent Greengenes OTUs&#8221; link on that page). As of this writing that is the <tt class="docutils literal"><span class="pre">4feb2011</span></tt> version, so we&#8217;ll illustrate commands working with that.</p>
+<p>The most recent version of the greengenes OTUs is always available from the QIIME Resources page (click the <em>Resources</em> link on the left side of the <a class="reference external" href="http://www.qiime.org">QIIME homepage</a>). As of this writing that is the <tt class="docutils literal"><span class="pre">4feb2011</span></tt> version, so we&#8217;ll illustrate commands working with that.</p>
 <p>Download and unzip the greengenes reference OTUs:</p>
 <div class="highlight-python"><pre>wget http://greengenes.lbl.gov/Download/Sequence_Data/Fasta_data_files/Caporaso_Reference_OTUs/gg_otus_4feb2011.tgz
 tar -xvzf gg_otus_4feb2011.tgz</pre>
@@ -72,7 +72,7 @@ tar -xvzf gg_otus_4feb2011.tgz</pre>
 <div class="section" id="re-train-the-rdp-classifier-and-classify-the-representative-sequences">
 <h3>Re-train the RDP Classifier and classify the representative sequences<a class="headerlink" href="#re-train-the-rdp-classifier-and-classify-the-representative-sequences" title="Permalink to this headline">¶</a></h3>
 <p>Next you&#8217;ll retrain the RDP classifier and classify your sequences. You can use either <a class="reference external" href="../scripts/assign_taxonomy.html">assign_taxonomy.py</a> or <a class="reference external" href="../scripts/parallel_assign_taxonomy_rdp.html">parallel_assign_taxonomy_rdp.py</a> for this.</p>
-<div class="highlight-python"><pre>assign_taxonomy.py -i otus/rep_set/seqs_rep_set.fasta -t gg_otus_4feb2011/taxonomies/greengenes_tax_rdp_train.txt -r gg_otus_4feb2011/rep_set/gg_97_otus_4feb2011.fasta -o otus/rdp_assigned_taxonomy_gg/</pre>
+<div class="highlight-python"><pre>assign_taxonomy.py -i otus/rep_set/seqs_rep_set.fasta -t gg_otus_4feb2011/taxonomies/greengenes_tax_rdp_train.txt -r gg_otus_4feb2011/rep_set/gg_97_otus_4feb2011.fasta -o otus/rdp_assigned_taxonomy_gg/ -m rdp</pre>
 </div>
 </div>
 <div class="section" id="integrate-the-taxonomy-assignments-into-a-new-otu-table">
@@ -87,7 +87,8 @@ tar -xvzf gg_otus_4feb2011.tgz</pre>
 <h2>Retraining RDP using a custom parameters file<a class="headerlink" href="#retraining-rdp-using-a-custom-parameters-file" title="Permalink to this headline">¶</a></h2>
 <p>If you want to integrate retraining of the RDP classifier into your QIIME workflows, you can create a custom parameters file that can be used with the <a class="reference external" href="../scripts/pick_de_novo_otus.html">pick_de_novo_otus.py</a> workflow script. If the <tt class="docutils literal"><span class="pre">gg_otus_4feb2011</span></tt> directory is in <tt class="docutils literal"><span class="pre">$HOME/</span></tt>, the values in your custom parameters file would be:</p>
 <div class="highlight-python"><pre>assign_taxonomy:reference_seqs_fp       $HOME/gg_otus_4feb2011/rep_set/gg_97_otus_4feb2011.fasta
-assign_taxonomy:id_to_taxonomy_fp       $HOME/gg_otus_4feb2011/taxonomies/greengenes_tax_rdp_train.txt</pre>
+assign_taxonomy:id_to_taxonomy_fp       $HOME/gg_otus_4feb2011/taxonomies/greengenes_tax_rdp_train.txt
+assign_taxonomy:assignment_method       rdp</pre>
 </div>
 </div>
 <div class="section" id="defining-alternate-training-files">
@@ -194,8 +195,8 @@ TGAAGAAGGCCTTCGGGTTGTAAAGTACTTTCAGCGAGGAGGAAGGCATTAAGGTTAATAACCTTAGTGATTGA</pre>
 <br /></div>
 
     <div class="footer">
-        &copy; Copyright 2012, QIIME Team.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+        &copy; Copyright 2010-2014, QIIME Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.
     </div>
 <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");

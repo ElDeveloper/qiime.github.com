@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.7.0',
+        VERSION:     '1.8.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -79,7 +79,13 @@
 <p>For example:</p>
 <div class="highlight-python"><pre>ssh -i  ~/my_key.pem ubuntu@ec2-50-19-129-122.compute-1.amazonaws.com</pre>
 </div>
-<p>Go <a class="reference external" href="http://ged.msu.edu/angus/tutorials-2011/logging-into-ec2-windows.html">here for instructions on using PuTTY to connect to your running EC2 instance</a>.</p>
+<p>Go <a class="reference external" href="http://ged.msu.edu/angus/tutorials-2011/logging-into-ec2-windows.html">here for instructions on using PuTTY to connect to your running EC2 instance</a>. Here is another guide to <a class="reference external" href="http://blog.linuxacademy.com/linux/connect-to-amazon-ec2-using-putty-private-key-on-windows/">connect to Amazon EC2 using Putty and private keys</a>, suggested by <a class="reference external" href="https://groups.google.com/forum/?fromgroups#!topic/qiime-forum/fEtGsfomGLM">Leland</a>.</p>
+</div>
+<div class="section" id="setting-the-qiime-temporary-directory">
+<h2>Setting the QIIME temporary directory<a class="headerlink" href="#setting-the-qiime-temporary-directory" title="Permalink to this headline">¶</a></h2>
+<p>By default the QIIME temporary directory is set to <tt class="docutils literal"><span class="pre">/tmp/</span></tt> which will work for most cases but it can cause issues in two scenarios. First, if your dataset is large there may not be enough space on the filesystem containing <tt class="docutils literal"><span class="pre">/tmp</span></tt>, and second when you are running in a parallel environment that makes use of multiple AWS instances, for example: <a class="reference internal" href="#using-qiime-with-starcluster-and-the-ipython-notebook"><em>Using QIIME with StarCluster and the IPython Notebook</em></a>. In both cases you will need to set up your <tt class="docutils literal"><span class="pre">temp_dir</span></tt> variable within your <tt class="docutils literal"><span class="pre">qiime_config</span></tt> file to a different directory.</p>
+<p>When you are working with only single instance, you can set <tt class="docutils literal"><span class="pre">temp_dir</span></tt> to point to a directory on a larger partition (exactly where will depend on your instance configuration), or to the drive created as described in <a class="reference internal" href="#creating-a-volume-for-persistent-storage-across-different-launches-of-an-instance-or-different-instances"><em>Creating a volume for persistent storage across different launches of an instance (or different instances)</em></a>. When working in a parallel environment with multiple instances (e.g., with StarCluster (<a class="reference internal" href="#using-qiime-with-starcluster-and-the-ipython-notebook"><em>Using QIIME with StarCluster and the IPython Notebook</em></a>)) <tt class="docutils literal"><span class="pre">temp_dir</span></tt> will need to be set to a folder that is NFS shared across the instances (again, this will depend on your specific configuration).</p>
+<p>You can change the <tt class="docutils literal"><span class="pre">temp_dir</span></tt> setting in your QIIME install, see the instructions for <a class="reference internal" href="../install/qiime_config.html#qiime-config"><em>Setting up your qiime_config file</em></a>.</p>
 </div>
 <div class="section" id="getting-data-into-and-out-of-your-qiime-ec2-instance">
 <h2>Getting data into and out of your QIIME EC2 instance<a class="headerlink" href="#getting-data-into-and-out-of-your-qiime-ec2-instance" title="Permalink to this headline">¶</a></h2>
@@ -155,7 +161,7 @@ scp -i  ~/my_key.pem ~/code/Qiime/examples/qiime_tutorial/Fasting_Map.txt ubuntu
 <p>If you&#8217;re permanently done with an EC2 instance, you can terminate it by selecting the instance and choosing <tt class="docutils literal"><span class="pre">Instance</span> <span class="pre">Actions</span></tt> &gt; <tt class="docutils literal"><span class="pre">Terminate</span></tt>. Once you&#8217;ve terminated an instance you can never get it back: all data in that instance, as well as any configuration changes you&#8217;ve made, etc, is lost forever, so be sure this is what you want to do.</p>
 </div>
 <div class="section" id="creating-a-volume-for-persistent-storage-across-different-launches-of-an-instance-or-different-instances">
-<h2>Creating a volume for persistent storage across different launches of an instance (or different instances)<a class="headerlink" href="#creating-a-volume-for-persistent-storage-across-different-launches-of-an-instance-or-different-instances" title="Permalink to this headline">¶</a></h2>
+<span id="id3"></span><h2>Creating a volume for persistent storage across different launches of an instance (or different instances)<a class="headerlink" href="#creating-a-volume-for-persistent-storage-across-different-launches-of-an-instance-or-different-instances" title="Permalink to this headline">¶</a></h2>
 <p>The disk space is fairly limited on the EC2 instances. To get around this you can create a volume (the equivalent of an external hard drive) and mount that on your instance. Data that you store in this volume can be accessed across different launches of an instance, or across different instances, but can only be attached to one instance at a time.</p>
 <p>Use the management console to create a volume. To do this, first click the <tt class="docutils literal"><span class="pre">EC2</span></tt> tab. Next, select <tt class="docutils literal"><span class="pre">Volumes</span></tt> on the left sidebar. Then click <tt class="docutils literal"><span class="pre">Create</span> <span class="pre">Volume</span></tt>. See Figure 9.</p>
 <blockquote>
@@ -187,7 +193,7 @@ sudo chgrp ubuntu $HOME/data</pre>
 <p>Once you&#8217;ve created your device, you only need to go through the attachment step to attach to future instances. This is the step illustrated in Figure 11. Note that you&#8217;ll need to create future instances in the same availability zone as this volume if you&#8217;d like to attach this volume.</p>
 </div>
 <div class="section" id="using-qiime-with-starcluster-and-the-ipython-notebook">
-<h2>Using QIIME with StarCluster and the IPython Notebook<a class="headerlink" href="#using-qiime-with-starcluster-and-the-ipython-notebook" title="Permalink to this headline">¶</a></h2>
+<span id="id4"></span><h2>Using QIIME with StarCluster and the IPython Notebook<a class="headerlink" href="#using-qiime-with-starcluster-and-the-ipython-notebook" title="Permalink to this headline">¶</a></h2>
 <p>QIIME instances can be loaded using <a class="reference external" href="http://web.mit.edu/star/cluster/">StarCluster</a>, which provides an extremely convenient means for starting and using virtual clusters on AWS. This AWS instance also contains support for the <a class="reference external" href="http://ipython.org/ipython-doc/stable/interactive/htmlnotebook.html">IPython Notebook</a>, which provides a convenient interface for creating reproducible analysis pipelines that can easily be shared with others or published as supplementary material with journal articles.</p>
 <p>To start using <a class="reference external" href="http://web.mit.edu/star/cluster/">StarCluster</a> and <a class="reference external" href="http://ipython.org/ipython-doc/stable/interactive/htmlnotebook.html">IPython Notebook</a>, you should see their respective install instructions. Your StarCluster config file should look like this:</p>
 <div class="highlight-python"><pre>[cluster my.qiime.cluster]
@@ -223,6 +229,7 @@ temp_dir        $HOME/temp/</pre>
 <li><a class="reference internal" href="#">Working with QIIME on Amazon Web Services EC2</a><ul>
 <li><a class="reference internal" href="#starting-an-ec2-instance">Starting an EC2 instance</a></li>
 <li><a class="reference internal" href="#connecting-to-your-ec2-instance-using-ssh">Connecting to your EC2 instance using ssh</a></li>
+<li><a class="reference internal" href="#setting-the-qiime-temporary-directory">Setting the QIIME temporary directory</a></li>
 <li><a class="reference internal" href="#getting-data-into-and-out-of-your-qiime-ec2-instance">Getting data into and out of your QIIME EC2 instance</a><ul>
 <li><a class="reference internal" href="#working-with-command-line-tools">Working with command line tools</a></li>
 <li><a class="reference internal" href="#working-with-cyberduck">Working with Cyberduck</a></li>
@@ -279,8 +286,8 @@ temp_dir        $HOME/temp/</pre>
 <br /></div>
 
     <div class="footer">
-        &copy; Copyright 2012, QIIME Team.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+        &copy; Copyright 2010-2014, QIIME Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.
     </div>
 <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");

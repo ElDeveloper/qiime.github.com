@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.7.0',
+        VERSION:     '1.8.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -78,7 +78,7 @@
 </div>
 <p>The result of this step is <tt class="file docutils literal"><span class="pre">otu_table_uclust_ref.biom</span></tt>. For more information about the OTU table format, which relies on the biom-format, please go here: <a class="reference external" href="http://biom-format.org/documentation/biom_format.html">biom-format</a></p>
 <p>To convert the table to a tab separated file containing taxonomic information, use this command:</p>
-<div class="highlight-python"><pre>convert_biom.py -i otu_table_uclust_ref.biom -o otu_table_with_taxonomy.txt -b --header_key taxonomy</pre>
+<div class="highlight-python"><pre>biom convert -i otu_table_uclust_ref.biom -o otu_table_with_taxonomy.txt -b --header-key taxonomy</pre>
 </div>
 <p>which will generate a tab separate OTU table, with an example generated from the Silva 108 release shown below:</p>
 <div class="admonition note">
@@ -107,14 +107,14 @@
 <p>This will create a <cite>18S_tutorial_sample_seqs_otus.txt</cite> file in the uclust_picked_otus directory, which can be used to make a representative sequence set for downstream analysis with the following command:</p>
 <div class="highlight-python"><pre>pick_rep_set.py -i uclust_picked_otus/18S_tutorial_sample_seqs_otus.txt -f 18S_tutorial_sample_seqs.fna -o rep_set.fna</pre>
 </div>
-<p>To assign taxonomies to the <em>de novo</em> OTUs that were just generated, use the following command (note that memory usage specified by &#8212;rdp_max_memory is higher for certain retraining taxonomy mapping files, see the notes.txt file associated with the Silva 108 release):</p>
-<div class="highlight-python"><pre>assign_taxonomy.py -i rep_set.fna -o rdp_assigned_taxonomy/ -t QIIME_files/taxonomy_mapping/Silva_RDP_taxa_mapping.txt -r QIIME_files/rep_set/silva_104_rep_set.fasta --rdp_max_memory 2000</pre>
+<p>To assign taxonomies to the <em>de novo</em> OTUs that were just generated, use the following command. Taxonomic assignment will be performed using the uclust consensus taxonomy assigner.</p>
+<div class="highlight-python"><pre>assign_taxonomy.py -i rep_set.fna -o uclust_assigned_taxonomy/ -t QIIME_files/taxonomy_mapping/Silva_taxa_mapping_104set_97_otus.txt -r QIIME_files/rep_set/silva_104_rep_set.fasta</pre>
 </div>
 <p>If BLAST is the preferred method of assignment, the generic taxonomic mapping file can be used instead:</p>
 <div class="highlight-python"><pre>assign_taxonomy.py -i rep_set.fna -o blast_assigned_taxonomy/ -t QIIME_files/taxonomy_mapping/Silva_taxa_mapping_104set_97_otus.txt -r QIIME_files/rep_set/silva_104_rep_set.fasta -m blast</pre>
 </div>
-<p>Finally, an OTU table can be built which includes the taxonomic assignments (in this case we will use the RDP assignments):</p>
-<div class="highlight-python"><pre>make_otu_table.py -i uclust_picked_otus/18S_tutorial_sample_seqs_otus.txt -t rdp_assigned_taxonomy/rep_set_tax_assignments.txt -o otu_table.biom</pre>
+<p>Finally, an OTU table can be built which includes the taxonomic assignments (in this case we will use the uclust assignments):</p>
+<div class="highlight-python"><pre>make_otu_table.py -i uclust_picked_otus/18S_tutorial_sample_seqs_otus.txt -t uclust_assigned_taxonomy/rep_set_tax_assignments.txt -o otu_table.biom</pre>
 </div>
 </div>
 <div class="section" id="separating-otu-tables-according-to-domain">
@@ -236,8 +236,8 @@ fasttree 2.1.0 was used to construct the phylogenetic tree.</p>
 <br /></div>
 
     <div class="footer">
-        &copy; Copyright 2012, QIIME Team.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+        &copy; Copyright 2010-2014, QIIME Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.
     </div>
 <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");

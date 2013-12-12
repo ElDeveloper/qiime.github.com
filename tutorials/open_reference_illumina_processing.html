@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.7.0',
+        VERSION:     '1.8.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -90,9 +90,9 @@ pick_otus:enable_rev_strand_match True</pre>
 </div>
 <p>You&#8217;ll notice that depending on your version of QIIME, the extension on your OTU table file will differ. In QIIME 1.4.0 and earlier, it will be <tt class="docutils literal"><span class="pre">.txt</span></tt>. In QIIME 1.4.0-dev and later it will be <tt class="docutils literal"><span class="pre">.biom</span></tt>. We&#8217;ll continue this example assuming that your OTU table ends with <tt class="docutils literal"><span class="pre">.txt</span></tt> (if you&#8217;re working with QIIME 1.4.0-dev or later, you likely decided to go with option 2 for OTU picking).</p>
 <p>As PCoA of UniFrac distances between samples is a frequent result of interest in microbial ecology, we&#8217;ll cover how to generate PCoA plots next. The first thing you&#8217;ll want to do is evenly sample your OTU table. To choose an even sampling depth, review the number of reads per sample:</p>
-<div class="highlight-python"><pre>print_biom_table_summary.py -i $PWD/ucr97/otu_table_mc2.biom</pre>
+<div class="highlight-python"><pre>biom summarize-table -i $PWD/ucr97/otu_table_mc2.biom -o $PWD/ucr97/otu_table_mc2_summary.txt</pre>
 </div>
-<p>This will print information on the number of reads per sample to the terminal. Choose a depth of sampling that maximizes the number of sequences you&#8217;ll include, and also the number of samples that have at least that many sequences: samples with fewer sequences will be excluded from your beta diversity/PCoA analysis. <strong>Even sampling is absolutely critical to getting meaningful UniFrac distances between your samples.</strong></p>
+<p>This will create an output file with information on the number of reads per sample. Choose a depth of sampling that maximizes the number of sequences you&#8217;ll include, and also the number of samples that have at least that many sequences: samples with fewer sequences will be excluded from your beta diversity/PCoA analysis. <strong>Even sampling is absolutely critical to getting meaningful UniFrac distances between your samples.</strong></p>
 <p>After choosing an even sampling depth you can use the <tt class="docutils literal"><span class="pre">beta_diversity_through_plots.py</span></tt> script to rarify your OTU table, compute UniFrac distances between samples, and run Principal Coordinates Analysis with the following command (in this example we have chosen an even sampling depth of 25,000 sequences/sample):</p>
 <div class="highlight-python"><pre>beta_diversity_through_plots.py -i $PWD/ucr/otu_table_mc2.biom -e 25000 -o $PWD/ucr/bdiv_even25000/ -t $PWD/ucr/rep_set.tre -m $PWD/map.txt -aO8</pre>
 </div>
@@ -139,7 +139,7 @@ pick_otus:enable_rev_strand_match True</pre>
 <ol class="arabic simple">
 <li>Assemble the reference OTUs, the new reference OTUs, and the clean-up OTUs into a new OTU map, and construct an OTU table. At this stage, all OTUs with a sequence count of smaller than 2 (i.e., the singleton OTUs) are discarded. This can be modified with the <tt class="docutils literal"><span class="pre">--min_otu_size</span></tt> option, and disabled by passing <tt class="docutils literal"><span class="pre">--min_otu_size=1</span></tt>.</li>
 <li>Construct a new reference collection based on this OTU picking run. This new reference collection will be the combination of the full input reference collection, the new reference OTU representative sequences, and the clean-up OTU representative sequences. Note that this will not include representatives of the singleton OTUs by default. Also note that this differs from the representative set of sequences for this run in that it contains <em>all</em> of the input reference sequences, not only the ones that are represented in the current data set (which is what the representative sequences for this run contains).</li>
-<li>Taxonomy will be assigned to all OTUs (using RDP classifier by default) and representative sequences will be aligned and a tree will be constructed. Finally, an additional OTU table will be constructed that excludes reads that failed to align with PyNAST. It is recommended that this OTU table be used in downstream analysis.</li>
+<li>Taxonomy will be assigned to all OTUs (using the uclust consensus taxonomy assigner by default) and representative sequences will be aligned and a tree will be constructed. Finally, an additional OTU table will be constructed that excludes reads that failed to align with PyNAST. It is recommended that this OTU table be used in downstream analysis.</li>
 </ol>
 <p>To apply this analysis to <tt class="docutils literal"><span class="pre">seqs1.fna</span></tt>, picking OTUs against the reference collection <tt class="docutils literal"><span class="pre">refseqs.fna</span></tt> you can run the following command. Your parameters file should contain the following:</p>
 <div class="highlight-python"><pre>pick_otus:otu_picking_method uclust_ref
@@ -150,9 +150,9 @@ pick_otus:enable_rev_strand_match True</pre>
 </div>
 <p>This command should be run in parallel. Each job will need approximately 4GB of RAM, so if running on EC2 and you want to start 8 parallel jobs (recommended setting for EC2), your instance type should be <tt class="docutils literal"><span class="pre">m2.4xlarge</span></tt>. The <tt class="docutils literal"><span class="pre">-aO</span> <span class="pre">8</span></tt> specifies that we want to start 8 parallel jobs - adjust this according to the resources you have available.</p>
 <p id="ucrss-beta-diversity">As PCoA of UniFrac distances between samples is a frequent result of interest in microbial ecology, we&#8217;ll cover how to generate PCoA plots next. The first thing you&#8217;ll want to do is evenly sample your OTU table. To choose an even sampling depth, review the number of reads per sample:</p>
-<div class="highlight-python"><pre>print_biom_table_summary.py -i $PWD/ucrss/otu_table_mc2_w_tax_no_pynast_failures.biom</pre>
+<div class="highlight-python"><pre>biom summarize-table -i $PWD/ucrss/otu_table_mc2_w_tax_no_pynast_failures.biom -o $PWD/ucrss/otu_table_mc2_w_tax_no_pynast_failures_summary.txt</pre>
 </div>
-<p>This will print information on the number of reads per sample to the terminal. Choose a depth of sampling that maximizes the number of sequences you&#8217;ll include, and also the number of samples that have at least that many sequences: samples with fewer sequences will be excluded from your beta diversity/PCoA analysis. <strong>Even sampling is absolutely critical to getting meaningful UniFrac distances between your samples.</strong></p>
+<p>This will create an output file with information on the number of reads per sample. Choose a depth of sampling that maximizes the number of sequences you&#8217;ll include, and also the number of samples that have at least that many sequences: samples with fewer sequences will be excluded from your beta diversity/PCoA analysis. <strong>Even sampling is absolutely critical to getting meaningful UniFrac distances between your samples.</strong></p>
 <p>After choosing an even sampling depth you can use the <tt class="docutils literal"><span class="pre">beta_diversity_through_plots.py</span></tt> script to rarify your OTU table, compute UniFrac distances between samples, and run Principal Coordinates Analysis with the following command (in this example we have chosen an even sampling depth of 25,000 sequences/sample):</p>
 <div class="highlight-python"><pre>beta_diversity_through_plots.py -i $PWD/ucrss/otu_table_mc2_w_tax_no_pynast_failures.biom  -e 25000 -o $PWD/ucrss/bdiv_even25000/ -t $PWD/ucrss/rep_set.tre -m $PWD/map.txt -aO8</pre>
 </div>
@@ -221,7 +221,7 @@ pick_otus:enable_rev_strand_match True</pre>
 </div>
 <div class="section" id="otu-category-significance">
 <h3>OTU category significance<a class="headerlink" href="#otu-category-significance" title="Permalink to this headline">¶</a></h3>
-<p>Here I confirm that the same taxonomy groups are identified as significantly different across the pH gradient in these soils using ANOVA, regardless of which OTU picking workflow is applied. These results were computed with the <tt class="docutils literal"><span class="pre">otu_category_significance.py</span></tt> script. To define a category for this test I binned the pH values by truncating the values to integers (so 5.0, 5.3, and 5.9 are all binned to pH 5) and using this binned pH as the category. Since I&#8217;m just looking for consistent results across the different OTU picking methods I don&#8217;t think it&#8217;s important that this isn&#8217;t the most biologically relevant binning strategy. <strong>Note that OTU ids are not directly comparable across all analyses, so it is best to compare the taxonomies.</strong></p>
+<p>Here I confirm that the same taxonomy groups are identified as significantly different across the pH gradient in these soils using ANOVA, regardless of which OTU picking workflow is applied. These results were computed with the <tt class="docutils literal"><span class="pre">group_significance.py</span></tt> script. To define a category for this test I binned the pH values by truncating the values to integers (so 5.0, 5.3, and 5.9 are all binned to pH 5) and using this binned pH as the category. Since I&#8217;m just looking for consistent results across the different OTU picking methods I don&#8217;t think it&#8217;s important that this isn&#8217;t the most biologically relevant binning strategy. <strong>Note that OTU ids are not directly comparable across all analyses, so it is best to compare the taxonomies.</strong></p>
 <div class="section" id="id4">
 <h4>Results<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
 <p>Top 5 OTUs that differ across bins for subsampled open-reference OTU picking:</p>
@@ -427,7 +427,7 @@ pick_otus:enable_rev_strand_match True</pre>
 </div>
 <div class="section" id="id14">
 <h3>OTU category significance<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
-<p>Here I confirm that the same taxonomy groups are identified as significantly different across the body sites in this study using ANOVA, regardless of which OTU picking workflow is applied. These results were computed with the <tt class="docutils literal"><span class="pre">otu_category_significance.py</span></tt> script. <strong>Note that OTU ids are not directly comparable across all analyses, so it is best to compare the taxonomies.</strong></p>
+<p>Here I confirm that the same taxonomy groups are identified as significantly different across the body sites in this study using ANOVA, regardless of which OTU picking workflow is applied. These results were computed with the <tt class="docutils literal"><span class="pre">group_significance.py</span></tt> script. <strong>Note that OTU ids are not directly comparable across all analyses, so it is best to compare the taxonomies.</strong></p>
 <div class="section" id="id15">
 <h4>Results<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h4>
 <p>Top 5 OTUs that differ across bins for subsampled open-reference OTU picking:</p>
@@ -741,8 +741,8 @@ pick_otus:enable_rev_strand_match True</pre>
 <br /></div>
 
     <div class="footer">
-        &copy; Copyright 2012, QIIME Team.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+        &copy; Copyright 2010-2014, QIIME Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.
     </div>
 <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
