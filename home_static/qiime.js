@@ -140,3 +140,16 @@ function getFile(fileName){
     }
     return oxmlhttp.responseText;
 }
+
+function search() {
+    var targets = document.forms["searchForm"]["target"];
+    for(var i = 0; i<targets.length; i++) {
+        if(targets[i].checked) {
+           var target = targets[i].value;
+        }
+    }
+    var query = document.forms["searchForm"]["query"].value;
+
+    window.location = target+query;
+    return false;
+}
